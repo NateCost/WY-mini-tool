@@ -56,6 +56,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F467B85E24606225005EFEE5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F47CD0C7245F462B00280E3B /* Info.plist */,
+				F47CD0C2245F462B00280E3B /* Assets.xcassets */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F467B85F24606245005EFEE5 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				F47CD0B9245F462A00280E3B /* AppDelegate.swift */,
+				F47CD0BD245F462A00280E3B /* ViewController.swift */,
+				F47CD0BF245F462A00280E3B /* Main.storyboard */,
+				F47CD0C4245F462B00280E3B /* LaunchScreen.storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		F467B86024606606005EFEE5 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		F47CD0AD245F462A00280E3B = {
 			isa = PBXGroup;
 			children = (
@@ -77,12 +104,9 @@
 		F47CD0B8245F462A00280E3B /* Mini Tool */ = {
 			isa = PBXGroup;
 			children = (
-				F47CD0B9245F462A00280E3B /* AppDelegate.swift */,
-				F47CD0BD245F462A00280E3B /* ViewController.swift */,
-				F47CD0BF245F462A00280E3B /* Main.storyboard */,
-				F47CD0C2245F462B00280E3B /* Assets.xcassets */,
-				F47CD0C4245F462B00280E3B /* LaunchScreen.storyboard */,
-				F47CD0C7245F462B00280E3B /* Info.plist */,
+				F467B86024606606005EFEE5 /* Services */,
+				F467B85F24606245005EFEE5 /* Presentation */,
+				F467B85E24606225005EFEE5 /* Supporting Files */,
 			);
 			path = "Mini Tool";
 			sourceTree = "<group>";
@@ -360,7 +384,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9A52X52G8;
-				INFOPLIST_FILE = "Mini Tool/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mini Tool/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -379,7 +403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = U9A52X52G8;
-				INFOPLIST_FILE = "Mini Tool/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Mini Tool/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
