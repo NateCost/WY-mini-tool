@@ -16,7 +16,8 @@ enum BreachStatus: String {
 }
 
 final class BreachViewController: UIViewController {
-  @IBOutlet var statusLabel: UILabel!
+  @IBOutlet var segmentsToBreachStackView: UIStackView!
+  @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
   var status: BreachStatus = .noSegmentsToBreach
   private var segmentsToBreach: [Segment] = []
@@ -39,5 +40,27 @@ final class BreachViewController: UIViewController {
     if segmentsToBreach.isEmpty {
       status = .noSegmentsToBreach
     }
+    
+    setSegmentsToBreach(segmentsToBreach)
+  }
+  
+  private func setSegmentsToBreach(_ segments: [Segment]) {
+    for _ in segments {
+      segmentsToBreachStackView.addArrangedSubview(UIView())
+    }
+  }
+}
+// MARK: - UICollectionViewDataSource
+extension BreachViewController: UICollectionViewDataSource {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    numberOfItemsInSection section: Int
+  ) -> Int { segmentsToChoose.count }
+  
+  func collectionView(
+    _ collectionView: UICollectionView,
+    cellForItemAt indexPath: IndexPath
+  ) -> UICollectionViewCell {
+    UICollectionViewCell()
   }
 }
