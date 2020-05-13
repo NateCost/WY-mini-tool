@@ -44,14 +44,13 @@ class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_collectionViewLoadsSegments() {
     let sut = makeSUT(
       segmentsToBreach: [],
-      segmentsToChoose: [PixelMatrixSegment(value: "S")]
+      segmentsToChoose: [
+        PixelMatrixSegment(value: "S"),
+        PixelMatrixSegment(value: "Z")
+      ]
     )
-    XCTAssertEqual(sut.segmentsToChooseCollectionView.numberOfItems(inSection: 0), 1)
-    XCTAssertEqual(
-      makeSUT(
-        segmentsToChoose: []
-      ).segmentsToChooseCollectionView.numberOfItems(inSection: 0), 0
-    )
+    XCTAssertEqual(sut.segmentsToChooseCollectionView.value(at: 0), "S")
+    XCTAssertEqual(sut.segmentsToChooseCollectionView.value(at: 1), "Z")
   }
   
   func makeSUT(
@@ -64,5 +63,18 @@ class BreachViewContllerTest: XCTestCase {
     )
     _ = sut.view
     return sut
+  }
+}
+// MARK: - UICollectionView
+private extension UICollectionView {
+  func cell(at row: Int) -> SegmentViewCell? {
+    dataSource?.collectionView(
+      self,
+      cellForItemAt: IndexPath(row: row, section: 0)
+    ) as? SegmentViewCell
+  }
+  
+  func value(at row: Int) -> String? {
+    cell(at: row)?.value
   }
 }
