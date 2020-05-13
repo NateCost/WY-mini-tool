@@ -23,9 +23,15 @@ final class BreachViewController: UIViewController {
   private var segmentsToBreach: [Segment] = []
   private var segmentsToChoose: [Segment] = []
   private let reuseIdentifier = "SegmentViewCell"
+  private var selection: ((Segment) -> Void)?
   
-  convenience init(segmentsToBreach: [Segment], segmentsToChoose: [Segment]) {
+  convenience init(
+    segmentsToBreach: [Segment],
+    segmentsToChoose: [Segment],
+    selection: @escaping (Segment) -> Void
+  ) {
     self.init()
+    self.selection = selection
     self.segmentsToBreach = segmentsToBreach
     self.segmentsToChoose = segmentsToChoose
   }
@@ -76,5 +82,11 @@ extension BreachViewController: UICollectionViewDataSource {
     let segment = segmentsToChoose[indexPath.row]
     cell.configure(with: segment)
     return cell
+  }
+}
+// MARK: - UICollectionViewDelegate
+extension BreachViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    selection?(segmentsToChoose[indexPath.row])
   }
 }

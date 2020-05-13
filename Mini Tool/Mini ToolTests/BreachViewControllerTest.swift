@@ -53,13 +53,36 @@ class BreachViewContllerTest: XCTestCase {
     XCTAssertEqual(sut.segmentsToChooseCollectionView.value(at: 1), "Z")
   }
   
+  func test_optionSelection_notifiesDelegate() {
+    var selectedSegment: Segment?
+    
+    let sut = makeSUT(
+      segmentsToBreach: [PixelMatrixSegment(value: "S")],
+      segmentsToChoose: [
+        PixelMatrixSegment(value: "S"),
+        PixelMatrixSegment(value: "Z")
+      ]
+    ) {
+      selectedSegment = $0
+    }
+    
+    sut.segmentsToChooseCollectionView.delegate?.collectionView?(
+      sut.segmentsToChooseCollectionView,
+      didSelectItemAt: IndexPath(row: 0, section: 0)
+    )
+    
+    XCTAssertEqual(selectedSegment?.value, PixelMatrixSegment(value: "S").value)
+  }
+  
   func makeSUT(
     segmentsToBreach: [Segment] = [],
-    segmentsToChoose: [Segment] = []
+    segmentsToChoose: [Segment] = [],
+    selection: @escaping (Segment) -> Void = { _ in }
   ) -> BreachViewController {
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,
-      segmentsToChoose: segmentsToChoose
+      segmentsToChoose: segmentsToChoose,
+      selection: selection
     )
     _ = sut.view
     return sut
