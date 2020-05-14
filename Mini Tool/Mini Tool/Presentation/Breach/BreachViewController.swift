@@ -22,16 +22,24 @@ final class BreachViewController: UIViewController {
   var status: BreachStatus = .noSegmentsToBreach
   private var segmentsToBreach: [Segment] = []
   private var segmentsToChoose: [Segment] = []
+  private var selection: ((Segment) -> Void)?
   
-  convenience init(segmentsToBreach: [Segment], segmentsToChoose: [Segment]) {
+  convenience init(
+    segmentsToBreach: [Segment],
+    segmentsToChoose: [Segment],
+    selection: @escaping (Segment) -> Void
+  ) {
     self.init()
+    self.selection = selection
     self.segmentsToBreach = segmentsToBreach
     self.segmentsToChoose = segmentsToChoose
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    if !segmentsToBreach.isEmpty && !segmentsToChoose.isEmpty {
+    segmentsToChooseCollectionView.register(SegmentViewCell.self)
+    
+    if !segmentsToBreach.isEmpty, !segmentsToChoose.isEmpty {
       status = .breaching
     } else if segmentsToChoose.isEmpty {
       status = .noSegmentsToSelect
@@ -42,11 +50,14 @@ final class BreachViewController: UIViewController {
     }
     
     setSegmentsToBreach(segmentsToBreach)
+    segmentsToChooseCollectionView.reloadData()
   }
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
     for _ in segments {
-      segmentsToBreachStackView.addArrangedSubview(UIView())
+      let view = UIView()
+      view.backgroundColor = .white
+      segmentsToBreachStackView.addArrangedSubview(view)
     }
   }
 }
@@ -61,6 +72,18 @@ extension BreachViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    UICollectionViewCell()
+    guard
+      let cell: SegmentViewCell = collectionView.dequeueCell(at: indexPath)
+    else { return UICollectionViewCell() }
+    
+    let segment = segmentsToChoose[indexPath.row]
+    cell.configure(with: segment)
+    return cell
+  }
+}
+// MARK: - UICollectionViewDelegate
+extension BreachViewController: UICollectionViewDelegate {
+  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    selection?(segmentsToChoose[indexPath.row])
   }
 }
