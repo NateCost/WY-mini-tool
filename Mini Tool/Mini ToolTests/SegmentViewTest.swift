@@ -9,6 +9,4 @@
 import Foundation
 import XCTest
 
-class SegmentViewTest: XCTestCase {
-  
-}
+class SegmentViewCellTest: XCTestCase {}

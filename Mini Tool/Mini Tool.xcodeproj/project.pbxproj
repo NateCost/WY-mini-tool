@@ -17,6 +17,7 @@
 		F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A5E246AB15500D37733 /* BreachViewController.swift */; };
 		F4A06A61246AB24900D37733 /* BreachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A06A60246AB24900D37733 /* BreachViewController.xib */; };
 		F4A06A64246AB6BF00D37733 /* PixelMatrixSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A63246AB6BF00D37733 /* PixelMatrixSegment.swift */; };
+		F4CE4AD7246C6C2D00989B28 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = F4CE4AD6246C6C2D00989B28 /* SwiftFormat */; };
 		F4CF47C42466D46A00877FA6 /* WY Mini Tool Engine in Frameworks */ = {isa = PBXBuildFile; productRef = F4CF47C32466D46A00877FA6 /* WY Mini Tool Engine */; };
 		F4F845A32466BD320097B238 /* SegmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F845A22466BD320097B238 /* SegmentViewCell.swift */; };
 /* End PBXBuildFile section */
@@ -55,6 +56,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4CF47C42466D46A00877FA6 /* WY Mini Tool Engine in Frameworks */,
+				F4CE4AD7246C6C2D00989B28 /* SwiftFormat in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -171,6 +173,7 @@
 				F47CD0B2245F462A00280E3B /* Sources */,
 				F47CD0B3245F462A00280E3B /* Frameworks */,
 				F47CD0B4245F462A00280E3B /* Resources */,
+				F4E94B1B246D1BA40030C558 /* Swift format */,
 			);
 			buildRules = (
 			);
@@ -179,6 +182,7 @@
 			name = "Mini Tool";
 			packageProductDependencies = (
 				F4CF47C32466D46A00877FA6 /* WY Mini Tool Engine */,
+				F4CE4AD6246C6C2D00989B28 /* SwiftFormat */,
 			);
 			productName = "Mini Tool";
 			productReference = F47CD0B6245F462A00280E3B /* Mini Tool.app */;
@@ -232,6 +236,7 @@
 			mainGroup = F47CD0AD245F462A00280E3B;
 			packageReferences = (
 				F4CF47C22466D46A00877FA6 /* XCRemoteSwiftPackageReference "WY-Mini-Tool-Engine" */,
+				F4CE4AD5246C6C2D00989B28 /* XCRemoteSwiftPackageReference "SwiftFormat" */,
 			);
 			productRefGroup = F47CD0B7245F462A00280E3B /* Products */;
 			projectDirPath = "";
@@ -263,6 +268,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F4E94B1B246D1BA40030C558 /* Swift format */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Swift format";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftformat >/dev/null; then\n  swiftformat --lint --lenient --verbose .\nelse\n  echo \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F47CD0B2245F462A00280E3B /* Sources */ = {
@@ -545,6 +571,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		F4CE4AD5246C6C2D00989B28 /* XCRemoteSwiftPackageReference "SwiftFormat" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/nicklockwood/SwiftFormat";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.44.9;
+			};
+		};
 		F4CF47C22466D46A00877FA6 /* XCRemoteSwiftPackageReference "WY-Mini-Tool-Engine" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/NateCost/WY-Mini-Tool-Engine.git";
@@ -556,6 +590,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F4CE4AD6246C6C2D00989B28 /* SwiftFormat */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F4CE4AD5246C6C2D00989B28 /* XCRemoteSwiftPackageReference "SwiftFormat" */;
+			productName = SwiftFormat;
+		};
 		F4CF47C32466D46A00877FA6 /* WY Mini Tool Engine */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = F4CF47C22466D46A00877FA6 /* XCRemoteSwiftPackageReference "WY-Mini-Tool-Engine" */;

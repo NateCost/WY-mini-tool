@@ -43,7 +43,7 @@ final class BreachViewController: UIViewController {
       forCellWithReuseIdentifier: reuseIdentifier
     )
     
-    if !segmentsToBreach.isEmpty && !segmentsToChoose.isEmpty {
+    if !segmentsToBreach.isEmpty, !segmentsToChoose.isEmpty {
       status = .breaching
     } else if segmentsToChoose.isEmpty {
       status = .noSegmentsToSelect
