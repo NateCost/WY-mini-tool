@@ -10,7 +10,6 @@ import UIKit
 import WY_Mini_Tool_Engine
 
 final class SegmentViewCell: UICollectionViewCell {
-  override var reuseIdentifier: String { "SegmentViewCell" }
   var value: String?
   
   func configure(with segment: Segment) {

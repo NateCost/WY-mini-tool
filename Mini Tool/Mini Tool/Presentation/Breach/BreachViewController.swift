@@ -22,7 +22,6 @@ final class BreachViewController: UIViewController {
   var status: BreachStatus = .noSegmentsToBreach
   private var segmentsToBreach: [Segment] = []
   private var segmentsToChoose: [Segment] = []
-  private let reuseIdentifier = "SegmentViewCell"
   private var selection: ((Segment) -> Void)?
   
   convenience init(
@@ -38,10 +37,7 @@ final class BreachViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    segmentsToChooseCollectionView.register(
-      SegmentViewCell.self,
-      forCellWithReuseIdentifier: reuseIdentifier
-    )
+    segmentsToChooseCollectionView.register(SegmentViewCell.self)
     
     if !segmentsToBreach.isEmpty, !segmentsToChoose.isEmpty {
       status = .breaching
@@ -59,7 +55,9 @@ final class BreachViewController: UIViewController {
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
     for _ in segments {
-      segmentsToBreachStackView.addArrangedSubview(UIView())
+      let view = UIView()
+      view.backgroundColor = .white
+      segmentsToBreachStackView.addArrangedSubview(view)
     }
   }
 }
@@ -74,10 +72,9 @@ extension BreachViewController: UICollectionViewDataSource {
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
-    guard let cell = collectionView.dequeueReusableCell(
-      withReuseIdentifier: reuseIdentifier,
-      for: indexPath
-    ) as? SegmentViewCell else { return UICollectionViewCell() }
+    guard
+      let cell: SegmentViewCell = collectionView.dequeueCell(at: indexPath)
+    else { return UICollectionViewCell() }
     
     let segment = segmentsToChoose[indexPath.row]
     cell.configure(with: segment)

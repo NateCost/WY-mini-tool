@@ -49,12 +49,17 @@ class BreachViewContllerTest: XCTestCase {
         PixelMatrixSegment(value: "Z")
       ]
     )
-    XCTAssertEqual(sut.segmentsToChooseCollectionView.value(at: 0), "S")
-    XCTAssertEqual(sut.segmentsToChooseCollectionView.value(at: 1), "Z")
+    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as? SegmentViewCell
+    XCTAssertNotNil(cell1)
+    XCTAssertEqual(cell1?.value, "S")
+    
+    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as? SegmentViewCell
+    XCTAssertNotNil(cell2)
+    XCTAssertEqual(cell2?.value, "Z")
   }
   
   func test_optionSelection_notifiesDelegate() {
-    var selectedSegment: Segment?
+    var selectedSegments: [Segment] = []
     
     let sut = makeSUT(
       segmentsToBreach: [PixelMatrixSegment(value: "S")],
@@ -62,16 +67,12 @@ class BreachViewContllerTest: XCTestCase {
         PixelMatrixSegment(value: "S"),
         PixelMatrixSegment(value: "Z")
       ]
-    ) {
-      selectedSegment = $0
-    }
+    ) { selectedSegments.append($0) }
     
-    sut.segmentsToChooseCollectionView.delegate?.collectionView?(
-      sut.segmentsToChooseCollectionView,
-      didSelectItemAt: IndexPath(row: 0, section: 0)
-    )
+    sut.segmentsToChooseCollectionView.select(row: 0)
     
-    XCTAssertEqual(selectedSegment?.value, PixelMatrixSegment(value: "S").value)
+    XCTAssertEqual(selectedSegments.count, 1)
+    XCTAssertEqual(selectedSegments[0].value, PixelMatrixSegment(value: "S").value)
   }
   
   func makeSUT(
@@ -90,14 +91,14 @@ class BreachViewContllerTest: XCTestCase {
 }
 // MARK: - UICollectionView
 private extension UICollectionView {
-  func cell(at row: Int) -> SegmentViewCell? {
+  func cell(at row: Int) -> UICollectionViewCell? {
     dataSource?.collectionView(
       self,
       cellForItemAt: IndexPath(row: row, section: 0)
-    ) as? SegmentViewCell
+    )
   }
   
-  func value(at row: Int) -> String? {
-    cell(at: row)?.value
+  func select(row: Int) {
+    delegate?.collectionView?(self, didSelectItemAt: IndexPath(row: row, section: 0))
   }
 }
