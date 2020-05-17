@@ -6,9 +6,9 @@
 //  Copyright © 2020 Nirma. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import WY_Mini_Tool_Engine
 
-struct PixelMatrixSegment: Segment {
-  var value: String
+struct ColoredSegment: Hashable {
+  let color: UIColor
 }

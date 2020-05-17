@@ -13,14 +13,14 @@ import WY_Mini_Tool_Engine
 
 class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_noSegmentsToChoose_updatesStatus() {
-    let sut = makeSUT(segmentsToBreach: [PixelMatrixSegment(value: "S1")])
+    let sut = makeSUT(segmentsToBreach: [ColoredSegment(color: .black)])
     XCTAssertEqual(sut.status, BreachStatus.noSegmentsToSelect)
   }
   
   func test_viewDidLoad_withSegmentsToBreachAndToChoose_updatesStatus() {
     let sut = makeSUT(
-      segmentsToBreach: [PixelMatrixSegment(value: "S1")],
-      segmentsToChoose: [PixelMatrixSegment(value: "S1")]
+      segmentsToBreach: [ColoredSegment(color: .black)],
+      segmentsToChoose: [ColoredSegment(color: .black)]
     )
     XCTAssertEqual(sut.status, BreachStatus.breaching)
   }
@@ -34,8 +34,8 @@ class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHas2Subviews() {
     let sut = makeSUT(
       segmentsToBreach: [
-        PixelMatrixSegment(value: "S1"),
-        PixelMatrixSegment(value: "S2")
+        ColoredSegment(color: .black),
+        ColoredSegment(color: .brown)
       ]
     )
     XCTAssertEqual(sut.segmentsToBreachStackView.subviews.count, 2)
@@ -45,40 +45,40 @@ class BreachViewContllerTest: XCTestCase {
     let sut = makeSUT(
       segmentsToBreach: [],
       segmentsToChoose: [
-        PixelMatrixSegment(value: "S"),
-        PixelMatrixSegment(value: "Z")
+        ColoredSegment(color: .black),
+        ColoredSegment(color: .brown)
       ]
     )
     let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as? SegmentViewCell
     XCTAssertNotNil(cell1)
-    XCTAssertEqual(cell1?.value, "S")
+    XCTAssertEqual(cell1?.color, .black)
     
     let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as? SegmentViewCell
     XCTAssertNotNil(cell2)
-    XCTAssertEqual(cell2?.value, "Z")
+    XCTAssertEqual(cell2?.color, .brown)
   }
   
   func test_optionSelection_notifiesDelegate() {
-    var selectedSegments: [Segment] = []
+    var selectedSegments: [ColoredSegment] = []
     
     let sut = makeSUT(
-      segmentsToBreach: [PixelMatrixSegment(value: "S")],
+      segmentsToBreach: [ColoredSegment(color: .black)],
       segmentsToChoose: [
-        PixelMatrixSegment(value: "S"),
-        PixelMatrixSegment(value: "Z")
+        ColoredSegment(color: .black),
+        ColoredSegment(color: .brown)
       ]
     ) { selectedSegments.append($0) }
     
     sut.segmentsToChooseCollectionView.select(row: 0)
     
     XCTAssertEqual(selectedSegments.count, 1)
-    XCTAssertEqual(selectedSegments[0].value, PixelMatrixSegment(value: "S").value)
+    XCTAssertEqual(selectedSegments[0].color, ColoredSegment(color: .black).color)
   }
   
   func makeSUT(
-    segmentsToBreach: [Segment] = [],
-    segmentsToChoose: [Segment] = [],
-    selection: @escaping (Segment) -> Void = { _ in }
+    segmentsToBreach: [ColoredSegment] = [],
+    segmentsToChoose: [ColoredSegment] = [],
+    selection: @escaping (ColoredSegment) -> Void = { _ in }
   ) -> BreachViewController {
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,

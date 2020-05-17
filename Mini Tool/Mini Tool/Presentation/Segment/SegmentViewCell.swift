@@ -10,9 +10,9 @@ import UIKit
 import WY_Mini_Tool_Engine
 
 final class SegmentViewCell: UICollectionViewCell {
-  var value: String?
+  var color: UIColor?
   
-  func configure(with segment: Segment) {
-    value = segment.value
+  func configure(with segment: ColoredSegment) {
+    color = segment.color
   }
 }
