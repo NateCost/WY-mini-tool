@@ -18,10 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
     let viewController = BreachViewController(
-      segmentsToBreach: [PixelMatrixSegment(value: ""), PixelMatrixSegment(value: "")],
-      segmentsToChoose: [PixelMatrixSegment(value: "")]
+      segmentsToBreach: [ColoredSegment(color: .black), ColoredSegment(color: .blue)],
+      segmentsToChoose: [ColoredSegment(color: .black)]
     ) {
-      print($0.value)
+      print($0.color)
     }
     window.rootViewController = viewController
     self.window = window

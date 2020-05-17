@@ -20,14 +20,14 @@ final class BreachViewController: UIViewController {
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
   var status: BreachStatus = .noSegmentsToBreach
-  private var segmentsToBreach: [Segment] = []
-  private var segmentsToChoose: [Segment] = []
-  private var selection: ((Segment) -> Void)?
+  private var segmentsToBreach: [ColoredSegment] = []
+  private var segmentsToChoose: [ColoredSegment] = []
+  private var selection: ((ColoredSegment) -> Void)?
   
   convenience init(
-    segmentsToBreach: [Segment],
-    segmentsToChoose: [Segment],
-    selection: @escaping (Segment) -> Void
+    segmentsToBreach: [ColoredSegment],
+    segmentsToChoose: [ColoredSegment],
+    selection: @escaping (ColoredSegment) -> Void
   ) {
     self.init()
     self.selection = selection
@@ -53,7 +53,7 @@ final class BreachViewController: UIViewController {
     segmentsToChooseCollectionView.reloadData()
   }
   
-  private func setSegmentsToBreach(_ segments: [Segment]) {
+  private func setSegmentsToBreach(_ segments: [ColoredSegment]) {
     for _ in segments {
       let view = UIView()
       view.backgroundColor = .white
