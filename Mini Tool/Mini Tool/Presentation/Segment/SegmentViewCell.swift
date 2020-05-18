@@ -10,9 +10,11 @@ import UIKit
 import WY_Mini_Tool_Engine
 
 final class SegmentViewCell: UICollectionViewCell {
+  @IBOutlet var coloredPanelView: UIView!
   var color: UIColor?
   
   func configure(with segment: ColoredSegment) {
+    coloredPanelView.backgroundColor = segment.color
     color = segment.color
   }
 }

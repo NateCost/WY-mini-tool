@@ -163,8 +163,8 @@
 		F4A06A5D246AB14300D37733 /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				F4F845A22466BD320097B238 /* SegmentViewCell.swift */,
 				F408A21F246DB680009B9203 /* SegmentViewCell.xib */,
+				F4F845A22466BD320097B238 /* SegmentViewCell.swift */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
