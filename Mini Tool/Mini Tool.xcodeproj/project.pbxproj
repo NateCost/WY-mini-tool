@@ -96,20 +96,13 @@
 		F467B85F24606245005EFEE5 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				F47CD0B9245F462A00280E3B /* AppDelegate.swift */,
+				F4DDE31C2473C09D006EA6FF /* Helpers */,
 				F40FFA65246D301D008632CB /* Main */,
 				F4A06A5D246AB14300D37733 /* Segment */,
 				F4A06A5C246AB13D00D37733 /* Breach */,
-				F47CD0B9245F462A00280E3B /* AppDelegate.swift */,
-				F408A221246DC06B009B9203 /* CollectionViewHelpers.swift */,
 			);
 			path = Presentation;
-			sourceTree = "<group>";
-		};
-		F467B86024606606005EFEE5 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Services;
 			sourceTree = "<group>";
 		};
 		F47CD0AD245F462A00280E3B = {
@@ -134,7 +127,6 @@
 			isa = PBXGroup;
 			children = (
 				F4A06A62246AB69600D37733 /* Models */,
-				F467B86024606606005EFEE5 /* Services */,
 				F467B85F24606245005EFEE5 /* Presentation */,
 				F467B85E24606225005EFEE5 /* Supporting Files */,
 			);
@@ -163,8 +155,8 @@
 		F4A06A5D246AB14300D37733 /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				F4F845A22466BD320097B238 /* SegmentViewCell.swift */,
 				F408A21F246DB680009B9203 /* SegmentViewCell.xib */,
+				F4F845A22466BD320097B238 /* SegmentViewCell.swift */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -175,6 +167,14 @@
 				F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		F4DDE31C2473C09D006EA6FF /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F408A221246DC06B009B9203 /* CollectionViewHelpers.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

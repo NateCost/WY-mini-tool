@@ -16,8 +16,28 @@
             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="2ay-Fi-V7w">
                 <rect key="frame" x="0.0" y="0.0" width="141" height="235"/>
                 <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14c-Ez-oTZ">
+                        <rect key="frame" x="4" y="4" width="133" height="227"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="4"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="14c-Ez-oTZ" firstAttribute="top" secondItem="2ay-Fi-V7w" secondAttribute="top" constant="4" id="dG9-7I-rbb"/>
+                    <constraint firstAttribute="bottom" secondItem="14c-Ez-oTZ" secondAttribute="bottom" constant="4" id="eXf-nI-BuD"/>
+                    <constraint firstItem="14c-Ez-oTZ" firstAttribute="leading" secondItem="2ay-Fi-V7w" secondAttribute="leading" constant="4" id="jLg-7d-Vi0"/>
+                    <constraint firstAttribute="trailing" secondItem="14c-Ez-oTZ" secondAttribute="trailing" constant="4" id="s6N-aK-8jr"/>
+                </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="141" height="235"/>
+            <connections>
+                <outlet property="coloredPanelView" destination="14c-Ez-oTZ" id="j1T-00-9a2"/>
+            </connections>
             <point key="canvasLocation" x="-67.391304347826093" y="-36.495535714285715"/>
         </collectionViewCell>
     </objects>
