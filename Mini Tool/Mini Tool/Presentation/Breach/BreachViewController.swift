@@ -83,7 +83,10 @@ extension BreachViewController: UICollectionViewDataSource {
 }
 // MARK: - UICollectionViewDelegate
 extension BreachViewController: UICollectionViewDelegate {
-  func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  func collectionView(
+    _ collectionView: UICollectionView,
+    didSelectItemAt indexPath: IndexPath
+  ) {
     selection?(segmentsToChoose[indexPath.row])
   }
 }
