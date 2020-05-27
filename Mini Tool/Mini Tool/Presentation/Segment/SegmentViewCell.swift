@@ -14,7 +14,7 @@ final class SegmentViewCell: UICollectionViewCell {
   var color: UIColor?
   
   func configure(with segment: ColoredSegment) {
-    coloredPanelView.backgroundColor = segment.color
-    color = segment.color
+    coloredPanelView.backgroundColor = segment.value
+    color = segment.value
   }
 }

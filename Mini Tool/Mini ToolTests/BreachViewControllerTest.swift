@@ -13,14 +13,14 @@ import WY_Mini_Tool_Engine
 
 class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_noSegmentsToChoose_updatesStatus() {
-    let sut = makeSUT(segmentsToBreach: [ColoredSegment(color: .black)])
+    let sut = makeSUT(segmentsToBreach: [ColoredSegment(.black)])
     XCTAssertEqual(sut.status, BreachStatus.noSegmentsToSelect)
   }
   
   func test_viewDidLoad_withSegmentsToBreachAndToChoose_updatesStatus() {
     let sut = makeSUT(
-      segmentsToBreach: [ColoredSegment(color: .black)],
-      segmentsToChoose: [ColoredSegment(color: .black)]
+      segmentsToBreach: [ColoredSegment(.black)],
+      segmentsToChoose: [ColoredSegment(.black)]
     )
     XCTAssertEqual(sut.status, BreachStatus.breaching)
   }
@@ -34,8 +34,8 @@ class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHas2Subviews() {
     let sut = makeSUT(
       segmentsToBreach: [
-        ColoredSegment(color: .black),
-        ColoredSegment(color: .brown)
+        ColoredSegment(.black),
+        ColoredSegment(.brown)
       ]
     )
     XCTAssertEqual(sut.segmentsToBreachStackView.subviews.count, 2)
@@ -45,8 +45,8 @@ class BreachViewContllerTest: XCTestCase {
     let sut = makeSUT(
       segmentsToBreach: [],
       segmentsToChoose: [
-        ColoredSegment(color: .black),
-        ColoredSegment(color: .brown)
+        ColoredSegment(.black),
+        ColoredSegment(.brown)
       ]
     )
     let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as? SegmentViewCell
@@ -62,17 +62,17 @@ class BreachViewContllerTest: XCTestCase {
     var selectedSegments: [ColoredSegment] = []
     
     let sut = makeSUT(
-      segmentsToBreach: [ColoredSegment(color: .black)],
+      segmentsToBreach: [ColoredSegment(.black)],
       segmentsToChoose: [
-        ColoredSegment(color: .black),
-        ColoredSegment(color: .brown)
+        ColoredSegment(.black),
+        ColoredSegment(.brown)
       ]
     ) { selectedSegments.append($0) }
     
     sut.segmentsToChooseCollectionView.select(row: 0)
     
     XCTAssertEqual(selectedSegments.count, 1)
-    XCTAssertEqual(selectedSegments[0].color, ColoredSegment(color: .black).color)
+    XCTAssertEqual(selectedSegments[0].value, ColoredSegment(.black).value)
   }
   
   func makeSUT(
