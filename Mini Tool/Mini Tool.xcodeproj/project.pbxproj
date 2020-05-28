@@ -11,6 +11,8 @@
 		F408A222246DC06B009B9203 /* CollectionViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F408A221246DC06B009B9203 /* CollectionViewHelpers.swift */; };
 		F40FFA67246D3039008632CB /* MiniToolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40FFA66246D3039008632CB /* MiniToolController.xib */; };
 		F40FFA69246D3046008632CB /* MiniToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40FFA68246D3046008632CB /* MiniToolController.swift */; };
+		F41327E1247FA53A00BC1228 /* BreachRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41327E0247FA53A00BC1228 /* BreachRouter.swift */; };
+		F41327E3247FA5B400BC1228 /* BreachRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */; };
 		F42C316B2465ADB20017DFF0 /* SegmentViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */; };
 		F44A0F87247D75E600AA4AF6 /* WY Mini Tool Engine in Frameworks */ = {isa = PBXBuildFile; productRef = F44A0F86247D75E600AA4AF6 /* WY Mini Tool Engine */; };
 		F47CD0BA245F462A00280E3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CD0B9245F462A00280E3B /* AppDelegate.swift */; };
@@ -39,6 +41,8 @@
 		F408A221246DC06B009B9203 /* CollectionViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHelpers.swift; sourceTree = "<group>"; };
 		F40FFA66246D3039008632CB /* MiniToolController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniToolController.xib; sourceTree = "<group>"; };
 		F40FFA68246D3046008632CB /* MiniToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniToolController.swift; sourceTree = "<group>"; };
+		F41327E0247FA53A00BC1228 /* BreachRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachRouter.swift; sourceTree = "<group>"; };
+		F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachRouterTests.swift; sourceTree = "<group>"; };
 		F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewTest.swift; sourceTree = "<group>"; };
 		F47CD0B6245F462A00280E3B /* Mini Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47CD0B9245F462A00280E3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 			children = (
 				F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */,
 				F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */,
+				F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */,
 				F47CD0D2245F462B00280E3B /* Info.plist */,
 			);
 			path = "Mini ToolTests";
@@ -148,6 +153,7 @@
 			children = (
 				F4A06A60246AB24900D37733 /* BreachViewController.xib */,
 				F4A06A5E246AB15500D37733 /* BreachViewController.swift */,
+				F41327E0247FA53A00BC1228 /* BreachRouter.swift */,
 			);
 			path = Breach;
 			sourceTree = "<group>";
@@ -312,6 +318,7 @@
 			files = (
 				F40FFA69246D3046008632CB /* MiniToolController.swift in Sources */,
 				F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */,
+				F41327E1247FA53A00BC1228 /* BreachRouter.swift in Sources */,
 				F408A222246DC06B009B9203 /* CollectionViewHelpers.swift in Sources */,
 				F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */,
 				F4F845A32466BD320097B238 /* SegmentViewCell.swift in Sources */,
@@ -323,6 +330,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F41327E3247FA5B400BC1228 /* BreachRouterTests.swift in Sources */,
 				F42C316B2465ADB20017DFF0 /* SegmentViewTest.swift in Sources */,
 				F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */,
 			);
