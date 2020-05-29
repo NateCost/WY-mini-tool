@@ -21,15 +21,32 @@ class BreachRouterTests: XCTestCase {
     XCTAssert(viewInput.finished)
   }
   
+  func test_handleSegment_savesRoutedSegment() {
+    let segment = ColoredSegment(.black)
+    let sut = makeSUT()
+    
+    sut.handleSegment(segment, selectionCallback: { selection, segment in })
+    
+    XCTAssertEqual(sut.routedSegment, segment)
+  }
+  
   class BreachViewInputSpy: BreachViewInput {
+    typealias Segment = ColoredSegment
     var finished = false
+    var state: SegmentState?
+    var segment: Segment?
     
     func finishFlow() {
       finished = true
     }
+    
+    func setState(_ state: SegmentState, for segment: Segment) {
+      self.state = state
+      self.segment = segment
+    }
   }
   
-  func makeSUT(viewInput: BreachViewInputSpy = BreachViewInputSpy()) -> BreachRouter {
+  func makeSUT(viewInput: BreachViewInputSpy = BreachViewInputSpy()) -> BreachRouter<BreachViewInputSpy> {
     BreachRouter(viewInput: viewInput)
   }
 }

@@ -9,23 +9,26 @@
 import Foundation
 import WY_Mini_Tool_Engine
 
-final class BreachRouter: Router {
+final class BreachRouter<ViewInput: BreachViewInput>: Router where ViewInput.Segment: ColoredSegment {
   typealias Segment = ColoredSegment
-  private var viewInput: BreachViewInput?
+  private var viewInput: ViewInput?
+  var routedSegment: Segment?
+  var selectionCallback: (Segment, Segment) -> Void = { _, _ in }
   
-  init(viewInput: BreachViewInput) {
+  init(viewInput: ViewInput) {
     self.viewInput = viewInput
   }
   
   func handleSegment(
-    _ segment: ColoredSegment,
+    _ segment: Segment,
     selectionCallback: @escaping SelectionCallback
   ) {
-    
+    routedSegment = segment
+    self.selectionCallback = selectionCallback
   }
   
-  func updateSegment(_ segment: ColoredSegment, with state: SegmentState) {
-    
+  func updateSegment(_ segment: Segment, with state: SegmentState) {
+//    viewInput?.setState(state, for: segment)
   }
   
   func finish() {
@@ -34,5 +37,19 @@ final class BreachRouter: Router {
 }
 
 protocol BreachViewInput: class {
+  associatedtype Segment: Hashable, Valuable, Statable
+  func setState(_ state: SegmentState, for segment: Segment)
   func finishFlow()
+}
+
+final class ColoredBreachViewInput: BreachViewInput {
+  typealias Segment = ColoredSegment
+  
+  func setState(_ state: SegmentState, for segment: Segment) {
+    
+  }
+  
+  func finishFlow() {
+    
+  }
 }
