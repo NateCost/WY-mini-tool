@@ -13,7 +13,7 @@ import WY_Mini_Tool_Engine
 
 class BreachRouterTests: XCTestCase {
   func test_finish_executesViewInputFinish() {
-    let viewInput = BreachViewInputSpy()
+    let viewInput = BreachViewInputSpy(segmentsToBreach: [])
     let sut = makeSUT(viewInput: viewInput)
     
     sut.finish()
@@ -30,11 +30,30 @@ class BreachRouterTests: XCTestCase {
     XCTAssertEqual(sut.routedSegment, segment)
   }
   
+  func test_updateSegment_viewInputUpdatesState() {
+    let segment = ColoredSegment(.black)
+    let segmentsToBreach = [segment]
+    let viewInput = BreachViewInputSpy(
+      segmentsToBreach: segmentsToBreach
+    )
+    let sut = makeSUT(viewInput: viewInput)
+    
+    sut.updateSegment(segment, with: .failed)
+    
+    XCTAssertEqual(viewInput.segment, segment)
+    XCTAssertEqual(viewInput.state, .failed)
+  }
+  
   class BreachViewInputSpy: BreachViewInput {
     typealias Segment = ColoredSegment
+    var segmentsToBreach: [Segment]
     var finished = false
     var state: SegmentState?
     var segment: Segment?
+    
+    init(segmentsToBreach: [Segment]) {
+      self.segmentsToBreach = segmentsToBreach
+    }
     
     func finishFlow() {
       finished = true
@@ -46,7 +65,7 @@ class BreachRouterTests: XCTestCase {
     }
   }
   
-  func makeSUT(viewInput: BreachViewInputSpy = BreachViewInputSpy()) -> BreachRouter<BreachViewInputSpy> {
+  func makeSUT(viewInput: BreachViewInputSpy = BreachViewInputSpy(segmentsToBreach: [])) -> BreachRouter<ColoredSegment, BreachViewInputSpy> {
     BreachRouter(viewInput: viewInput)
   }
 }
