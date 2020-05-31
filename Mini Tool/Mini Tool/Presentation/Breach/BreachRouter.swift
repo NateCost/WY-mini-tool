@@ -54,7 +54,8 @@ final class ColoredBreachViewInput: BreachViewInput {
   }
   
   func setState(_ state: SegmentState, for segment: Segment) {
-
+    guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
+    segmentsToBreach[index].setState(state)
   }
   
   func finishFlow() {}

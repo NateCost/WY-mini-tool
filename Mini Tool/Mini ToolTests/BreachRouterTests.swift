@@ -33,23 +33,20 @@ class BreachRouterTests: XCTestCase {
   func test_updateSegment_viewInputUpdatesState() {
     let segment = ColoredSegment(.black)
     let segmentsToBreach = [segment]
-    let viewInput = BreachViewInputSpy(
-      segmentsToBreach: segmentsToBreach
-    )
+    let viewInput = BreachViewInputSpy(segmentsToBreach: segmentsToBreach)
     let sut = makeSUT(viewInput: viewInput)
     
     sut.updateSegment(segment, with: .failed)
     
-    XCTAssertEqual(viewInput.segment, segment)
-    XCTAssertEqual(viewInput.state, .failed)
+    XCTAssertEqual(
+      viewInput.segmentsToBreach.first(where: { $0 == segment })!.state, .failed
+    )
   }
   
   class BreachViewInputSpy: BreachViewInput {
     typealias Segment = ColoredSegment
     var segmentsToBreach: [Segment]
     var finished = false
-    var state: SegmentState?
-    var segment: Segment?
     
     init(segmentsToBreach: [Segment]) {
       self.segmentsToBreach = segmentsToBreach
@@ -59,9 +56,9 @@ class BreachRouterTests: XCTestCase {
       finished = true
     }
     
-    func setState(_ state: SegmentState, for segment: Segment) {
-      self.state = state
-      self.segment = segment
+    func setState(_ state: SegmentState, for segment: ColoredSegment) {
+      guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
+      segmentsToBreach[index].setState(state)
     }
   }
   
