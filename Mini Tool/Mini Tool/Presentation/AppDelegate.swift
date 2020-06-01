@@ -19,7 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
     let viewController = BreachViewController(
       segmentsToBreach: [ColoredSegment(.black), ColoredSegment(.blue)],
-      segmentsToChoose: [ColoredSegment(.black)]
+      segmentsToChoose: [ColoredSegment(.black)],
+      router: BreachRouter<ColoredSegment, BreachViewController>()
     ) {
       print($0.value)
     }

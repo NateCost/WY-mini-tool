@@ -15,6 +15,7 @@ final class BreachComposer {
     let viewController = BreachViewController(
       segmentsToBreach: input.segmentsToBreach,
       segmentsToChoose: input.segmentsToChoose,
+      router: input.router,
       selection: { _ in }
     )
     
@@ -27,6 +28,7 @@ final class BreachComposer {
 }
 
 struct BreachInput {
+  let router: BreachRouter<ColoredSegment, BreachViewController>
   let segmentsToBreach: [ColoredSegment]
   let segmentsToChoose: [ColoredSegment]
 }

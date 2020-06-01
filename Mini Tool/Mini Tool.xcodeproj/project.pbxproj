@@ -22,6 +22,7 @@
 		F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A5E246AB15500D37733 /* BreachViewController.swift */; };
 		F4A06A61246AB24900D37733 /* BreachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A06A60246AB24900D37733 /* BreachViewController.xib */; };
 		F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */; };
+		F4A7B306248576F70069114E /* BreachComposerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7B305248576F70069114E /* BreachComposerTest.swift */; };
 		F4CE4AD7246C6C2D00989B28 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = F4CE4AD6246C6C2D00989B28 /* SwiftFormat */; };
 		F4F00F59248443870007A7F9 /* BreachComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F00F58248443870007A7F9 /* BreachComposer.swift */; };
 		F4F845A32466BD320097B238 /* SegmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F845A22466BD320097B238 /* SegmentViewCell.swift */; };
@@ -56,6 +57,7 @@
 		F4A06A5E246AB15500D37733 /* BreachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewController.swift; sourceTree = "<group>"; };
 		F4A06A60246AB24900D37733 /* BreachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreachViewController.xib; sourceTree = "<group>"; };
 		F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegment.swift; sourceTree = "<group>"; };
+		F4A7B305248576F70069114E /* BreachComposerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposerTest.swift; sourceTree = "<group>"; };
 		F4F00F58248443870007A7F9 /* BreachComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposer.swift; sourceTree = "<group>"; };
 		F4F845A22466BD320097B238 /* SegmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -146,6 +148,7 @@
 				F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */,
 				F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */,
 				F47CD0D2245F462B00280E3B /* Info.plist */,
+				F4A7B305248576F70069114E /* BreachComposerTest.swift */,
 			);
 			path = "Mini ToolTests";
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4A7B306248576F70069114E /* BreachComposerTest.swift in Sources */,
 				F41327E3247FA5B400BC1228 /* BreachRouterTests.swift in Sources */,
 				F42C316B2465ADB20017DFF0 /* SegmentViewTest.swift in Sources */,
 				F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */,

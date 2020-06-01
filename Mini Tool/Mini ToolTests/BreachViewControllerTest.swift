@@ -1,7 +1,4 @@
 //
-//  Mini_ToolTests.swift
-//  Mini ToolTests
-//
 //  Created by Ilya Sakalou on 5/3/20.
 //  Copyright © 2020 Nirma. All rights reserved.
 //
@@ -83,6 +80,7 @@ class BreachViewContllerTest: XCTestCase {
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
+      router: BreachRouter<ColoredSegment, BreachViewController>(),
       selection: selection
     )
     _ = sut.view

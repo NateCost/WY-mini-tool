@@ -13,13 +13,9 @@ final class BreachRouter<
   Segment: ColoredSegment,
   ViewInput: BreachViewInput
 >: Router where ViewInput.Segment == Segment {
-  private var viewInput: ViewInput?
+  weak var viewInput: ViewInput?
   var routedSegment: Segment?
   var selectionCallback: (Segment, Segment) -> Void = { _, _ in }
-  
-  init(viewInput: ViewInput) {
-    self.viewInput = viewInput
-  }
   
   func handleSegment(
     _ segment: Segment,
@@ -43,20 +39,4 @@ protocol BreachViewInput: class {
   var segmentsToBreach: [Segment] { get }
   func setState(_ state: SegmentState, for segment: Segment)
   func finishFlow()
-}
-
-final class ColoredBreachViewInput: BreachViewInput {
-  typealias Segment = ColoredSegment
-  var segmentsToBreach: [Segment]
-  
-  init(segmentsToBreach: [Segment]) {
-    self.segmentsToBreach = segmentsToBreach
-  }
-  
-  func setState(_ state: SegmentState, for segment: Segment) {
-    guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
-    segmentsToBreach[index].setState(state)
-  }
-  
-  func finishFlow() {}
 }

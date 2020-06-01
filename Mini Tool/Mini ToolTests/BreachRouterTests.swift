@@ -63,6 +63,8 @@ class BreachRouterTests: XCTestCase {
   }
   
   func makeSUT(viewInput: BreachViewInputSpy = BreachViewInputSpy(segmentsToBreach: [])) -> BreachRouter<ColoredSegment, BreachViewInputSpy> {
-    BreachRouter(viewInput: viewInput)
+    let router = BreachRouter<ColoredSegment, BreachViewInputSpy>()
+    router.viewInput = viewInput
+    return router
   }
 }

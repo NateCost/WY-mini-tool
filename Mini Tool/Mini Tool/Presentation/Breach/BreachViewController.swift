@@ -16,23 +16,28 @@ enum BreachStatus: String {
 }
 
 final class BreachViewController: UIViewController {
+  typealias Segment = ColoredSegment
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
   var status: BreachStatus = .noSegmentsToBreach
-  private var segmentsToBreach: [ColoredSegment] = []
-  private var segmentsToChoose: [ColoredSegment] = []
-  private var selection: ((ColoredSegment) -> Void)?
+  internal var segmentsToBreach: [Segment] = []
+  private var segmentsToChoose: [Segment] = []
+  private var selection: ((Segment) -> Void)?
+  var router: BreachRouter<Segment, BreachViewController>?
   
   convenience init(
-    segmentsToBreach: [ColoredSegment],
-    segmentsToChoose: [ColoredSegment],
-    selection: @escaping (ColoredSegment) -> Void
+    segmentsToBreach: [Segment],
+    segmentsToChoose: [Segment],
+    router: BreachRouter<Segment, BreachViewController>,
+    selection: @escaping (Segment) -> Void
   ) {
     self.init()
     self.selection = selection
     self.segmentsToBreach = segmentsToBreach
     self.segmentsToChoose = segmentsToChoose
+    self.router = router
+    self.router?.viewInput = self
   }
   
   override func viewDidLoad() {
@@ -53,7 +58,7 @@ final class BreachViewController: UIViewController {
     segmentsToChooseCollectionView.reloadData()
   }
   
-  private func setSegmentsToBreach(_ segments: [ColoredSegment]) {
+  private func setSegmentsToBreach(_ segments: [Segment]) {
     for _ in segments {
       let view = UIView()
       view.backgroundColor = .white
@@ -89,4 +94,13 @@ extension BreachViewController: UICollectionViewDelegate {
   ) {
     selection?(segmentsToChoose[indexPath.row])
   }
+}
+// MARK: - BreachViewInput
+extension BreachViewController: BreachViewInput {
+  func setState(_ state: SegmentState, for segment: Segment) {
+    guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
+    segmentsToBreach[index].setState(state)
+  }
+  
+  func finishFlow() {}
 }
