@@ -1,7 +1,4 @@
 //
-//  BreachViewController.swift
-//  Mini Tool
-//
 //  Created by Ilya Sakalou on 5/12/20.
 //  Copyright © 2020 Nirma. All rights reserved.
 //
@@ -21,8 +18,8 @@ final class BreachViewController: UIViewController {
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
   var status: BreachStatus = .noSegmentsToBreach
-  internal var segmentsToBreach: [Segment] = []
-  private var segmentsToChoose: [Segment] = []
+  var segmentsToBreach: [Segment] = []
+  var segmentsToChoose: [Segment] = []
   private var selection: ((Segment) -> Void)?
   var router: BreachRouter<Segment, BreachViewController>?
   
@@ -100,6 +97,8 @@ extension BreachViewController: BreachViewInput {
   func setState(_ state: SegmentState, for segment: Segment) {
     guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
     segmentsToBreach[index].setState(state)
+    //let indexPath = IndexPath(row: index, section: 0)
+    //segmentsToChooseCollectionView.reloadItems(at: [indexPath])
   }
   
   func finishFlow() {}

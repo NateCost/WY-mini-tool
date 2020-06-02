@@ -72,6 +72,33 @@ class BreachViewContllerTest: XCTestCase {
     XCTAssertEqual(selectedSegments[0].value, ColoredSegment(.black).value)
   }
   
+  func test_hasSegmentsToChoose_persistSameStates() {
+    let blackSegment = ColoredSegment(.black)
+    blackSegment.setState(.passed)
+    let blueSegment = ColoredSegment(.blue)
+    blackSegment.setState(.none)
+    let segmentsToChoose = [blackSegment, blueSegment]
+    
+    let sut = makeSUT(segmentsToBreach: [], segmentsToChoose: segmentsToChoose, selection: { _ in })
+    
+    XCTAssertEqual(sut.segmentsToChoose[0].state, blackSegment.state)
+    XCTAssertEqual(sut.segmentsToChoose[1].state, blueSegment.state)
+    XCTAssertEqual(segmentsToChoose, sut.segmentsToChoose)
+  }
+  
+  func test_hasSegmentsToBreach_setNewStateToOneSegment_changesState() {
+    let blackSegment = ColoredSegment(.black)
+    let blueSegment = ColoredSegment(.blue)
+    let segmentsToBreach = [blackSegment, blueSegment]
+    let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: [], selection: { _ in })
+    
+    sut.setState(.selected, for: blackSegment)
+    
+    XCTAssertEqual(sut.segmentsToBreach[0].state, .selected)
+//    XCTAssertEqual(sut.segmentsToChooseCollectionView.cell(at:
+  }
+  
+  //  MARK: - Helpers
   func makeSUT(
     segmentsToBreach: [ColoredSegment] = [],
     segmentsToChoose: [ColoredSegment] = [],
@@ -87,6 +114,7 @@ class BreachViewContllerTest: XCTestCase {
     return sut
   }
 }
+
 // MARK: - UICollectionView
 private extension UICollectionView {
   func cell(at row: Int) -> UICollectionViewCell? {

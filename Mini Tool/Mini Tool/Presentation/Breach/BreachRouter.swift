@@ -1,7 +1,4 @@
 //
-//  BreachRouter.swift
-//  Mini Tool
-//
 //  Created by Ilya Sakalou on 5/28/20.
 //  Copyright © 2020 Nirma. All rights reserved.
 //
@@ -10,7 +7,7 @@ import Foundation
 import WY_Mini_Tool_Engine
 
 final class BreachRouter<
-  Segment: ColoredSegment,
+  Segment,
   ViewInput: BreachViewInput
 >: Router where ViewInput.Segment == Segment {
   weak var viewInput: ViewInput?
