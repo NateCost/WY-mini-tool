@@ -22,7 +22,7 @@ class BreachRouterTests: XCTestCase {
   }
   
   func test_handleSegment_savesRoutedSegment() {
-    let segment = ColoredSegment(.black)
+    let segment = ColoredSegment(.black, colorProvider: ClassicColorProvider())
     let sut = makeSUT()
     
     sut.handleSegment(segment, selectionCallback: { selection, segment in })
@@ -31,7 +31,7 @@ class BreachRouterTests: XCTestCase {
   }
   
   func test_updateSegment_viewInputUpdatesState() {
-    let segment = ColoredSegment(.black)
+    let segment = ColoredSegment(.black, colorProvider: ClassicColorProvider())
     let segmentsToBreach = [segment]
     let viewInput = BreachViewInputSpy(segmentsToBreach: segmentsToBreach)
     let sut = makeSUT(viewInput: viewInput)
@@ -44,7 +44,7 @@ class BreachRouterTests: XCTestCase {
   }
   
   class BreachViewInputSpy: BreachViewInput {
-    typealias Segment = ColoredSegment
+    typealias Segment = ColoredSegment<ClassicColorProvider>
     var segmentsToBreach: [Segment]
     var finished = false
     
@@ -56,14 +56,16 @@ class BreachRouterTests: XCTestCase {
       finished = true
     }
     
-    func setState(_ state: SegmentState, for segment: ColoredSegment) {
+    func setState(_ state: SegmentState, for segment: ColoredSegment<ClassicColorProvider>) {
       guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
       segmentsToBreach[index].setState(state)
     }
   }
   
-  func makeSUT(viewInput: BreachViewInputSpy = BreachViewInputSpy(segmentsToBreach: [])) -> BreachRouter<ColoredSegment, BreachViewInputSpy> {
-    let router = BreachRouter<ColoredSegment, BreachViewInputSpy>()
+  func makeSUT(
+    viewInput: BreachViewInputSpy = BreachViewInputSpy(segmentsToBreach: [])
+  ) -> BreachRouter<ColoredSegment<ClassicColorProvider>, BreachViewInputSpy> {
+    let router = BreachRouter<ColoredSegment<ClassicColorProvider>, BreachViewInputSpy>()
     router.viewInput = viewInput
     return router
   }

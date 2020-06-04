@@ -18,8 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   ) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
     let viewController = BreachViewController(
-      segmentsToBreach: [ColoredSegment(.black), ColoredSegment(.blue)],
-      segmentsToChoose: [ColoredSegment(.black)],
+      segmentsToBreach: [
+        ColoredSegment(.black, colorProvider: ClassicColorProvider()),
+        ColoredSegment(.blue, colorProvider: ClassicColorProvider())
+      ],
+      segmentsToChoose: [ColoredSegment(.black, colorProvider: ClassicColorProvider())],
       router: BreachRouter<ColoredSegment, BreachViewController>()
     ) {
       print($0.value)

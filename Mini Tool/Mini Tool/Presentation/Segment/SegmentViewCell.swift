@@ -13,7 +13,7 @@ final class SegmentViewCell: UICollectionViewCell {
   @IBOutlet var coloredPanelView: UIView!
   var color: UIColor?
   
-  func configure(with segment: ColoredSegment) {
+  func configure(with segment: ColoredSegment<ClassicColorProvider>) {
     coloredPanelView.backgroundColor = segment.value
     color = segment.value
   }

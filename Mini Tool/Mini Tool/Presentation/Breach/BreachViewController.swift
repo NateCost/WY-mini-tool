@@ -13,7 +13,7 @@ enum BreachStatus: String {
 }
 
 final class BreachViewController: UIViewController {
-  typealias Segment = ColoredSegment
+  typealias Segment = ColoredSegment<ClassicColorProvider>
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   

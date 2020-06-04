@@ -11,14 +11,14 @@ import WY_Mini_Tool_Engine
 class BreachComposerTest: XCTestCase {
   func test_composeBreachComponents_allComponentsAreBinded() {
     let segmentsToBreach = [
-      ColoredSegment(.black),
-      ColoredSegment(.brown),
+      makeColoredSegment(color: .black),
+      makeColoredSegment(color: .brown),
     ]
     let segmentsToChoose = [
-      ColoredSegment(.black),
-      ColoredSegment(.red),
-      ColoredSegment(.brown),
-      ColoredSegment(.gray)
+      makeColoredSegment(color: .black),
+      makeColoredSegment(color: .red),
+      makeColoredSegment(color: .brown),
+      makeColoredSegment(color: .gray)
     ]
     let router = BreachRouter<ColoredSegment, BreachViewController>()
     let input = BreachInput(
@@ -31,5 +31,12 @@ class BreachComposerTest: XCTestCase {
     
     XCTAssertNotNil(sut.viewController.router)
     XCTAssertEqual(sut.viewController.router?.viewInput, sut.viewController)
+  }
+  
+  func makeColoredSegment(
+    color: UIColor,
+    colorProvider: ClassicColorProvider = ClassicColorProvider()
+  ) -> ColoredSegment<ClassicColorProvider> {
+    ColoredSegment<ClassicColorProvider>(color, colorProvider: colorProvider)
   }
 }

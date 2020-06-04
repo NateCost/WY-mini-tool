@@ -10,14 +10,14 @@ import WY_Mini_Tool_Engine
 
 class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_noSegmentsToChoose_updatesStatus() {
-    let sut = makeSUT(segmentsToBreach: [ColoredSegment(.black)])
+    let sut = makeSUT(segmentsToBreach: [ColoredSegment(.black, colorProvider: ClassicColorProvider())])
     XCTAssertEqual(sut.status, BreachStatus.noSegmentsToSelect)
   }
   
   func test_viewDidLoad_withSegmentsToBreachAndToChoose_updatesStatus() {
     let sut = makeSUT(
-      segmentsToBreach: [ColoredSegment(.black)],
-      segmentsToChoose: [ColoredSegment(.black)]
+      segmentsToBreach: [makeColoredSegment(color: .black)],
+      segmentsToChoose: [makeColoredSegment(color: .black)]
     )
     XCTAssertEqual(sut.status, BreachStatus.breaching)
   }
@@ -31,8 +31,8 @@ class BreachViewContllerTest: XCTestCase {
   func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHas2Subviews() {
     let sut = makeSUT(
       segmentsToBreach: [
-        ColoredSegment(.black),
-        ColoredSegment(.brown)
+        makeColoredSegment(color: .black),
+        makeColoredSegment(color: .brown)
       ]
     )
     XCTAssertEqual(sut.segmentsToBreachStackView.subviews.count, 2)
@@ -42,8 +42,8 @@ class BreachViewContllerTest: XCTestCase {
     let sut = makeSUT(
       segmentsToBreach: [],
       segmentsToChoose: [
-        ColoredSegment(.black),
-        ColoredSegment(.brown)
+        makeColoredSegment(color: .black),
+        makeColoredSegment(color: .brown)
       ]
     )
     let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as? SegmentViewCell
@@ -56,26 +56,26 @@ class BreachViewContllerTest: XCTestCase {
   }
   
   func test_optionSelection_notifiesDelegate() {
-    var selectedSegments: [ColoredSegment] = []
+    var selectedSegments: [ColoredSegment<ClassicColorProvider>] = []
     
     let sut = makeSUT(
-      segmentsToBreach: [ColoredSegment(.black)],
+      segmentsToBreach: [makeColoredSegment(color: .black)],
       segmentsToChoose: [
-        ColoredSegment(.black),
-        ColoredSegment(.brown)
+        makeColoredSegment(color: .black),
+        makeColoredSegment(color: .brown)
       ]
     ) { selectedSegments.append($0) }
     
     sut.segmentsToChooseCollectionView.select(row: 0)
     
     XCTAssertEqual(selectedSegments.count, 1)
-    XCTAssertEqual(selectedSegments[0].value, ColoredSegment(.black).value)
+    XCTAssertEqual(selectedSegments[0].value, makeColoredSegment(color: .black).value)
   }
   
   func test_hasSegmentsToChoose_persistSameStates() {
-    let blackSegment = ColoredSegment(.black)
+    let blackSegment = makeColoredSegment(color: .black)
     blackSegment.setState(.passed)
-    let blueSegment = ColoredSegment(.blue)
+    let blueSegment = makeColoredSegment(color: .blue)
     blackSegment.setState(.none)
     let segmentsToChoose = [blackSegment, blueSegment]
     
@@ -87,8 +87,8 @@ class BreachViewContllerTest: XCTestCase {
   }
   
   func test_hasSegmentsToBreach_setNewStateToOneSegment_changesState() {
-    let blackSegment = ColoredSegment(.black)
-    let blueSegment = ColoredSegment(.blue)
+    let blackSegment = makeColoredSegment(color: .black)
+    let blueSegment = makeColoredSegment(color: .blue)
     let segmentsToBreach = [blackSegment, blueSegment]
     let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: [], selection: { _ in })
     
@@ -100,9 +100,9 @@ class BreachViewContllerTest: XCTestCase {
   
   //  MARK: - Helpers
   func makeSUT(
-    segmentsToBreach: [ColoredSegment] = [],
-    segmentsToChoose: [ColoredSegment] = [],
-    selection: @escaping (ColoredSegment) -> Void = { _ in }
+    segmentsToBreach: [ColoredSegment<ClassicColorProvider>] = [],
+    segmentsToChoose: [ColoredSegment<ClassicColorProvider>] = [],
+    selection: @escaping (ColoredSegment<ClassicColorProvider>) -> Void = { _ in }
   ) -> BreachViewController {
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,
@@ -112,6 +112,13 @@ class BreachViewContllerTest: XCTestCase {
     )
     _ = sut.view
     return sut
+  }
+  
+  func makeColoredSegment(
+    color: UIColor,
+    colorProvider: ClassicColorProvider = ClassicColorProvider()
+  ) -> ColoredSegment<ClassicColorProvider> {
+    ColoredSegment<ClassicColorProvider>(color, colorProvider: colorProvider)
   }
 }
 
