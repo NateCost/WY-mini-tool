@@ -28,14 +28,15 @@ class BreachViewContllerTest: XCTestCase {
     XCTAssertEqual(sut.status, BreachStatus.noSegmentsToBreach)
   }
   
-  func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHas2Subviews() {
+  func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHasProperColors() {
     let sut = makeSUT(
       segmentsToBreach: [
         makeColoredSegment(color: .black),
         makeColoredSegment(color: .brown)
       ]
     )
-    XCTAssertEqual(sut.segmentsToBreachStackView.subviews.count, 2)
+    XCTAssertEqual((sut.segmentsToBreachStackView.subviews[0] as! SegmentViewCell).color, .black)
+    XCTAssertEqual((sut.segmentsToBreachStackView.subviews[1] as! SegmentViewCell).color, .brown)
   }
   
   func test_viewDidLoad_collectionViewLoadsSegments() {
@@ -55,7 +56,7 @@ class BreachViewContllerTest: XCTestCase {
     XCTAssertEqual(cell2?.color, .brown)
   }
   
-  func test_optionSelection_notifiesDelegate() {
+  func test_optionSelection_invokesSelectionClosure() {
     var selectedSegments: [ColoredSegment<ClassicColorProvider>] = []
     
     let sut = makeSUT(
@@ -69,7 +70,6 @@ class BreachViewContllerTest: XCTestCase {
     sut.segmentsToChooseCollectionView.select(row: 0)
     
     XCTAssertEqual(selectedSegments.count, 1)
-    XCTAssertEqual(selectedSegments[0].value, makeColoredSegment(color: .black).value)
   }
   
   func test_hasSegmentsToChoose_persistSameStates() {
@@ -81,8 +81,8 @@ class BreachViewContllerTest: XCTestCase {
     
     let sut = makeSUT(segmentsToBreach: [], segmentsToChoose: segmentsToChoose, selection: { _ in })
     
-    XCTAssertEqual(sut.segmentsToChoose[0].state, blackSegment.state)
-    XCTAssertEqual(sut.segmentsToChoose[1].state, blueSegment.state)
+    XCTAssertEqual(sut.segmentsToChoose[0], blackSegment)
+    XCTAssertEqual(sut.segmentsToChoose[1], blueSegment)
     XCTAssertEqual(segmentsToChoose, sut.segmentsToChoose)
   }
   

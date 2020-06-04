@@ -56,11 +56,21 @@ final class BreachViewController: UIViewController {
   }
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
-    for _ in segments {
-      let view = UIView()
-      view.backgroundColor = .white
-      segmentsToBreachStackView.addArrangedSubview(view)
+    for segment in segments {
+      if let cell = getColoredCellView() as? SegmentViewCell {
+        cell.configure(with: segment)
+        segmentsToBreachStackView.addArrangedSubview(cell)
+      }
     }
+  }
+  
+  private func getColoredCellView() -> UIView? {
+    guard let view = UINib(
+      nibName: "SegmentViewCell",
+      bundle: nil
+    ).instantiate(withOwner: self).first as? UICollectionViewCell else { return nil }
+    view.contentView.pinToSuperviewEdges()
+    return view
   }
 }
 // MARK: - UICollectionViewDataSource
