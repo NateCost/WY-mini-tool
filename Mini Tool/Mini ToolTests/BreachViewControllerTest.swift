@@ -35,8 +35,8 @@ class BreachViewContllerTest: XCTestCase {
         makeColoredSegment(color: .brown)
       ]
     )
-    XCTAssertEqual((sut.segmentsToBreachStackView.subviews[0] as! SegmentViewCell).color, .black)
-    XCTAssertEqual((sut.segmentsToBreachStackView.subviews[1] as! SegmentViewCell).color, .brown)
+    XCTAssertEqual(getBreachSegment(sut: sut, at: 0)!.coloredPanelView.backgroundColor, .black)
+    XCTAssertEqual(getBreachSegment(sut: sut, at: 1)!.coloredPanelView.backgroundColor, .brown)
   }
   
   func test_viewDidLoad_collectionViewLoadsSegments() {
@@ -47,13 +47,10 @@ class BreachViewContllerTest: XCTestCase {
         makeColoredSegment(color: .brown)
       ]
     )
-    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as? SegmentViewCell
-    XCTAssertNotNil(cell1)
-    XCTAssertEqual(cell1?.color, .black)
-    
-    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as? SegmentViewCell
-    XCTAssertNotNil(cell2)
-    XCTAssertEqual(cell2?.color, .brown)
+    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as! SegmentViewCell
+    XCTAssertEqual(cell1.coloredPanelView.backgroundColor, .black)
+    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as! SegmentViewCell
+    XCTAssertEqual(cell2.coloredPanelView.backgroundColor, .brown)
   }
   
   func test_optionSelection_invokesSelectionClosure() {
@@ -138,6 +135,11 @@ class BreachViewContllerTest: XCTestCase {
     colorProvider: ClassicColorProvider = ClassicColorProvider()
   ) -> ColoredSegment<ClassicColorProvider> {
     ColoredSegment<ClassicColorProvider>(color, colorProvider: colorProvider)
+  }
+  
+  func getBreachSegment(sut: BreachViewController, at index: Int) -> SegmentViewCell? {
+    guard sut.segmentsToBreachStackView.subviews.count > index else { return nil }
+    return sut.segmentsToBreachStackView.subviews[index] as? SegmentViewCell
   }
 }
 
