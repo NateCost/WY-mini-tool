@@ -15,6 +15,7 @@ final class SegmentViewCell: UICollectionViewCell {
   
   func configure(with segment: ColoredSegment<ClassicColorProvider>) {
     coloredPanelView.backgroundColor = segment.value
+    backgroundColor = segment.colorProvider.color(for: segment.state)
     color = segment.value
   }
 }

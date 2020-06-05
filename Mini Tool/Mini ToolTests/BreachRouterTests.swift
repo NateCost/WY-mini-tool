@@ -1,7 +1,4 @@
 //
-//  BreachRouterTests.swift
-//  Mini ToolTests
-//
 //  Created by Ilya Sakalou on 5/28/20.
 //  Copyright © 2020 Nirma. All rights reserved.
 //

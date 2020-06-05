@@ -64,6 +64,15 @@ final class BreachViewController: UIViewController {
     }
   }
   
+  private func updateSegmentToBreach(_ segments: [Segment]) {
+    guard segments.count == segmentsToBreachStackView.subviews.count else { return }
+    for (index, segment) in segments.enumerated() {
+      if let cell = segmentsToBreachStackView.subviews[index] as? SegmentViewCell {
+        cell.configure(with: segment)
+      }
+    }
+  }
+  
   private func getColoredCellView() -> UIView? {
     guard let view = UINib(
       nibName: "SegmentViewCell",
@@ -107,8 +116,7 @@ extension BreachViewController: BreachViewInput {
   func setState(_ state: SegmentState, for segment: Segment) {
     guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
     segmentsToBreach[index].setState(state)
-    //let indexPath = IndexPath(row: index, section: 0)
-    //segmentsToChooseCollectionView.reloadItems(at: [indexPath])
+    updateSegmentToBreach(segmentsToBreach)
   }
   
   func finishFlow() {}

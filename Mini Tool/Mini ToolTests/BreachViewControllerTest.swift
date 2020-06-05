@@ -87,7 +87,8 @@ class BreachViewContllerTest: XCTestCase {
   }
   
   func test_hasSegmentsToBreach_setNewStateToOneSegment_changesState() {
-    let blackSegment = makeColoredSegment(color: .black)
+    let colorProvider = ClassicColorProvider()
+    let blackSegment = makeColoredSegment(color: .black, colorProvider: colorProvider)
     let blueSegment = makeColoredSegment(color: .blue)
     let segmentsToBreach = [blackSegment, blueSegment]
     let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: [], selection: { _ in })
@@ -95,7 +96,25 @@ class BreachViewContllerTest: XCTestCase {
     sut.setState(.selected, for: blackSegment)
     
     XCTAssertEqual(sut.segmentsToBreach[0].state, .selected)
-//    XCTAssertEqual(sut.segmentsToChooseCollectionView.cell(at:
+    XCTAssertEqual(
+      (sut.segmentsToBreachStackView.subviews[0] as! SegmentViewCell).backgroundColor,
+      colorProvider.color(for: .selected)
+    )
+  }
+  
+  func test_hasSegmentsToChoose_setNewStateToOneBreachSegment_doesNotChangeState() {
+    let blackBreachSegment = makeColoredSegment(color: .red)
+    let blackSegment = makeColoredSegment(color: .black)
+    let sut = makeSUT(
+      segmentsToBreach: [blackBreachSegment],
+      segmentsToChoose: [blackSegment],
+      selection: { _ in }
+    )
+    
+    sut.setState(.selected, for: blackSegment)
+    
+    XCTAssertEqual(sut.segmentsToBreach[0].state, .none)
+    XCTAssertEqual(sut.segmentsToChoose[0].state, .none)
   }
   
   //  MARK: - Helpers
