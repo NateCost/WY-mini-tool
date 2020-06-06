@@ -1,7 +1,4 @@
 //
-//  AppDelegate.swift
-//  Mini Tool
-//
 //  Created by Ilya Sakalou on 5/3/20.
 //  Copyright © 2020 Nirma. All rights reserved.
 //
