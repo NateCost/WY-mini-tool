@@ -113,9 +113,8 @@ extension BreachViewController: UICollectionViewDelegate {
 }
 // MARK: - BreachViewInput
 extension BreachViewController: BreachViewInput {
-  func setState(_ state: SegmentState, for segment: Segment) {
-    guard let index = segmentsToBreach.firstIndex(of: segment) else { return }
-    segmentsToBreach[index].setState(state)
+  func didUpdateSegment(_ segment: Segment) {
+    guard segmentsToBreach.contains(segment) else { return }
     updateSegmentToBreach(segmentsToBreach)
   }
   

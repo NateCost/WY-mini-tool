@@ -23,7 +23,8 @@ final class BreachRouter<
   }
   
   func updateSegment(_ segment: Segment, with state: SegmentState) {
-    viewInput?.setState(state, for: segment)
+    segment.setState(state)
+    viewInput?.didUpdateSegment(segment)
   }
   
   func finish() {
@@ -34,6 +35,6 @@ final class BreachRouter<
 protocol BreachViewInput: class {
   associatedtype Segment: Hashable, Valuable, Statable
   var segmentsToBreach: [Segment] { get }
-  func setState(_ state: SegmentState, for segment: Segment)
+  func didUpdateSegment(_ segment: Segment)
   func finishFlow()
 }
