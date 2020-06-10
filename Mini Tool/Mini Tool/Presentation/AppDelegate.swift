@@ -14,17 +14,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
-    let viewController = BreachViewController(
-      segmentsToBreach: [
-        ColoredSegment(.black, colorProvider: ClassicColorProvider()),
-        ColoredSegment(.blue, colorProvider: ClassicColorProvider())
-      ],
-      segmentsToChoose: [ColoredSegment(.black, colorProvider: ClassicColorProvider())],
-      router: BreachRouter<ColoredSegment, BreachViewController>()
-    ) {
-      print($0.value)
-    }
-    window.rootViewController = viewController
+//    let viewController = BreachViewController(
+//      segmentsToBreach: [
+//        ColoredSegment(.black, colorProvider: ClassicColorProvider()),
+//        ColoredSegment(.blue, colorProvider: ClassicColorProvider())
+//      ],
+//      segmentsToChoose: [ColoredSegment(.black, colorProvider: ClassicColorProvider())],
+//      router: BreachRouter<ColoredSegment, BreachViewController>()
+//    ) {
+//      print($0.value)
+//    }
+    window.rootViewController = UIViewController()
     self.window = window
     window.makeKeyAndVisible()
     

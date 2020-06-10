@@ -28,6 +28,19 @@ class BreachViewContllerTest: XCTestCase {
     XCTAssertEqual(sut.status, BreachStatus.noSegmentsToBreach)
   }
   
+  func test_instantiate_injectSegments_storesSegments() {
+    let segmentsToBreach = [makeColoredSegment(color: .black), makeColoredSegment(color: .blue)]
+    let segmentsToChoose = [
+      makeColoredSegment(color: .black),
+      makeColoredSegment(color: .red),
+      makeColoredSegment(color: .yellow)
+    ]
+    let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: segmentsToChoose)
+    
+    XCTAssertEqual(sut.segmentsToChoose, segmentsToChoose)
+    XCTAssertEqual(sut.segmentsToBreach, segmentsToBreach)
+  }
+  
   func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHasProperColors() {
     let sut = makeSUT(
       segmentsToBreach: [

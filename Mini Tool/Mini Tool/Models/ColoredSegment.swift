@@ -22,14 +22,6 @@ class ColoredSegment<
     self.value = value
     self.colorProvider = colorProvider
   }
-  
-  static func == (lhs: ColoredSegment, rhs: ColoredSegment) -> Bool {
-    lhs.hashValue == rhs.hashValue
-  }
-  
-  func hash(into hasher: inout Hasher) {
-    hasher.combine(value)
-  }
 }
 
 protocol ColorProvider {
