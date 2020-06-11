@@ -114,8 +114,11 @@ extension BreachViewController: UICollectionViewDelegate {
 // MARK: - BreachViewInput
 extension BreachViewController: BreachViewInput {
   func didUpdateSegment(_ segment: Segment) {
-    guard segmentsToBreach.contains(segment) else { return }
-    updateSegmentToBreach(segmentsToBreach)
+    if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
+      segmentsToChooseCollectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+    } else if segmentsToBreach.contains(segment) {
+      updateSegmentToBreach(segmentsToBreach)
+    }
   }
   
   func finishFlow() {}

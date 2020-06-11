@@ -123,6 +123,21 @@ class BreachViewContllerTest: XCTestCase {
     )
   }
   
+  func test_hasSegmentsToChoose_updateSegmentState_changesSegmentBackgroundColor() {
+    let colorProvider = ClassicColorProvider()
+    let redSegment = makeColoredSegment(color: .red, colorProvider: colorProvider)
+    let sut = makeSUT(
+      segmentsToChoose: [redSegment],
+      selection: { _ in }
+    )
+    
+    redSegment.setState(.failed)
+    sut.didUpdateSegment(redSegment)
+    
+    let cell = sut.segmentsToChooseCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! SegmentViewCell
+    XCTAssertEqual(cell.backgroundColor, colorProvider.color(for: .failed))
+  }
+  
   //  MARK: - Helpers
   func makeSUT(
     segmentsToBreach: [ColoredSegment<ClassicColorProvider>] = [],
