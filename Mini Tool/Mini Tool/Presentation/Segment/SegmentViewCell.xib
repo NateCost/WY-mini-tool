@@ -18,20 +18,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="14c-Ez-oTZ">
-                        <rect key="frame" x="4" y="4" width="133" height="227"/>
+                        <rect key="frame" x="6" y="6" width="129" height="223"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <integer key="value" value="4"/>
+                                <integer key="value" value="6"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="14c-Ez-oTZ" firstAttribute="top" secondItem="2ay-Fi-V7w" secondAttribute="top" constant="4" id="dG9-7I-rbb"/>
-                    <constraint firstAttribute="bottom" secondItem="14c-Ez-oTZ" secondAttribute="bottom" constant="4" id="eXf-nI-BuD"/>
-                    <constraint firstItem="14c-Ez-oTZ" firstAttribute="leading" secondItem="2ay-Fi-V7w" secondAttribute="leading" constant="4" id="jLg-7d-Vi0"/>
-                    <constraint firstAttribute="trailing" secondItem="14c-Ez-oTZ" secondAttribute="trailing" constant="4" id="s6N-aK-8jr"/>
+                    <constraint firstItem="14c-Ez-oTZ" firstAttribute="top" secondItem="2ay-Fi-V7w" secondAttribute="top" constant="6" id="dG9-7I-rbb"/>
+                    <constraint firstAttribute="bottom" secondItem="14c-Ez-oTZ" secondAttribute="bottom" constant="6" id="eXf-nI-BuD"/>
+                    <constraint firstItem="14c-Ez-oTZ" firstAttribute="leading" secondItem="2ay-Fi-V7w" secondAttribute="leading" constant="6" id="jLg-7d-Vi0"/>
+                    <constraint firstAttribute="trailing" secondItem="14c-Ez-oTZ" secondAttribute="trailing" constant="6" id="s6N-aK-8jr"/>
                 </constraints>
             </collectionViewCellContentView>
             <size key="customSize" width="141" height="235"/>

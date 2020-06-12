@@ -4,6 +4,7 @@
 //
 
 import UIKit
+import WY_Mini_Tool_Engine
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,19 +15,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
-//    let viewController = BreachViewController(
-//      segmentsToBreach: [
-//        ColoredSegment(.black, colorProvider: ClassicColorProvider()),
-//        ColoredSegment(.blue, colorProvider: ClassicColorProvider())
-//      ],
-//      segmentsToChoose: [ColoredSegment(.black, colorProvider: ClassicColorProvider())],
-//      router: BreachRouter<ColoredSegment, BreachViewController>()
-//    ) {
-//      print($0.value)
-//    }
-    window.rootViewController = UIViewController()
+    
+    let segmentsToBreach = [
+      ColoredSegment(.green, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.blue, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.red, colorProvider: ClassicColorProvider())
+    ]
+    let segmentsToChoose = [
+      ColoredSegment(.red, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.black, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.green, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.yellow, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.gray, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.blue, colorProvider: ClassicColorProvider()),
+      ColoredSegment(.magenta, colorProvider: ClassicColorProvider())
+    ]
+    
+    let miniToolController = MiniToolController()
+    window.rootViewController = miniToolController
     self.window = window
     window.makeKeyAndVisible()
+    
+    let breachController = BreachViewController(
+      segmentsToBreach: segmentsToBreach,
+      segmentsToChoose: segmentsToChoose,
+      router: BreachRouter<ColoredSegment, BreachViewController>()
+    ) { segment in
+      print(segment.value)
+    }
+    
+    miniToolController.addChild(breachController)
+    miniToolController.miniToolGameContainerView.addSubview(breachController.view)
+    breachController.view.frame = miniToolController.miniToolGameContainerView.bounds
+    miniToolController.didMove(toParent: breachController)
     
     return true
   }
