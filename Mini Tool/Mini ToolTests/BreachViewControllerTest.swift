@@ -9,25 +9,6 @@ import WY_Mini_Tool_Engine
 @testable import Mini_Tool
 
 class BreachViewContllerTest: XCTestCase {
-  func test_viewDidLoad_noSegmentsToChoose_updatesStatus() {
-    let sut = makeSUT(segmentsToBreach: [ColoredSegment(.black, colorProvider: ClassicColorProvider())])
-    XCTAssertEqual(sut.status, BreachStatus.noSegmentsToSelect)
-  }
-  
-  func test_viewDidLoad_withSegmentsToBreachAndToChoose_updatesStatus() {
-    let sut = makeSUT(
-      segmentsToBreach: [makeColoredSegment(color: .black)],
-      segmentsToChoose: [makeColoredSegment(color: .black)]
-    )
-    XCTAssertEqual(sut.status, BreachStatus.breaching)
-  }
-  
-  func test_viewDidLoad_withNoSegmentsToBreach() {
-    let sut = makeSUT(segmentsToBreach: [])
-    XCTAssertEqual(sut.segmentsToBreachStackView.subviews.count, 0)
-    XCTAssertEqual(sut.status, BreachStatus.noSegmentsToBreach)
-  }
-  
   func test_instantiate_injectSegments_storesSegments() {
     let segmentsToBreach = [makeColoredSegment(color: .black), makeColoredSegment(color: .blue)]
     let segmentsToChoose = [

@@ -17,7 +17,6 @@ final class BreachViewController: UIViewController {
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
-  var status: BreachStatus = .noSegmentsToBreach
   var segmentsToBreach: [Segment] = []
   var segmentsToChoose: [Segment] = []
   private var selection: ((Segment) -> Void)?
@@ -40,16 +39,6 @@ final class BreachViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     segmentsToChooseCollectionView.register(SegmentViewCell.self)
-    
-    if !segmentsToBreach.isEmpty, !segmentsToChoose.isEmpty {
-      status = .breaching
-    } else if segmentsToChoose.isEmpty {
-      status = .noSegmentsToSelect
-    }
-    
-    if segmentsToBreach.isEmpty {
-      status = .noSegmentsToBreach
-    }
     
     setSegmentsToBreach(segmentsToBreach)
     segmentsToChooseCollectionView.reloadData()
