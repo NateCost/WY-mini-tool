@@ -53,6 +53,18 @@ final class BreachViewController: UIViewController {
     
     setSegmentsToBreach(segmentsToBreach)
     segmentsToChooseCollectionView.reloadData()
+    setupFlowLayout(cellsPerRow: 5)
+  }
+  
+  private func setupFlowLayout(cellsPerRow: Int) {
+    if let flowLayout = segmentsToChooseCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+      let horizontalSpacing = flowLayout.minimumInteritemSpacing
+      let cellsAmountPerRow = max(0, cellsPerRow - 1)
+      let collectionWidth = segmentsToChooseCollectionView.frame.width
+      let intercellsTotalWidth = CGFloat(cellsAmountPerRow) * horizontalSpacing
+      let cellWidth = (collectionWidth - intercellsTotalWidth) / CGFloat(cellsPerRow)
+      flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
+    }
   }
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
