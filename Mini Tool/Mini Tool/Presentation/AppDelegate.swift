@@ -36,18 +36,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
     window.makeKeyAndVisible()
     
+    let router = BreachRouter<ColoredSegment, BreachViewController>()
+    
     let breachController = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      router: BreachRouter<ColoredSegment, BreachViewController>()
+      router: router
     ) { segment in
-      print(segment.value)
+      router.selectionCallback(segment, router.routedSegment!)
     }
     
     miniToolController.addChild(breachController)
     miniToolController.miniToolGameContainerView.addSubview(breachController.view)
     breachController.view.frame = miniToolController.miniToolGameContainerView.bounds
     miniToolController.didMove(toParent: breachController)
+    
+    let flow = Flow<ColoredSegment, BreachRouter>(
+      segments: segmentsToBreach,
+      segmentsToSelect: segmentsToChoose,
+      router: router
+    )
+    flow.start()
     
     return true
   }

@@ -10,6 +10,7 @@ final class BreachRouter<
   Segment,
   ViewInput: BreachViewInput
 >: Router where ViewInput.Segment == Segment {
+  typealias SelectionCallback = (Segment, Segment) -> Void
   weak var viewInput: ViewInput?
   var routedSegment: Segment?
   var selectionCallback: (Segment, Segment) -> Void = { _, _ in }
@@ -22,8 +23,7 @@ final class BreachRouter<
     self.selectionCallback = selectionCallback
   }
   
-  func updateSegment(_ segment: Segment, with state: SegmentState) {
-    segment.setState(state)
+  func segmentUpdated(_ segment: Segment) {
     viewInput?.didUpdateSegment(segment)
   }
   
