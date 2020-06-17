@@ -33,12 +33,10 @@ class BreachRouterTests: XCTestCase {
     let viewInput = BreachViewInputSpy(segmentsToBreach: segmentsToBreach)
     let sut = makeSUT(viewInput: viewInput)
     
-    sut.updateSegment(segment, with: .failed)
+    segment.setState(.failed)
+    sut.segmentUpdated(segment)
     
     XCTAssertEqual(viewInput.updatedSegment, segment)
-    XCTAssertEqual(
-      viewInput.segmentsToBreach.first(where: { $0 == segment })!.state, .failed
-    )
   }
   
   class BreachViewInputSpy: BreachViewInput {
