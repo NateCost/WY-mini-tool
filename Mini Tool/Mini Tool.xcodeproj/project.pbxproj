@@ -21,6 +21,7 @@
 		F47CD0C6245F462B00280E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CD0C4245F462B00280E3B /* LaunchScreen.storyboard */; };
 		F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */; };
 		F4967843249E280700CA993D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4967842249E280700CA993D /* UIColor+Extension.swift */; };
+		F4967845249E320000CA993D /* ColorProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4967844249E320000CA993D /* ColorProviders.swift */; };
 		F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A5E246AB15500D37733 /* BreachViewController.swift */; };
 		F4A06A61246AB24900D37733 /* BreachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A06A60246AB24900D37733 /* BreachViewController.xib */; };
 		F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */; };
@@ -60,6 +61,7 @@
 		F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewControllerTest.swift; sourceTree = "<group>"; };
 		F47CD0D2245F462B00280E3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4967842249E280700CA993D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		F4967844249E320000CA993D /* ColorProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviders.swift; sourceTree = "<group>"; };
 		F4A06A5E246AB15500D37733 /* BreachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewController.swift; sourceTree = "<group>"; };
 		F4A06A60246AB24900D37733 /* BreachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreachViewController.xib; sourceTree = "<group>"; };
 		F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegment.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 			isa = PBXGroup;
 			children = (
 				F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */,
+				F4967844249E320000CA993D /* ColorProviders.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F4967845249E320000CA993D /* ColorProviders.swift in Sources */,
 				F40FFA69246D3046008632CB /* MiniToolController.swift in Sources */,
 				F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */,
 				F459E9D72490CB9E005C1408 /* Hashable+Equtable.swift in Sources */,
