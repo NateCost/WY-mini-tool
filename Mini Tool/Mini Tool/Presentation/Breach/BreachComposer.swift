@@ -4,11 +4,12 @@
 //
 
 import Foundation
+import WY_Mini_Tool_Engine
 
-final class BreachComposer {
-  let viewController: BreachViewController
+final class ColoredBreachComposer<CProvider: ColorProvider> where CProvider.Condition == SegmentState {
+  let viewController: BreachViewController<ColoredSegment<CProvider>>
   
-  class func compose(withInput input: BreachInput) -> BreachComposer {
+  class func compose(withInput input: BreachInput<CProvider>) -> ColoredBreachComposer {
     let viewController = BreachViewController(
       segmentsToBreach: input.segmentsToBreach,
       segmentsToChoose: input.segmentsToChoose,
@@ -16,16 +17,16 @@ final class BreachComposer {
       selection: { _ in }
     )
     
-    return BreachComposer(viewController: viewController)
+    return ColoredBreachComposer(viewController: viewController)
   }
   
-  private init(viewController: BreachViewController) {
+  private init(viewController: BreachViewController<ColoredSegment<CProvider>>) {
     self.viewController = viewController
   }
 }
 
-struct BreachInput {
-  let router: BreachRouter<ColoredSegment<ClassicColorProvider>, BreachViewController>
-  let segmentsToBreach: [ColoredSegment<ClassicColorProvider>]
-  let segmentsToChoose: [ColoredSegment<ClassicColorProvider>]
+struct BreachInput<CProvider: ColorProvider> where CProvider.Condition == SegmentState {
+  let router: BreachRouter<ColoredSegment<CProvider>, BreachViewController<ColoredSegment<CProvider>>>
+  let segmentsToBreach: [ColoredSegment<CProvider>]
+  let segmentsToChoose: [ColoredSegment<CProvider>]
 }

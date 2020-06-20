@@ -12,8 +12,7 @@ enum BreachStatus: String {
   case breaching
 }
 
-final class BreachViewController: UIViewController {
-  typealias Segment = ColoredSegment<ClassicColorProvider>
+final class BreachViewController<Segment: SegmentViewCellModel>: UIViewController where Segment.Value == UIColor {
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
@@ -38,7 +37,7 @@ final class BreachViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    segmentsToChooseCollectionView.register(SegmentViewCell.self)
+    segmentsToChooseCollectionView.register(ColoredSegmentViewCell<Segment>.self)
     
     setSegmentsToBreach(segmentsToBreach)
     segmentsToChooseCollectionView.reloadData()
@@ -58,7 +57,7 @@ final class BreachViewController: UIViewController {
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
     for segment in segments {
-      if let cell = getColoredCellView() as? SegmentViewCell {
+      if let cell = getColoredCellView() as? ColoredSegmentViewCell<Segment> {
         cell.configure(with: segment)
         segmentsToBreachStackView.addArrangedSubview(cell)
       }
@@ -68,7 +67,7 @@ final class BreachViewController: UIViewController {
   private func updateSegmentToBreach(_ segments: [Segment]) {
     guard segments.count == segmentsToBreachStackView.subviews.count else { return }
     for (index, segment) in segments.enumerated() {
-      if let cell = segmentsToBreachStackView.subviews[index] as? SegmentViewCell {
+      if let cell = segmentsToBreachStackView.subviews[index] as? ColoredSegmentViewCell<Segment> {
         cell.configure(with: segment)
       }
     }
@@ -76,15 +75,14 @@ final class BreachViewController: UIViewController {
   
   private func getColoredCellView() -> UIView? {
     guard let view = UINib(
-      nibName: "SegmentViewCell",
+      nibName: "ColoredSegmentViewCell",
       bundle: nil
     ).instantiate(withOwner: self).first as? UICollectionViewCell else { return nil }
     view.contentView.pinToSuperviewEdges()
     return view
   }
-}
-// MARK: - UICollectionViewDataSource
-extension BreachViewController: UICollectionViewDataSource {
+  
+  // MARK: - UICollectionViewDataSource
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -95,16 +93,15 @@ extension BreachViewController: UICollectionViewDataSource {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     guard
-      let cell: SegmentViewCell = collectionView.dequeueCell(at: indexPath)
+      let cell: ColoredSegmentViewCell<Segment> = collectionView.dequeueCell(at: indexPath)
     else { return UICollectionViewCell() }
     
     let segment = segmentsToChoose[indexPath.row]
     cell.configure(with: segment)
     return cell
   }
-}
-// MARK: - UICollectionViewDelegate
-extension BreachViewController: UICollectionViewDelegate {
+  
+  // MARK: - UICollectionViewDelegate
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath

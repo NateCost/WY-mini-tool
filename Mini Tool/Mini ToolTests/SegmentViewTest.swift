@@ -18,11 +18,11 @@ class SegmentViewCellTest: XCTestCase {
     XCTAssertEqual(sut.coloredPanelView.backgroundColor, segment.value)
   }
   
-  func makeSUT(_ segment: ColoredSegment<ClassicColorProvider>) -> SegmentViewCell {
+  func makeSUT(_ segment: ColoredSegment<ClassicColorProvider>) -> ColoredSegmentViewCell<ColoredSegment<ClassicColorProvider>> {
     Bundle.main.loadNibNamed(
-      SegmentViewCell.reuseIdentifier,
+      ColoredSegmentViewCell<ColoredSegment<ClassicColorProvider>>.reuseIdentifier,
       owner: nil,
       options: nil
-    )?.first as! SegmentViewCell
+    )?.first as! ColoredSegmentViewCell
   }
 }

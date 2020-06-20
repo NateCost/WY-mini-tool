@@ -30,7 +30,7 @@
 		F4CE4AD7246C6C2D00989B28 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = F4CE4AD6246C6C2D00989B28 /* SwiftFormat */; };
 		F4DCB935248B85A4006E2254 /* ColorProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */; };
 		F4F00F59248443870007A7F9 /* BreachComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F00F58248443870007A7F9 /* BreachComposer.swift */; };
-		F4F845A32466BD320097B238 /* SegmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F845A22466BD320097B238 /* SegmentViewCell.swift */; };
+		F4F845A32466BD320097B238 /* ColoredSegmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,7 +69,7 @@
 		F4A7B305248576F70069114E /* BreachComposerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposerTest.swift; sourceTree = "<group>"; };
 		F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviderTest.swift; sourceTree = "<group>"; };
 		F4F00F58248443870007A7F9 /* BreachComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposer.swift; sourceTree = "<group>"; };
-		F4F845A22466BD320097B238 /* SegmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewCell.swift; sourceTree = "<group>"; };
+		F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegmentViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,7 +179,7 @@
 			isa = PBXGroup;
 			children = (
 				F408A21F246DB680009B9203 /* SegmentViewCell.xib */,
-				F4F845A22466BD320097B238 /* SegmentViewCell.swift */,
+				F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */,
 			);
 			path = Segment;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 				F408A222246DC06B009B9203 /* CollectionViewHelpers.swift in Sources */,
 				F4F00F59248443870007A7F9 /* BreachComposer.swift in Sources */,
 				F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */,
-				F4F845A32466BD320097B238 /* SegmentViewCell.swift in Sources */,
+				F4F845A32466BD320097B238 /* ColoredSegmentViewCell.swift in Sources */,
 				F47CD0BA245F462A00280E3B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

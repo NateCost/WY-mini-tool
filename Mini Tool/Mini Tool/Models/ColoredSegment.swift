@@ -8,7 +8,7 @@ import WY_Mini_Tool_Engine
 
 class ColoredSegment<
   CProvider: ColorProvider
->: Hashable, Valuable, Statable, ColorHolder where CProvider.Condition == SegmentState {
+>: SegmentViewCellModel where CProvider.Condition == SegmentState {
   typealias Value = UIColor
   var state: SegmentState = .none
   var value: Value
