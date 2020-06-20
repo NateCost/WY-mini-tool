@@ -6,10 +6,14 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-final class SegmentViewCell: UICollectionViewCell {
+protocol SegmentViewCellModel: Statable, Valuable {
+  <#requirements#>
+}
+
+final class SegmentViewCell<S: ColoredSegment>: UICollectionViewCell {
   @IBOutlet var coloredPanelView: UIView!
   
-  func configure(with segment: ColoredSegment<ClassicColorProvider>) {
+  func configure(with segment: S) {
     coloredPanelView.backgroundColor = segment.value
     backgroundColor = segment.colorProvider.color(for: segment.state)
   }
