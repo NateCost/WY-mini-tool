@@ -20,14 +20,14 @@ class BreachComposerTest: XCTestCase {
       makeColoredSegment(color: .brown),
       makeColoredSegment(color: .gray)
     ]
-    let router = BreachRouter<ColoredSegment, BreachViewController>()
+    let router = BreachRouter<ColoredSegment, ColoredBreachViewController>()
     let input = BreachInput(
       router: router,
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose
     )
     
-    let sut = BreachComposer.compose(withInput: input)
+    let sut = ColoredBreachComposer.compose(withInput: input)
     
     XCTAssertNotNil(sut.viewController.router)
     XCTAssertEqual(sut.viewController.router?.viewInput, sut.viewController)
@@ -36,7 +36,7 @@ class BreachComposerTest: XCTestCase {
   func makeColoredSegment(
     color: UIColor,
     colorProvider: ClassicColorProvider = ClassicColorProvider()
-  ) -> ColoredSegment<ClassicColorProvider> {
-    ColoredSegment<ClassicColorProvider>(color, colorProvider: colorProvider)
+  ) -> ColoredSegment {
+    ColoredSegment(color, colorProvider: colorProvider)
   }
 }

@@ -12,19 +12,20 @@ enum BreachStatus: String {
   case breaching
 }
 
-final class BreachViewController<Segment: SegmentViewCellModel>: UIViewController where Segment.Value == UIColor {
+final class ColoredBreachViewController: UIViewController {
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
+  typealias Segment = ColoredSegment
   var segmentsToBreach: [Segment] = []
   var segmentsToChoose: [Segment] = []
   private var selection: ((Segment) -> Void)?
-  var router: BreachRouter<Segment, BreachViewController>?
+  var router: BreachRouter<Segment, ColoredBreachViewController>?
   
   convenience init(
     segmentsToBreach: [Segment],
     segmentsToChoose: [Segment],
-    router: BreachRouter<Segment, BreachViewController>,
+    router: BreachRouter<Segment, ColoredBreachViewController>,
     selection: @escaping (Segment) -> Void
   ) {
     self.init()
@@ -110,7 +111,7 @@ final class BreachViewController<Segment: SegmentViewCellModel>: UIViewControlle
   }
 }
 // MARK: - BreachViewInput
-extension BreachViewController: BreachViewInput {
+extension ColoredBreachViewController: BreachViewInput {
   func didUpdateSegment(_ segment: Segment) {
     if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
       segmentsToChooseCollectionView.reloadItems(at: [IndexPath(row: row, section: 0)])

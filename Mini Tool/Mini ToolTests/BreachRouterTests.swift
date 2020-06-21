@@ -40,7 +40,7 @@ class BreachRouterTests: XCTestCase {
   }
   
   class BreachViewInputSpy: BreachViewInput {
-    typealias Segment = ColoredSegment<ClassicColorProvider>
+    typealias Segment = ColoredSegment
     var segmentsToBreach: [Segment]
     var finished = false
     var updatedSegment: Segment?
@@ -60,8 +60,8 @@ class BreachRouterTests: XCTestCase {
   
   func makeSUT(
     viewInput: BreachViewInputSpy = BreachViewInputSpy(segmentsToBreach: [])
-  ) -> BreachRouter<ColoredSegment<ClassicColorProvider>, BreachViewInputSpy> {
-    let router = BreachRouter<ColoredSegment<ClassicColorProvider>, BreachViewInputSpy>()
+  ) -> BreachRouter<ColoredSegment, BreachViewInputSpy> {
+    let router = BreachRouter<ColoredSegment, BreachViewInputSpy>()
     router.viewInput = viewInput
     return router
   }

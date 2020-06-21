@@ -6,30 +6,25 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-class ColoredSegment<
-  CProvider: ColorProvider
->: SegmentViewCellModel where CProvider.Condition == SegmentState {
+protocol Segment: Hashable, Valuable, Statable {}
+
+protocol ColorHolder {
+  var color: UIColor { get }
+}
+
+class ColoredSegment: SegmentViewCellModel {
   typealias Value = UIColor
   var state: SegmentState = .none
   var value: Value
-  var colorProvider: CProvider
+  var colorProvider: ColorProvider
   var color: UIColor { colorProvider.color(for: state) }
   
   func setState(_ state: SegmentState) {
     self.state = state
   }
   
-  init(_ value: Value, colorProvider: CProvider) {
+  init(_ value: Value, colorProvider: ColorProvider) {
     self.value = value
     self.colorProvider = colorProvider
   }
-}
-
-protocol ColorHolder {
-  var color: UIColor { get }
-}
-
-protocol ColorProvider {
-  associatedtype Condition
-  func color(for condition: Condition) -> UIColor
 }

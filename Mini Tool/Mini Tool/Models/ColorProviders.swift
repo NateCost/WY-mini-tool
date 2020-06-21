@@ -6,10 +6,12 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
+protocol ColorProvider {
+  func color(for state: SegmentState) -> UIColor
+}
+
 struct ClassicColorProvider: ColorProvider {
-  typealias Condition = SegmentState
-  
-  func color(for condition: Condition) -> UIColor {
+  func color(for condition: SegmentState) -> UIColor {
     switch condition {
       case .failed: return .red
       case .none: return .clear
@@ -20,9 +22,7 @@ struct ClassicColorProvider: ColorProvider {
 }
 
 struct TransluentColorProvider: ColorProvider {
-  typealias Condition = SegmentState
-  
-  func color(for condition: Condition) -> UIColor {
+  func color(for condition: SegmentState) -> UIColor {
     switch condition {
       case .failed: return UIColor(hex: "#E76F51")!
       case .none: return .clear
