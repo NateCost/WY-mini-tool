@@ -86,7 +86,7 @@ final class ColoredBreachViewController: UIViewController {
   }
 }
 // MARK: - UICollectionViewDataSource
-extension ColoredBreachViewController {
+extension ColoredBreachViewController: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -107,7 +107,7 @@ extension ColoredBreachViewController {
   }
 }
 // MARK: - UICollectionViewDelegate
-extension ColoredBreachViewController {
+extension ColoredBreachViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
