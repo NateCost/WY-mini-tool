@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F408A220246DB680009B9203 /* SegmentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F408A21F246DB680009B9203 /* SegmentViewCell.xib */; };
+		F408A220246DB680009B9203 /* ColoredSegmentViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F408A21F246DB680009B9203 /* ColoredSegmentViewCell.xib */; };
 		F408A222246DC06B009B9203 /* CollectionViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F408A221246DC06B009B9203 /* CollectionViewHelpers.swift */; };
 		F40FFA67246D3039008632CB /* MiniToolController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F40FFA66246D3039008632CB /* MiniToolController.xib */; };
 		F40FFA69246D3046008632CB /* MiniToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40FFA68246D3046008632CB /* MiniToolController.swift */; };
@@ -22,14 +22,14 @@
 		F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */; };
 		F4967843249E280700CA993D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4967842249E280700CA993D /* UIColor+Extension.swift */; };
 		F4967845249E320000CA993D /* ColorProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4967844249E320000CA993D /* ColorProviders.swift */; };
-		F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A5E246AB15500D37733 /* BreachViewController.swift */; };
-		F4A06A61246AB24900D37733 /* BreachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A06A60246AB24900D37733 /* BreachViewController.xib */; };
+		F4A06A5F246AB15500D37733 /* ColoredBreachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A5E246AB15500D37733 /* ColoredBreachViewController.swift */; };
+		F4A06A61246AB24900D37733 /* ColoredBreachViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A06A60246AB24900D37733 /* ColoredBreachViewController.xib */; };
 		F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */; };
 		F4A649D1248966CC002569AE /* UIViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A649D0248966CC002569AE /* UIViewHelpers.swift */; };
 		F4A7B306248576F70069114E /* BreachComposerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7B305248576F70069114E /* BreachComposerTest.swift */; };
 		F4CE4AD7246C6C2D00989B28 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = F4CE4AD6246C6C2D00989B28 /* SwiftFormat */; };
 		F4DCB935248B85A4006E2254 /* ColorProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */; };
-		F4F00F59248443870007A7F9 /* BreachComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F00F58248443870007A7F9 /* BreachComposer.swift */; };
+		F4F00F59248443870007A7F9 /* ColoredBreachComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F00F58248443870007A7F9 /* ColoredBreachComposer.swift */; };
 		F4F845A32466BD320097B238 /* ColoredSegmentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */; };
 /* End PBXBuildFile section */
 
@@ -44,7 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		F408A21F246DB680009B9203 /* SegmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SegmentViewCell.xib; sourceTree = "<group>"; };
+		F408A21F246DB680009B9203 /* ColoredSegmentViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredSegmentViewCell.xib; sourceTree = "<group>"; };
 		F408A221246DC06B009B9203 /* CollectionViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewHelpers.swift; sourceTree = "<group>"; };
 		F40FFA66246D3039008632CB /* MiniToolController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MiniToolController.xib; sourceTree = "<group>"; };
 		F40FFA68246D3046008632CB /* MiniToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniToolController.swift; sourceTree = "<group>"; };
@@ -62,13 +62,13 @@
 		F47CD0D2245F462B00280E3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F4967842249E280700CA993D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F4967844249E320000CA993D /* ColorProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviders.swift; sourceTree = "<group>"; };
-		F4A06A5E246AB15500D37733 /* BreachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewController.swift; sourceTree = "<group>"; };
-		F4A06A60246AB24900D37733 /* BreachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BreachViewController.xib; sourceTree = "<group>"; };
+		F4A06A5E246AB15500D37733 /* ColoredBreachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredBreachViewController.swift; sourceTree = "<group>"; };
+		F4A06A60246AB24900D37733 /* ColoredBreachViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColoredBreachViewController.xib; sourceTree = "<group>"; };
 		F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegment.swift; sourceTree = "<group>"; };
 		F4A649D0248966CC002569AE /* UIViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelpers.swift; sourceTree = "<group>"; };
 		F4A7B305248576F70069114E /* BreachComposerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposerTest.swift; sourceTree = "<group>"; };
 		F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviderTest.swift; sourceTree = "<group>"; };
-		F4F00F58248443870007A7F9 /* BreachComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposer.swift; sourceTree = "<group>"; };
+		F4F00F58248443870007A7F9 /* ColoredBreachComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredBreachComposer.swift; sourceTree = "<group>"; };
 		F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegmentViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -167,10 +167,10 @@
 		F4A06A5C246AB13D00D37733 /* Breach */ = {
 			isa = PBXGroup;
 			children = (
-				F4A06A60246AB24900D37733 /* BreachViewController.xib */,
-				F4A06A5E246AB15500D37733 /* BreachViewController.swift */,
+				F4A06A60246AB24900D37733 /* ColoredBreachViewController.xib */,
+				F4A06A5E246AB15500D37733 /* ColoredBreachViewController.swift */,
 				F41327E0247FA53A00BC1228 /* BreachRouter.swift */,
-				F4F00F58248443870007A7F9 /* BreachComposer.swift */,
+				F4F00F58248443870007A7F9 /* ColoredBreachComposer.swift */,
 			);
 			path = Breach;
 			sourceTree = "<group>";
@@ -178,7 +178,7 @@
 		F4A06A5D246AB14300D37733 /* Segment */ = {
 			isa = PBXGroup;
 			children = (
-				F408A21F246DB680009B9203 /* SegmentViewCell.xib */,
+				F408A21F246DB680009B9203 /* ColoredSegmentViewCell.xib */,
 				F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */,
 			);
 			path = Segment;
@@ -295,8 +295,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				F47CD0C6245F462B00280E3B /* LaunchScreen.storyboard in Resources */,
-				F4A06A61246AB24900D37733 /* BreachViewController.xib in Resources */,
-				F408A220246DB680009B9203 /* SegmentViewCell.xib in Resources */,
+				F4A06A61246AB24900D37733 /* ColoredBreachViewController.xib in Resources */,
+				F408A220246DB680009B9203 /* ColoredSegmentViewCell.xib in Resources */,
 				F40FFA67246D3039008632CB /* MiniToolController.xib in Resources */,
 				F47CD0C3245F462B00280E3B /* Assets.xcassets in Resources */,
 			);
@@ -345,8 +345,8 @@
 				F4A649D1248966CC002569AE /* UIViewHelpers.swift in Sources */,
 				F41327E1247FA53A00BC1228 /* BreachRouter.swift in Sources */,
 				F408A222246DC06B009B9203 /* CollectionViewHelpers.swift in Sources */,
-				F4F00F59248443870007A7F9 /* BreachComposer.swift in Sources */,
-				F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */,
+				F4F00F59248443870007A7F9 /* ColoredBreachComposer.swift in Sources */,
+				F4A06A5F246AB15500D37733 /* ColoredBreachViewController.swift in Sources */,
 				F4F845A32466BD320097B238 /* ColoredSegmentViewCell.swift in Sources */,
 				F47CD0BA245F462A00280E3B /* AppDelegate.swift in Sources */,
 			);

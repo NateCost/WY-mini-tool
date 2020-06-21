@@ -41,9 +41,9 @@ class BreachViewContllerTest: XCTestCase {
         makeColoredSegment(color: .brown)
       ]
     )
-    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as! ColoredSegmentViewCell<ColoredSegment>
+    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as! ColoredSegmentViewCell
     XCTAssertEqual(cell1.coloredPanelView!.backgroundColor, .black)
-    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as! ColoredSegmentViewCell<ColoredSegment>
+    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as! ColoredSegmentViewCell
     XCTAssertEqual(cell2.coloredPanelView!.backgroundColor, .brown)
   }
   
@@ -99,7 +99,7 @@ class BreachViewContllerTest: XCTestCase {
     sut.didUpdateSegment(blackSegment)
     
     XCTAssertEqual(
-      (sut.segmentsToBreachStackView.subviews[0] as! ColoredSegmentViewCell<ColoredSegment>).backgroundColor,
+      (sut.segmentsToBreachStackView.subviews[0] as! ColoredSegmentViewCell).backgroundColor,
       colorProvider.color(for: .selected)
     )
   }
@@ -115,7 +115,7 @@ class BreachViewContllerTest: XCTestCase {
     redSegment.setState(.failed)
     sut.didUpdateSegment(redSegment)
     
-    let cell = sut.segmentsToChooseCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! ColoredSegmentViewCell<ColoredSegment>
+    let cell = sut.segmentsToChooseCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! ColoredSegmentViewCell
     XCTAssertEqual(cell.backgroundColor, colorProvider.color(for: .failed))
   }
   
@@ -142,9 +142,9 @@ class BreachViewContllerTest: XCTestCase {
     ColoredSegment(color, colorProvider: colorProvider)
   }
   
-  func getBreachSegment(sut: ColoredBreachViewController, at index: Int) -> ColoredSegmentViewCell<ColoredSegment>? {
+  func getBreachSegment(sut: ColoredBreachViewController, at index: Int) -> ColoredSegmentViewCell? {
     guard sut.segmentsToBreachStackView.subviews.count > index else { return nil }
-    return sut.segmentsToBreachStackView.subviews[index] as? ColoredSegmentViewCell<ColoredSegment>
+    return sut.segmentsToBreachStackView.subviews[index] as? ColoredSegmentViewCell
   }
 }
 

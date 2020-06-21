@@ -6,22 +6,26 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-protocol SegmentViewCellModel: Segment, ColorHolder {}
+protocol ColoredSegmentConfigurableCell {
+  associatedtype Model
+  func configure(with model: Model)
+}
 
-final class ColoredSegmentViewCell<
-  Model: SegmentViewCellModel
->: UICollectionViewCell where Model.Value == UIColor {
-  var coloredPanelView: UIView?
+protocol ColoredSegmentViewCellModel {
+  var value: UIColor { get }
+  var stateColor: UIColor { get }
+}
+
+struct ColoredSegmentViewCellData: ColoredSegmentViewCellModel {
+  var value: UIColor
+  var stateColor: UIColor
+}
+
+final class ColoredSegmentViewCell: UICollectionViewCell, ColoredSegmentConfigurableCell {
+  @IBOutlet var coloredPanelView: UIView!
   
-  override func awakeFromNib() {
-    super.awakeFromNib()
-    coloredPanelView = UIView()
-    addSubview(coloredPanelView!)
-    coloredPanelView?.pinToSuperviewEdges(with: UIEdgeInsets(top: 6, left: 6, bottom: 6, right: 6))
-  }
-  
-  func configure(with model: Model) {
-    coloredPanelView?.backgroundColor = model.value
-    backgroundColor = model.color
+  func configure(with model: ColoredSegmentViewCellModel) {
+    coloredPanelView.backgroundColor = model.value
+    backgroundColor = model.stateColor
   }
 }

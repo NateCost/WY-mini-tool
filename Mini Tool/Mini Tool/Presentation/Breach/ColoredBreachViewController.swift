@@ -38,7 +38,7 @@ final class ColoredBreachViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    segmentsToChooseCollectionView.register(ColoredSegmentViewCell<Segment>.self)
+    segmentsToChooseCollectionView.register(ColoredSegmentViewCell.self)
     
     setSegmentsToBreach(segmentsToBreach)
     segmentsToChooseCollectionView.reloadData()
@@ -58,8 +58,9 @@ final class ColoredBreachViewController: UIViewController {
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
     for segment in segments {
-      if let cell = getColoredCellView() as? ColoredSegmentViewCell<Segment> {
-        cell.configure(with: segment)
+      if let cell = getColoredCellView() as? ColoredSegmentViewCell {
+        let model = ColoredSegmentViewCellData(value: segment.value, stateColor: segment.color)
+        cell.configure(with: model)
         segmentsToBreachStackView.addArrangedSubview(cell)
       }
     }
@@ -68,8 +69,9 @@ final class ColoredBreachViewController: UIViewController {
   private func updateSegmentToBreach(_ segments: [Segment]) {
     guard segments.count == segmentsToBreachStackView.subviews.count else { return }
     for (index, segment) in segments.enumerated() {
-      if let cell = segmentsToBreachStackView.subviews[index] as? ColoredSegmentViewCell<Segment> {
-        cell.configure(with: segment)
+      if let cell = segmentsToBreachStackView.subviews[index] as? ColoredSegmentViewCell {
+        let model = ColoredSegmentViewCellData(value: segment.value, stateColor: segment.color)
+        cell.configure(with: model)
       }
     }
   }
@@ -82,8 +84,9 @@ final class ColoredBreachViewController: UIViewController {
     view.contentView.pinToSuperviewEdges()
     return view
   }
-  
-  // MARK: - UICollectionViewDataSource
+}
+// MARK: - UICollectionViewDataSource
+extension ColoredBreachViewController {
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -94,15 +97,17 @@ final class ColoredBreachViewController: UIViewController {
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
     guard
-      let cell: ColoredSegmentViewCell<Segment> = collectionView.dequeueCell(at: indexPath)
+      let cell: ColoredSegmentViewCell = collectionView.dequeueCell(at: indexPath)
     else { return UICollectionViewCell() }
     
     let segment = segmentsToChoose[indexPath.row]
-    cell.configure(with: segment)
+    let model = ColoredSegmentViewCellData(value: segment.value, stateColor: segment.color)
+    cell.configure(with: model)
     return cell
   }
-  
-  // MARK: - UICollectionViewDelegate
+}
+// MARK: - UICollectionViewDelegate
+extension ColoredBreachViewController {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath

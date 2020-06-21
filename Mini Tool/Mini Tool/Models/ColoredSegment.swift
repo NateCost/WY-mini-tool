@@ -12,7 +12,7 @@ protocol ColorHolder {
   var color: UIColor { get }
 }
 
-class ColoredSegment: SegmentViewCellModel {
+class ColoredSegment: Segment, ColorHolder {
   typealias Value = UIColor
   var state: SegmentState = .none
   var value: Value

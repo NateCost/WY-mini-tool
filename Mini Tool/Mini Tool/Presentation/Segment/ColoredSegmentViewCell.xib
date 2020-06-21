@@ -41,6 +41,9 @@
                     <integer key="value" value="6"/>
                 </userDefinedRuntimeAttribute>
             </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="coloredPanelView" destination="14c-Ez-oTZ" id="oV7-ar-HRu"/>
+            </connections>
             <point key="canvasLocation" x="-67.391304347826093" y="-36.495535714285715"/>
         </collectionViewCell>
     </objects>

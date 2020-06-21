@@ -11,16 +11,17 @@ import WY_Mini_Tool_Engine
 class SegmentViewCellTest: XCTestCase {
   func test_configure_setColoredPanelColor() {
     let segment = ColoredSegment(.black, colorProvider: ClassicColorProvider())
-    let sut = makeSUT(segment)
+    let model = ColoredSegmentViewCellData(value: segment.value, stateColor: segment.color)
+    let sut = makeSUT()
 
-    sut.configure(with: segment)
+    sut.configure(with: model)
 
     XCTAssertEqual(sut.coloredPanelView!.backgroundColor, segment.value)
   }
   
-  func makeSUT(_ segment: ColoredSegment) -> ColoredSegmentViewCell<ColoredSegment> {
+  func makeSUT() -> ColoredSegmentViewCell {
     Bundle.main.loadNibNamed(
-      ColoredSegmentViewCell<ColoredSegment>.reuseIdentifier,
+      ColoredSegmentViewCell.reuseIdentifier,
       owner: nil,
       options: nil
     )?.first as! ColoredSegmentViewCell
