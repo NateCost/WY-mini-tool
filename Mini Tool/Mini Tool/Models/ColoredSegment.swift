@@ -28,3 +28,11 @@ class ColoredSegment: Segment, ColorHolder {
     self.colorProvider = colorProvider
   }
 }
+
+struct ColoredSegmentFactory {
+  var colorProvider: ColorProvider
+  
+  func makeSegment(value: ColoredSegment.Value) -> ColoredSegment {
+    ColoredSegment(value, colorProvider: colorProvider)
+  }
+}

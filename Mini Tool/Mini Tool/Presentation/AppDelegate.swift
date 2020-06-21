@@ -15,20 +15,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
   ) -> Bool {
     let window = UIWindow(frame: UIScreen.main.bounds)
+    let colorProvider = TransluentColorProvider()
+    let segmentFactory = ColoredSegmentFactory(colorProvider: colorProvider)
     
     let segmentsToBreach = [
-      ColoredSegment(.green, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.blue, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.red, colorProvider: ClassicColorProvider())
+      segmentFactory.makeSegment(value: .green),
+      segmentFactory.makeSegment(value: .blue),
+      segmentFactory.makeSegment(value: .red)
     ]
     let segmentsToChoose = [
-      ColoredSegment(.red, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.black, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.green, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.yellow, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.gray, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.blue, colorProvider: ClassicColorProvider()),
-      ColoredSegment(.magenta, colorProvider: ClassicColorProvider())
+      segmentFactory.makeSegment(value: .red),
+      segmentFactory.makeSegment(value: .black),
+      segmentFactory.makeSegment(value: .green),
+      segmentFactory.makeSegment(value: .yellow),
+      segmentFactory.makeSegment(value: .gray),
+      segmentFactory.makeSegment(value: .blue),
+      segmentFactory.makeSegment(value: .magenta)
     ]
     
     let miniToolController = MiniToolController()
