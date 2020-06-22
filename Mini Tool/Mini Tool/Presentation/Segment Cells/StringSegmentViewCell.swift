@@ -17,10 +17,10 @@ struct StringSegmentViewCellData: StringSegmentViewCellModel {
 }
 
 final class StringSegmentViewCell: UICollectionViewCell, SegmentConfigurableCell {
-  @IBOutlet var coloredPanelView: UIView!
+  @IBOutlet var valueLabel: UILabel!
   
-  func configure(with model: ColoredSegmentViewCellModel) {
-    coloredPanelView.backgroundColor = model.value
+  func configure(with model: StringSegmentViewCellModel) {
+    valueLabel.text = model.value
     backgroundColor = model.stateColor
   }
 }
