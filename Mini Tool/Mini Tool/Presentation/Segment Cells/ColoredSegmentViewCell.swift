@@ -6,11 +6,6 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-protocol ColoredSegmentConfigurableCell {
-  associatedtype Model
-  func configure(with model: Model)
-}
-
 protocol ColoredSegmentViewCellModel {
   var value: UIColor { get }
   var stateColor: UIColor { get }
@@ -21,7 +16,7 @@ struct ColoredSegmentViewCellData: ColoredSegmentViewCellModel {
   var stateColor: UIColor
 }
 
-final class ColoredSegmentViewCell: UICollectionViewCell, ColoredSegmentConfigurableCell {
+final class ColoredSegmentViewCell: UICollectionViewCell, SegmentConfigurableCell {
   @IBOutlet var coloredPanelView: UIView!
   
   func configure(with model: ColoredSegmentViewCellModel) {

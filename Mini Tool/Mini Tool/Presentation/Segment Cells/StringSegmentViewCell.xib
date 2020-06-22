@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ColoredSegmentViewCell" id="xNe-K0-mMm" customClass="ColoredSegmentViewCell" customModule="Mini_Tool" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="141" height="235"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="RWG-dn-y5z">
+                <rect key="frame" x="0.0" y="0.0" width="141" height="235"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IuP-zE-iaI">
+                        <rect key="frame" x="6" y="6" width="129" height="223"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <integer key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="IuP-zE-iaI" secondAttribute="trailing" constant="6" id="0qg-DB-Gj2"/>
+                    <constraint firstItem="IuP-zE-iaI" firstAttribute="leading" secondItem="RWG-dn-y5z" secondAttribute="leading" constant="6" id="1Tc-RD-R8f"/>
+                    <constraint firstItem="IuP-zE-iaI" firstAttribute="top" secondItem="RWG-dn-y5z" secondAttribute="top" constant="6" id="LNl-Jd-sCM"/>
+                    <constraint firstAttribute="bottom" secondItem="IuP-zE-iaI" secondAttribute="bottom" constant="6" id="UbY-4D-f7d"/>
+                </constraints>
+            </collectionViewCellContentView>
+            <size key="customSize" width="141" height="235"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                    <integer key="value" value="6"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
+            <connections>
+                <outlet property="coloredPanelView" destination="IuP-zE-iaI" id="PcW-gJ-XWd"/>
+            </connections>
+            <point key="canvasLocation" x="-67.391304347826093" y="-36.495535714285715"/>
+        </collectionViewCell>
+    </objects>
+</document>
