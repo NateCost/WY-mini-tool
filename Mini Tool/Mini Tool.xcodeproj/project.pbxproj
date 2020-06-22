@@ -27,6 +27,8 @@
 		F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */; };
 		F4A649D1248966CC002569AE /* UIViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A649D0248966CC002569AE /* UIViewHelpers.swift */; };
 		F4A7B306248576F70069114E /* BreachComposerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A7B305248576F70069114E /* BreachComposerTest.swift */; };
+		F4C0648024A0E6F500962F86 /* StringSegment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C0647F24A0E6F500962F86 /* StringSegment.swift */; };
+		F4C0648224A0E70A00962F86 /* Segment.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4C0648124A0E70A00962F86 /* Segment.swift */; };
 		F4CE4AD7246C6C2D00989B28 /* SwiftFormat in Frameworks */ = {isa = PBXBuildFile; productRef = F4CE4AD6246C6C2D00989B28 /* SwiftFormat */; };
 		F4DCB935248B85A4006E2254 /* ColorProviderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */; };
 		F4F00F59248443870007A7F9 /* ColoredBreachComposer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4F00F58248443870007A7F9 /* ColoredBreachComposer.swift */; };
@@ -67,6 +69,8 @@
 		F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegment.swift; sourceTree = "<group>"; };
 		F4A649D0248966CC002569AE /* UIViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewHelpers.swift; sourceTree = "<group>"; };
 		F4A7B305248576F70069114E /* BreachComposerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachComposerTest.swift; sourceTree = "<group>"; };
+		F4C0647F24A0E6F500962F86 /* StringSegment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringSegment.swift; sourceTree = "<group>"; };
+		F4C0648124A0E70A00962F86 /* Segment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Segment.swift; sourceTree = "<group>"; };
 		F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviderTest.swift; sourceTree = "<group>"; };
 		F4F00F58248443870007A7F9 /* ColoredBreachComposer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredBreachComposer.swift; sourceTree = "<group>"; };
 		F4F845A22466BD320097B238 /* ColoredSegmentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColoredSegmentViewCell.swift; sourceTree = "<group>"; };
@@ -188,7 +192,9 @@
 			isa = PBXGroup;
 			children = (
 				F4A06A63246AB6BF00D37733 /* ColoredSegment.swift */,
+				F4C0647F24A0E6F500962F86 /* StringSegment.swift */,
 				F4967844249E320000CA993D /* ColorProviders.swift */,
+				F4C0648124A0E70A00962F86 /* Segment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -338,7 +344,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4967845249E320000CA993D /* ColorProviders.swift in Sources */,
+				F4C0648024A0E6F500962F86 /* StringSegment.swift in Sources */,
 				F40FFA69246D3046008632CB /* MiniToolController.swift in Sources */,
+				F4C0648224A0E70A00962F86 /* Segment.swift in Sources */,
 				F4A06A64246AB6BF00D37733 /* ColoredSegment.swift in Sources */,
 				F459E9D72490CB9E005C1408 /* Hashable+Equtable.swift in Sources */,
 				F4967843249E280700CA993D /* UIColor+Extension.swift in Sources */,

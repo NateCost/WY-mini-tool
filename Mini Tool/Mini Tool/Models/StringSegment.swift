@@ -1,21 +1,16 @@
 //
-//  Created by Ilya Sakalou on 5/12/20.
+//  Created by Ilya Sakalou on 6/22/20.
 //  Copyright © 2020 Nirma. All rights reserved.
 //
 
 import UIKit
 import WY_Mini_Tool_Engine
 
-protocol ColorHolder {
-  var color: UIColor { get }
-}
-
-class ColoredSegment: Segment, ColorHolder {
-  typealias Value = UIColor
+class StringSegment: Segment {
+  typealias Value = String
   var state: SegmentState = .none
   var value: Value
   var colorProvider: ColorProvider
-  var color: UIColor { colorProvider.color(for: state) }
   
   func setState(_ state: SegmentState) {
     self.state = state
@@ -27,10 +22,10 @@ class ColoredSegment: Segment, ColorHolder {
   }
 }
 
-struct ColoredSegmentFactory {
+struct StringSegmentFactory {
   var colorProvider: ColorProvider
   
-  func makeSegment(value: ColoredSegment.Value) -> ColoredSegment {
-    ColoredSegment(value, colorProvider: colorProvider)
+  func makeSegment(value: StringSegment.Value) -> StringSegment {
+    StringSegment(value, colorProvider: colorProvider)
   }
 }
