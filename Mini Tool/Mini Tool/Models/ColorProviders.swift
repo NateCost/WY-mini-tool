@@ -24,10 +24,10 @@ struct ClassicColorProvider: ColorProvider {
 struct TransluentColorProvider: ColorProvider {
   func color(for condition: SegmentState) -> UIColor {
     switch condition {
-      case .failed: return hexStringToUIColor(hex: "#E76F51")
+      case .failed: return uicolor(with: "#E76F51")
       case .none: return .clear
-      case .passed: return hexStringToUIColor(hex: "#2a9d8f")
-      case .selected: return hexStringToUIColor(hex: "#E9C46A")
+      case .passed: return uicolor(with: "#2a9d8f")
+      case .selected: return uicolor(with: "#E9C46A")
     }
   }
 }

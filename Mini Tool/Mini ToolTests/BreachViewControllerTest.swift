@@ -8,7 +8,7 @@ import XCTest
 import WY_Mini_Tool_Engine
 @testable import Mini_Tool
 
-class BreachViewContllerTest: XCTestCase {
+class BreachViewControllerTest: XCTestCase {
   func test_instantiate_injectSegments_storesSegments() {
     let segmentsToBreach = [makeColoredSegment(color: .black), makeColoredSegment(color: .blue)]
     let segmentsToChoose = [
