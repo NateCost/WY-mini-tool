@@ -6,11 +6,12 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-class StringSegment: Segment {
+class StringSegment: Segment, ColorHolder {
   typealias Value = String
   var state: SegmentState = .none
   var value: Value
   var colorProvider: ColorProvider
+  var color: UIColor { colorProvider.color(for: state) }
   
   func setState(_ state: SegmentState) {
     self.state = state
