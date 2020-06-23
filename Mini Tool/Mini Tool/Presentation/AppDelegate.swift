@@ -38,9 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
     window.makeKeyAndVisible()
     
-    let router = BreachRouter<ColoredSegment, ColoredBreachViewController>()
+    let router = BreachRouter<ColoredSegment, BreachViewController>()
     
-    let breachController = ColoredBreachViewController(
+    let breachController = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
       router: router

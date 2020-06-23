@@ -20,7 +20,7 @@ class BreachComposerTest: XCTestCase {
       makeColoredSegment(color: .brown),
       makeColoredSegment(color: .gray)
     ]
-    let router = BreachRouter<ColoredSegment, ColoredBreachViewController>()
+    let router = BreachRouter<ColoredSegment, BreachViewController>()
     let input = BreachInput(
       router: router,
       segmentsToBreach: segmentsToBreach,

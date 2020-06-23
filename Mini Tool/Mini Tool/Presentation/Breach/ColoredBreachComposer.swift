@@ -7,10 +7,10 @@ import Foundation
 import WY_Mini_Tool_Engine
 
 final class ColoredBreachComposer {
-  let viewController: ColoredBreachViewController
+  let viewController: BreachViewController
   
   class func compose(withInput input: BreachInput) -> ColoredBreachComposer {
-    let viewController = ColoredBreachViewController(
+    let viewController = BreachViewController(
       segmentsToBreach: input.segmentsToBreach,
       segmentsToChoose: input.segmentsToChoose,
       router: input.router,
@@ -20,13 +20,15 @@ final class ColoredBreachComposer {
     return ColoredBreachComposer(viewController: viewController)
   }
   
-  private init(viewController: ColoredBreachViewController) {
+  private init(viewController: BreachViewController) {
     self.viewController = viewController
   }
 }
 
 struct BreachInput {
-  let router: BreachRouter<ColoredSegment, ColoredBreachViewController>
+  let router: BreachRouter<ColoredSegment, BreachViewController>
   let segmentsToBreach: [ColoredSegment]
   let segmentsToChoose: [ColoredSegment]
 }
+
+protocol BreachViewOutput: class {}

@@ -6,13 +6,7 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-enum BreachStatus: String {
-  case noSegmentsToBreach
-  case noSegmentsToSelect
-  case breaching
-}
-
-final class ColoredBreachViewController: UIViewController {
+final class BreachViewController: UIViewController {
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
   
@@ -20,12 +14,12 @@ final class ColoredBreachViewController: UIViewController {
   var segmentsToBreach: [Segment] = []
   var segmentsToChoose: [Segment] = []
   private var selection: ((Segment) -> Void)?
-  var router: BreachRouter<Segment, ColoredBreachViewController>?
+  var router: BreachRouter<Segment, BreachViewController>?
   
   convenience init(
     segmentsToBreach: [Segment],
     segmentsToChoose: [Segment],
-    router: BreachRouter<Segment, ColoredBreachViewController>,
+    router: BreachRouter<Segment, BreachViewController>,
     selection: @escaping (Segment) -> Void
   ) {
     self.init()
@@ -58,7 +52,7 @@ final class ColoredBreachViewController: UIViewController {
   
   private func setSegmentsToBreach(_ segments: [Segment]) {
     for segment in segments {
-      if let cell = getColoredCellView() as? ColoredSegmentViewCell {
+      if let cell = getCellView() as? ColoredSegmentViewCell {
         let model = ColoredSegmentViewCellData(value: segment.value, stateColor: segment.color)
         cell.configure(with: model)
         segmentsToBreachStackView.addArrangedSubview(cell)
@@ -76,7 +70,7 @@ final class ColoredBreachViewController: UIViewController {
     }
   }
   
-  private func getColoredCellView() -> UIView? {
+  private func getCellView() -> UIView? {
     guard let view = UINib(
       nibName: "ColoredSegmentViewCell",
       bundle: nil
@@ -86,7 +80,7 @@ final class ColoredBreachViewController: UIViewController {
   }
 }
 // MARK: - UICollectionViewDataSource
-extension ColoredBreachViewController: UICollectionViewDataSource {
+extension BreachViewController: UICollectionViewDataSource {
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -107,7 +101,7 @@ extension ColoredBreachViewController: UICollectionViewDataSource {
   }
 }
 // MARK: - UICollectionViewDelegate
-extension ColoredBreachViewController: UICollectionViewDelegate {
+extension BreachViewController: UICollectionViewDelegate {
   func collectionView(
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
@@ -116,7 +110,7 @@ extension ColoredBreachViewController: UICollectionViewDelegate {
   }
 }
 // MARK: - BreachViewInput
-extension ColoredBreachViewController: BreachViewInput {
+extension BreachViewController: BreachViewInput {
   func didUpdateSegment(_ segment: Segment) {
     if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
       segmentsToChooseCollectionView.reloadItems(at: [IndexPath(row: row, section: 0)])

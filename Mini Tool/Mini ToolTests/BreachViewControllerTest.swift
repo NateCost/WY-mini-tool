@@ -124,11 +124,11 @@ class BreachViewContllerTest: XCTestCase {
     segmentsToBreach: [ColoredSegment] = [],
     segmentsToChoose: [ColoredSegment] = [],
     selection: @escaping (ColoredSegment) -> Void = { _ in }
-  ) -> ColoredBreachViewController {
-    let sut = ColoredBreachViewController(
+  ) -> BreachViewController {
+    let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      router: BreachRouter<ColoredSegment, ColoredBreachViewController>(),
+      router: BreachRouter<ColoredSegment, BreachViewController>(),
       selection: selection
     )
     _ = sut.view
@@ -142,7 +142,7 @@ class BreachViewContllerTest: XCTestCase {
     ColoredSegment(color, colorProvider: colorProvider)
   }
   
-  func getBreachSegment(sut: ColoredBreachViewController, at index: Int) -> ColoredSegmentViewCell? {
+  func getBreachSegment(sut: BreachViewController, at index: Int) -> ColoredSegmentViewCell? {
     guard sut.segmentsToBreachStackView.subviews.count > index else { return nil }
     return sut.segmentsToBreachStackView.subviews[index] as? ColoredSegmentViewCell
   }
