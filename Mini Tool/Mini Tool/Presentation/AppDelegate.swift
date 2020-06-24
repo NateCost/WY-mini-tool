@@ -39,11 +39,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     window.makeKeyAndVisible()
     
     let router = BreachRouter<ColoredSegment, BreachViewController>()
+    let presenter = BreachPresenter<BreachViewController, ColoredSegment>(segmentsToBreach: segmentsToBreach)
     
     let breachController = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      router: router
+      output: presenter
     ) { segment in
       router.selectionCallback(segment, router.routedSegment!)
     }

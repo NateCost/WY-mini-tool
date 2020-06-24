@@ -117,6 +117,14 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
+		F41B0CE124A36E5500503915 /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				F41B0CDF24A36A4600503915 /* BreachViewInputMock.swift */,
+			);
+			path = Mocks;
+			sourceTree = "<group>";
+		};
 		F467B85E24606225005EFEE5 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,13 +178,13 @@
 		F47CD0CF245F462B00280E3B /* Mini ToolTests */ = {
 			isa = PBXGroup;
 			children = (
+				F41B0CE124A36E5500503915 /* Mocks */,
 				F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */,
 				F40C269124A24E8200243EAB /* BreachPresenterTest.swift */,
 				F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */,
 				F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */,
 				F4A7B305248576F70069114E /* BreachComposerTest.swift */,
 				F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */,
-				F41B0CDF24A36A4600503915 /* BreachViewInputMock.swift */,
 				F47CD0D2245F462B00280E3B /* Info.plist */,
 			);
 			path = "Mini ToolTests";

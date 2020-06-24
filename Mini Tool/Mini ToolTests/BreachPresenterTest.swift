@@ -9,7 +9,6 @@ import WY_Mini_Tool_Engine
 @testable import Mini_Tool
 
 class BreachPresenterTest: XCTestCase {
-  
   func test_instantiate_setSegmentsToBreach_storesSegments() {
     let segmentsFactory = ColoredSegmentFactory(colorProvider: TransluentColorProvider())
     let segments = [

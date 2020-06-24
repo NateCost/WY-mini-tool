@@ -14,20 +14,19 @@ final class BreachViewController: UIViewController {
   var segmentsToBreach: [Segment] = []
   var segmentsToChoose: [Segment] = []
   private var selection: ((Segment) -> Void)?
-  var router: BreachRouter<Segment, BreachViewController>?
+  var output: BreachViewOutput?
   
   convenience init(
     segmentsToBreach: [Segment],
     segmentsToChoose: [Segment],
-    router: BreachRouter<Segment, BreachViewController>,
+    output: BreachViewOutput,
     selection: @escaping (Segment) -> Void
   ) {
     self.init()
     self.selection = selection
     self.segmentsToBreach = segmentsToBreach
     self.segmentsToChoose = segmentsToChoose
-    self.router = router
-    self.router?.viewInput = self
+    self.output = output
   }
   
   override func viewDidLoad() {
