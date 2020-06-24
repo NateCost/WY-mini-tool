@@ -10,7 +10,7 @@ protocol ColorHolder {
   var color: UIColor { get }
 }
 
-class ColoredSegment: Segment, ColorHolder {
+class ColoredSegment: SegmentProtocol, ColorHolder {
   typealias Value = UIColor
   var state: SegmentState = .none
   var value: Value

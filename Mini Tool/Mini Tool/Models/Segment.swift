@@ -6,4 +6,4 @@
 import Foundation
 import WY_Mini_Tool_Engine
 
-protocol Segment: Hashable, Valuable, Statable {}
+protocol SegmentProtocol: Hashable, Valuable, Statable {}

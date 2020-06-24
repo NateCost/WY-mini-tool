@@ -6,7 +6,7 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-class StringSegment: Segment, ColorHolder {
+class StringSegment: SegmentProtocol, ColorHolder {
   typealias Value = String
   var state: SegmentState = .none
   var value: Value

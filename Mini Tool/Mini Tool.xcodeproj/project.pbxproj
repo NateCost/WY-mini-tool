@@ -14,6 +14,7 @@
 		F40FFA69246D3046008632CB /* MiniToolController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40FFA68246D3046008632CB /* MiniToolController.swift */; };
 		F41327E1247FA53A00BC1228 /* BreachRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41327E0247FA53A00BC1228 /* BreachRouter.swift */; };
 		F41327E3247FA5B400BC1228 /* BreachRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */; };
+		F41B0CE024A36A4600503915 /* BreachViewInputMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = F41B0CDF24A36A4600503915 /* BreachViewInputMock.swift */; };
 		F42C316B2465ADB20017DFF0 /* SegmentViewTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */; };
 		F44A0F87247D75E600AA4AF6 /* WY Mini Tool Engine in Frameworks */ = {isa = PBXBuildFile; productRef = F44A0F86247D75E600AA4AF6 /* WY Mini Tool Engine */; };
 		F459E9D72490CB9E005C1408 /* Hashable+Equtable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F459E9D62490CB9E005C1408 /* Hashable+Equtable.swift */; };
@@ -58,6 +59,7 @@
 		F40FFA68246D3046008632CB /* MiniToolController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MiniToolController.swift; sourceTree = "<group>"; };
 		F41327E0247FA53A00BC1228 /* BreachRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachRouter.swift; sourceTree = "<group>"; };
 		F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachRouterTests.swift; sourceTree = "<group>"; };
+		F41B0CDF24A36A4600503915 /* BreachViewInputMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewInputMock.swift; sourceTree = "<group>"; };
 		F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentViewTest.swift; sourceTree = "<group>"; };
 		F459E9D62490CB9E005C1408 /* Hashable+Equtable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Hashable+Equtable.swift"; sourceTree = "<group>"; };
 		F47CD0B6245F462A00280E3B /* Mini Tool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Mini Tool.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -174,6 +176,7 @@
 				F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */,
 				F4A7B305248576F70069114E /* BreachComposerTest.swift */,
 				F4DCB934248B85A4006E2254 /* ColorProviderTest.swift */,
+				F41B0CDF24A36A4600503915 /* BreachViewInputMock.swift */,
 				F47CD0D2245F462B00280E3B /* Info.plist */,
 			);
 			path = "Mini ToolTests";
@@ -388,6 +391,7 @@
 				F4DCB935248B85A4006E2254 /* ColorProviderTest.swift in Sources */,
 				F42C316B2465ADB20017DFF0 /* SegmentViewTest.swift in Sources */,
 				F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */,
+				F41B0CE024A36A4600503915 /* BreachViewInputMock.swift in Sources */,
 				F40C269224A24E8200243EAB /* BreachPresenterTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
