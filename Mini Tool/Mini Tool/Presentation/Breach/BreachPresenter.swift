@@ -5,15 +5,20 @@
 
 import Foundation
 
-extension BreachPresenter: BreachViewOutput {}
-
 extension BreachPresenter: BreachRouterOuput {
-  func didUpdateSegment(_ segment: Segment) {}
-  func finishFlow() {}
+  func didUpdateSegment(_ segment: Segment) {
+    
+  }
+  
+  func finishFlow() {
+    
+  }
 }
 
-final class BreachPresenter<ViewInput: BreachViewInput, Segment: SegmentProtocol> {
-  weak var view: ViewInput!
+extension BreachPresenter: BreachViewOutput {}
+
+final class BreachPresenter<Segment: SegmentProtocol> {
+  weak var view: BreachViewInput?
   var segmentsToBreach: [Segment]
   
   init(segmentsToBreach: [Segment]) {

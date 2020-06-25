@@ -10,12 +10,12 @@ import WY_Mini_Tool_Engine
 
 class BreachRouterTests: XCTestCase {
   func test_finish_executesViewInputFinish() {
-    let viewInput = BreachViewInputMock(segmentsToBreach: [])
-    let sut = makeSUT(viewInput: viewInput)
+    let routerOutput = BreachRouterOutputMock<ColoredSegment>(segmentsToBreach: [])
+    let sut = makeSUT(output: routerOutput)
     
     sut.finish()
     
-    XCTAssert(viewInput.finished)
+    XCTAssert(routerOutput.finished)
   }
   
   func test_handleSegment_savesRoutedSegment() {
@@ -30,20 +30,20 @@ class BreachRouterTests: XCTestCase {
   func test_updateSegment_viewInputUpdatesState() {
     let segment = ColoredSegment(.black, colorProvider: ClassicColorProvider())
     let segmentsToBreach = [segment]
-    let viewInput = BreachViewInputMock(segmentsToBreach: segmentsToBreach)
-    let sut = makeSUT(viewInput: viewInput)
+    let routerOutput = BreachRouterOutputMock<ColoredSegment>(segmentsToBreach: segmentsToBreach)
+    let sut = makeSUT(output: routerOutput)
     
     segment.setState(.failed)
     sut.segmentUpdated(segment)
     
-    XCTAssertEqual(viewInput.updatedSegment, segment)
+    XCTAssertEqual(routerOutput.updatedSegment, segment)
   }
   
   func makeSUT(
-    viewInput: BreachViewInputMock = BreachViewInputMock(segmentsToBreach: [])
-  ) -> BreachRouter<ColoredSegment, BreachViewInputMock> {
-    let router = BreachRouter<ColoredSegment, BreachViewInputMock>()
-    router.viewInput = viewInput
+    output: BreachRouterOutputMock<ColoredSegment> = BreachRouterOutputMock<ColoredSegment>(segmentsToBreach: [])
+  ) -> BreachRouter<ColoredSegment, BreachRouterOutputMock<ColoredSegment>> {
+    let router = BreachRouter<ColoredSegment, BreachRouterOutputMock<ColoredSegment>>()
+    router.output = output
     return router
   }
 }

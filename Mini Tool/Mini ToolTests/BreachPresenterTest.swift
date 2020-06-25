@@ -21,7 +21,7 @@ class BreachPresenterTest: XCTestCase {
     XCTAssertEqual(sut.segmentsToBreach, segments)
   }
   
-  func makeSUT(segmentsToBreach: [ColoredSegment]) -> BreachPresenter<BreachViewInputMock, ColoredSegment> {
-    BreachPresenter<BreachViewInputMock, ColoredSegment>(segmentsToBreach: segmentsToBreach)
+  func makeSUT(segmentsToBreach: [ColoredSegment]) -> BreachPresenter<ColoredSegment> {
+    BreachPresenter<ColoredSegment>(segmentsToBreach: segmentsToBreach)
   }
 }

@@ -8,10 +8,10 @@ import WY_Mini_Tool_Engine
 
 final class BreachRouter<
   Segment,
-  ViewInput: BreachViewInput
->: Router where ViewInput.Segment == Segment {
+  Output: BreachRouterOuput
+>: Router where Output.Segment == Segment {
   typealias SelectionCallback = (Segment, Segment) -> Void
-  weak var viewInput: ViewInput?
+  weak var output: Output?
   var routedSegment: Segment?
   var selectionCallback: (Segment, Segment) -> Void = { _, _ in }
   
@@ -24,11 +24,11 @@ final class BreachRouter<
   }
   
   func segmentUpdated(_ segment: Segment) {
-    viewInput?.didUpdateSegment(segment)
+    output?.didUpdateSegment(segment)
   }
   
   func finish() {
-    viewInput?.finishFlow()
+    output?.finishFlow()
   }
 }
 
@@ -40,8 +40,8 @@ protocol BreachRouterOuput: class {
 }
 
 protocol BreachViewInput: class {
-  associatedtype Segment: Hashable, Valuable, Statable
-  var segmentsToBreach: [Segment] { get }
-  func didUpdateSegment(_ segment: Segment)
+  //associatedtype Segment: Hashable, Valuable, Statable
+  //var segmentsToBreach: [Segment] { get }
+  //func didUpdateSegment(_ segment: Segment)
   func finishFlow()
 }
