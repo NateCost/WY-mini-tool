@@ -40,8 +40,7 @@ protocol BreachRouterOuput: class {
 }
 
 protocol BreachViewInput: class {
-  //associatedtype Segment: Hashable, Valuable, Statable
-  //var segmentsToBreach: [Segment] { get }
-  //func didUpdateSegment(_ segment: Segment)
+  func didUpdateBreachSegment(_ segment: SegmentModel, at index: Int)
+  func didUpdateChooseSegment(_ segment: SegmentModel, at index: Int)
   func finishFlow()
 }

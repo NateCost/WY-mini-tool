@@ -34,3 +34,8 @@ struct ColoredSegmentFactory {
     ColoredSegment(value, colorProvider: colorProvider)
   }
 }
+
+struct ColoredSegmentModel: SegmentModel {
+  let stateColor: UIColor
+  let value: UIColor
+}

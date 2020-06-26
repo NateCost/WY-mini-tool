@@ -90,32 +90,36 @@ class BreachViewControllerTest: XCTestCase {
   }
   
   func test_hasSegmentsToBreach_setNewStateToOneSegment_changesBreachSegmentBackgroundColor() {
+    let segmentIndex = 0
     let colorProvider = ClassicColorProvider()
     let blackSegment = makeColoredSegment(color: .black, colorProvider: colorProvider)
     let segmentsToBreach = [blackSegment]
     let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: [], selection: { _ in })
     
     blackSegment.setState(.selected)
-    sut.didUpdateSegment(blackSegment)
+    let blackSegmentModel = ColoredSegmentModel(stateColor: blackSegment.color, value: blackSegment.value)
+    sut.didUpdateBreachSegment(blackSegmentModel, at: segmentIndex)
     
     XCTAssertEqual(
-      (sut.segmentsToBreachStackView.subviews[0] as! ColoredSegmentViewCell).backgroundColor,
+      (sut.segmentsToBreachStackView.subviews[segmentIndex] as! ColoredSegmentViewCell).backgroundColor,
       colorProvider.color(for: .selected)
     )
   }
   
   func test_hasSegmentsToChoose_updateSegmentState_changesSegmentBackgroundColor() {
+    let segmentIndex = 0
     let colorProvider = ClassicColorProvider()
     let redSegment = makeColoredSegment(color: .red, colorProvider: colorProvider)
     let sut = makeSUT(
       segmentsToChoose: [redSegment],
       selection: { _ in }
     )
+    let cell = sut.segmentsToChooseCollectionView.cell(at: segmentIndex) as! ColoredSegmentViewCell
     
     redSegment.setState(.failed)
-    sut.didUpdateSegment(redSegment)
-    
-    let cell = sut.segmentsToChooseCollectionView.cellForItem(at: IndexPath(row: 0, section: 0)) as! ColoredSegmentViewCell
+    let segmentModel = ColoredSegmentModel(stateColor: redSegment.color, value: redSegment.value)
+    sut.didUpdateChooseSegment(segmentModel, at: segmentIndex)
+    #warning("add update")
     XCTAssertEqual(cell.backgroundColor, colorProvider.color(for: .failed))
   }
   

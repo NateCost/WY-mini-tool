@@ -12,7 +12,8 @@ class BreachViewInputMock: BreachViewInput {
   typealias Segment = ColoredSegment
   var segmentsToBreach: [Segment]
   var finished = false
-  var updatedSegment: Segment?
+  var updatedBreachSegment: SegmentModel?
+  var updateChooseSegment: SegmentModel?
   
   init(segmentsToBreach: [Segment]) {
     self.segmentsToBreach = segmentsToBreach
@@ -22,7 +23,11 @@ class BreachViewInputMock: BreachViewInput {
     finished = true
   }
   
-  func didUpdateSegment(_ segment: Segment) {
-    updatedSegment = segment
+  func didUpdateBreachSegment(_ segment: SegmentModel, at index: Int) {
+    updatedBreachSegment = segment
+  }
+  
+  func didUpdateChooseSegment(_ segment: SegmentModel, at index: Int) {
+    updateChooseSegment = segment
   }
 }

@@ -6,7 +6,7 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-class StringSegment: SegmentProtocol, ColorHolder {
+final class StringSegment: SegmentProtocol, ColorHolder {
   typealias Value = String
   var state: SegmentState = .none
   var value: Value
@@ -29,4 +29,9 @@ struct StringSegmentFactory {
   func makeSegment(value: StringSegment.Value) -> StringSegment {
     StringSegment(value, colorProvider: colorProvider)
   }
+}
+
+struct StringSegmentModel: SegmentModel {
+  let stateColor: UIColor
+  let value: String
 }
