@@ -3,9 +3,9 @@
 //  Copyright © 2020 Nirma. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-protocol SegmentConfigurableCell {
+protocol SegmentConfigurableCell: UICollectionViewCell {
   associatedtype Model
   func configure(with model: Model)
 }
