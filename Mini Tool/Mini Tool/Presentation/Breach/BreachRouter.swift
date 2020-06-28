@@ -3,7 +3,7 @@
 //  Copyright © 2020 Nirma. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import WY_Mini_Tool_Engine
 
 final class BreachRouter<
@@ -34,13 +34,12 @@ final class BreachRouter<
 
 protocol BreachRouterOuput: class {
   associatedtype Segment: Hashable, Valuable, Statable
+  var collectionViewDataSource: UICollectionViewDataSource { get }
   var segmentsToBreach: [Segment] { get }
   func didUpdateSegment(_ segment: Segment)
   func finishFlow()
 }
 
 protocol BreachViewInput: class {
-  func didUpdateBreachSegment(_ segment: SegmentModel, at index: Int)
-  func didUpdateChooseSegment(_ segment: SegmentModel, at index: Int)
   func finishFlow()
 }

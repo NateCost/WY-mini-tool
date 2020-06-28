@@ -32,6 +32,11 @@ struct StringSegmentFactory {
 }
 
 struct StringSegmentModel: SegmentModel {
+  typealias Value = String
   let stateColor: UIColor
-  let value: String
+  let value: Value
+  
+  static func make(value: String, stateColor: UIColor) -> StringSegmentModel {
+    StringSegmentModel(stateColor: stateColor, value: value)
+  }
 }

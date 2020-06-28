@@ -38,8 +38,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
     window.makeKeyAndVisible()
     
-    let presenter = BreachPresenter<ColoredSegment>(segmentsToBreach: segmentsToBreach)
-    let router = BreachRouter<ColoredSegment, BreachPresenter<ColoredSegment>>()
+    let dataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
+    let presenter = BreachPresenter<
+      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
+      >(segmentsToBreach: segmentsToBreach, collectionViewDataSource: dataSource)
+    let router = BreachRouter<
+      ColoredSegment,
+      BreachPresenter<ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell>
+    >()
     
     let breachController = BreachViewController(
       segmentsToBreach: segmentsToBreach,

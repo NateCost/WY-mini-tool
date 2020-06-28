@@ -38,4 +38,8 @@ struct ColoredSegmentFactory {
 struct ColoredSegmentModel: SegmentModel {
   let stateColor: UIColor
   let value: UIColor
+  
+  static func make(value: UIColor, stateColor: UIColor) -> ColoredSegmentModel {
+    ColoredSegmentModel(stateColor: stateColor, value: value)
+  }
 }

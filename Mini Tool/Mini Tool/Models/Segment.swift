@@ -3,8 +3,11 @@
 //  Copyright © 2020 Nirma. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import WY_Mini_Tool_Engine
 
-protocol SegmentProtocol: Hashable, Valuable, Statable {}
-protocol SegmentModel {}
+protocol SegmentProtocol: Hashable, Valuable, Statable, ColorHolder {}
+protocol SegmentModel {
+  associatedtype Value
+  static func make(value: Value, stateColor: UIColor) -> Self
+}
