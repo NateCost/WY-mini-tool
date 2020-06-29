@@ -6,10 +6,6 @@
 import UIKit
 
 extension BreachPresenter: BreachRouterOuput {
-  var collectionViewDataSource: UICollectionViewDataSource {
-    _collectionViewDataSource
-  }
-  
   func didUpdateSegment(_ segment: Segment) {
     
   }
@@ -28,6 +24,7 @@ final class BreachPresenter<
 > where Cell.Model == Model, Segment.Value == Model.Value {
   weak var view: BreachViewInput?
   var segmentsToBreach: [Segment]
+  var collectionViewDataSource: UICollectionViewDataSource { _collectionViewDataSource }
   var _collectionViewDataSource: DataSource<Model, Cell>
   
   init(segmentsToBreach: [Segment], collectionViewDataSource: DataSource<Model, Cell>) {

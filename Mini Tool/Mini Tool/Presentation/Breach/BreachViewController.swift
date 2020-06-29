@@ -126,5 +126,7 @@ extension BreachViewController: BreachViewInput {
 //    }
 //  }
   
-  func finishFlow() {}
+  func finishFlow() {
+    segmentsToChooseCollectionView.isHidden = true
+  }
 }

@@ -10,7 +10,9 @@ import WY_Mini_Tool_Engine
 
 class BreachRouterTests: XCTestCase {
   func test_finish_executesViewInputFinish() {
-    let routerOutput = BreachRouterOutputMock<ColoredSegment>(segmentsToBreach: [])
+    let routerOutput = BreachRouterOutputMock<
+      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
+    >(segmentsToBreach: [], dataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>())
     let sut = makeSUT(output: routerOutput)
     
     sut.finish()
@@ -30,7 +32,9 @@ class BreachRouterTests: XCTestCase {
   func test_updateSegment_viewInputUpdatesState() {
     let segment = ColoredSegment(.black, colorProvider: ClassicColorProvider())
     let segmentsToBreach = [segment]
-    let routerOutput = BreachRouterOutputMock<ColoredSegment>(segmentsToBreach: segmentsToBreach)
+    let routerOutput = BreachRouterOutputMock<
+      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
+    >(segmentsToBreach: segmentsToBreach, dataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>())
     let sut = makeSUT(output: routerOutput)
     
     segment.setState(.failed)
@@ -40,9 +44,19 @@ class BreachRouterTests: XCTestCase {
   }
   
   func makeSUT(
-    output: BreachRouterOutputMock<ColoredSegment> = BreachRouterOutputMock<ColoredSegment>(segmentsToBreach: [])
-  ) -> BreachRouter<ColoredSegment, BreachRouterOutputMock<ColoredSegment>> {
-    let router = BreachRouter<ColoredSegment, BreachRouterOutputMock<ColoredSegment>>()
+    output: BreachRouterOutputMock<
+      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
+    > = BreachRouterOutputMock<
+      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
+    >(segmentsToBreach: [], dataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>())
+  ) -> BreachRouter<
+    ColoredSegment,
+    BreachRouterOutputMock<ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell>
+  > {
+    let router = BreachRouter<
+      ColoredSegment,
+      BreachRouterOutputMock<ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell>
+    >()
     router.output = output
     return router
   }

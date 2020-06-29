@@ -89,47 +89,31 @@ class BreachViewControllerTest: XCTestCase {
     XCTAssertEqual(sut.segmentsToBreach[0].state, .selected)
   }
   
-  func test_hasSegmentsToBreach_setNewStateToOneSegment_changesBreachSegmentBackgroundColor() {
-    let segmentIndex = 0
-    let colorProvider = ClassicColorProvider()
-    let blackSegment = makeColoredSegment(color: .black, colorProvider: colorProvider)
-    let segmentsToBreach = [blackSegment]
-    let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: [], selection: { _ in })
-    
-    blackSegment.setState(.selected)
-    let blackSegmentModel = ColoredSegmentModel(stateColor: blackSegment.color, value: blackSegment.value)
-    sut.didUpdateBreachSegment(blackSegmentModel, at: segmentIndex)
-    
-    XCTAssertEqual(
-      (sut.segmentsToBreachStackView.subviews[segmentIndex] as! ColoredSegmentViewCell).backgroundColor,
-      colorProvider.color(for: .selected)
-    )
-  }
-  
   func test_hasSegmentsToChoose_updateSegmentState_changesSegmentBackgroundColor() {
-    let segmentIndex = 0
     let colorProvider = ClassicColorProvider()
     let redSegment = makeColoredSegment(color: .red, colorProvider: colorProvider)
     let sut = makeSUT(
       segmentsToChoose: [redSegment],
       selection: { _ in }
     )
-    let cell = sut.segmentsToChooseCollectionView.cell(at: segmentIndex) as! ColoredSegmentViewCell
     
-    redSegment.setState(.failed)
-    let segmentModel = ColoredSegmentModel(stateColor: redSegment.color, value: redSegment.value)
-    sut.didUpdateChooseSegment(segmentModel, at: segmentIndex)
-    #warning("add update")
-    XCTAssertEqual(cell.backgroundColor, colorProvider.color(for: .failed))
+    sut.finishFlow()
+    
+    XCTAssertTrue(sut.segmentsToChooseCollectionView.isHidden)
   }
   
-  //  MARK: - Helpers
+  // MARK: - Helpers
   func makeSUT(
     segmentsToBreach: [ColoredSegment] = [],
     segmentsToChoose: [ColoredSegment] = [],
     selection: @escaping (ColoredSegment) -> Void = { _ in }
   ) -> BreachViewController {
-    let presenter = BreachPresenter<ColoredSegment>(segmentsToBreach: segmentsToBreach)
+    let presenter = BreachPresenter<
+      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
+    >(
+      segmentsToBreach: segmentsToBreach,
+      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
+    )
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
