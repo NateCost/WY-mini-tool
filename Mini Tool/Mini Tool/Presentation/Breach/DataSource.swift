@@ -11,6 +11,11 @@ final class DataSource<
 >: NSObject, UICollectionViewDataSource where Cell.Model == Model {
   var items: [Model] = []
   
+  convenience init(items: [Model]) {
+    self.init()
+    self.items = items
+  }
+  
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int
@@ -20,8 +25,8 @@ final class DataSource<
     _ collectionView: UICollectionView,
     cellForItemAt indexPath: IndexPath
   ) -> UICollectionViewCell {
+    guard items.count > indexPath.row else { return UICollectionViewCell() }
     guard let cell: Cell = collectionView.dequeueCell(at: indexPath) else { return UICollectionViewCell() }
-    guard items.count > indexPath.row else { return cell }
     cell.configure(with: items[indexPath.row])
     return cell
   }

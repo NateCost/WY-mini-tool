@@ -23,6 +23,7 @@
 		F47CD0C3245F462B00280E3B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F47CD0C2245F462B00280E3B /* Assets.xcassets */; };
 		F47CD0C6245F462B00280E3B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F47CD0C4245F462B00280E3B /* LaunchScreen.storyboard */; };
 		F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */; };
+		F496071F24AB097E006A6278 /* SegmentsDataSourceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = F496071E24AB097E006A6278 /* SegmentsDataSourceTest.swift */; };
 		F4967843249E280700CA993D /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4967842249E280700CA993D /* UIColor+Extension.swift */; };
 		F4967845249E320000CA993D /* ColorProviders.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4967844249E320000CA993D /* ColorProviders.swift */; };
 		F4A06A5F246AB15500D37733 /* BreachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A06A5E246AB15500D37733 /* BreachViewController.swift */; };
@@ -73,6 +74,7 @@
 		F47CD0CC245F462B00280E3B /* Mini ToolTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Mini ToolTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewControllerTest.swift; sourceTree = "<group>"; };
 		F47CD0D2245F462B00280E3B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F496071E24AB097E006A6278 /* SegmentsDataSourceTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentsDataSourceTest.swift; sourceTree = "<group>"; };
 		F4967842249E280700CA993D /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
 		F4967844249E320000CA993D /* ColorProviders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorProviders.swift; sourceTree = "<group>"; };
 		F4A06A5E246AB15500D37733 /* BreachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreachViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +187,7 @@
 			children = (
 				F41B0CE124A36E5500503915 /* Mocks */,
 				F47CD0D0245F462B00280E3B /* BreachViewControllerTest.swift */,
+				F496071E24AB097E006A6278 /* SegmentsDataSourceTest.swift */,
 				F40C269124A24E8200243EAB /* BreachPresenterTest.swift */,
 				F42C316A2465ADB20017DFF0 /* SegmentViewTest.swift */,
 				F41327E2247FA5B400BC1228 /* BreachRouterTests.swift */,
@@ -407,6 +410,7 @@
 				F4D2B77724A49C3700B3EF8B /* BreachRouterOutputMock.swift in Sources */,
 				F42C316B2465ADB20017DFF0 /* SegmentViewTest.swift in Sources */,
 				F47CD0D1245F462B00280E3B /* BreachViewControllerTest.swift in Sources */,
+				F496071F24AB097E006A6278 /* SegmentsDataSourceTest.swift in Sources */,
 				F41B0CE024A36A4600503915 /* BreachViewInputMock.swift in Sources */,
 				F40C269224A24E8200243EAB /* BreachPresenterTest.swift in Sources */,
 			);
