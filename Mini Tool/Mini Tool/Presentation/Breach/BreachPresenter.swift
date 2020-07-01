@@ -11,7 +11,7 @@ extension BreachPresenter: BreachRouterOuput {
   }
   
   func finishFlow() {
-    
+    view?.finishFlow()
   }
 }
 
