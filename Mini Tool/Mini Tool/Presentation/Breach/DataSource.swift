@@ -16,6 +16,11 @@ final class DataSource<
     self.items = items
   }
   
+  func update(_ item: Model, at index: Int) {
+    guard items.count > index else { return }
+    items[index] = item
+  }
+  
   func collectionView(
     _ collectionView: UICollectionView,
     numberOfItemsInSection section: Int

@@ -9,10 +9,9 @@ import WY_Mini_Tool_Engine
 @testable import Mini_Tool
 
 class SegmentsDataSourceTest: XCTestCase {
-  let items = [
-    ColoredSegmentViewCellData(value: .magenta, stateColor: .green),
-    ColoredSegmentViewCellData(value: .brown, stateColor: .red)
-  ]
+  let item1 = ColoredSegmentViewCellData(value: .magenta, stateColor: .green)
+  let item2 = ColoredSegmentViewCellData(value: .brown, stateColor: .red)
+  lazy var items = [item1, item2]
   let layout = UICollectionViewFlowLayout()
   lazy var collectionView = {
     UICollectionView(
@@ -48,6 +47,17 @@ class SegmentsDataSourceTest: XCTestCase {
   }
   
   func test_cellForItemAt_tryingToConfigureOutOfIndex_returnsEmptyCell() {
+    let sut = makeSUT(items: items)
+    let testCollection = collectionView()
+    testCollection.register(ColoredSegmentViewCell.self)
+    testCollection.dataSource = sut
+    
+    let cell = testCollection.cell(at: 2) as? ColoredSegmentViewCell
+    
+    XCTAssertNil(cell)
+  }
+  
+  func test_updateSegmentAtIndex_updatesItem() {
     let sut = makeSUT(items: items)
     let testCollection = collectionView()
     testCollection.register(ColoredSegmentViewCell.self)

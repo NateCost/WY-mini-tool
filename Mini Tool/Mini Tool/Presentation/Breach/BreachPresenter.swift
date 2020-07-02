@@ -8,7 +8,7 @@ import UIKit
 extension BreachPresenter: BreachRouterOuput {
   func didUpdateSegment(_ segment: Segment) {
     if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
-      //segmentsToChooseCollectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
+      _collectionViewDataSource.update(Model.make(value: segment.value, stateColor: segment.color), at: row)
     } else if segmentsToBreach.contains(segment) {
       //updateSegmentToBreach(segmentsToBreach)
     }
