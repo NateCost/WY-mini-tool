@@ -113,10 +113,6 @@ extension BreachViewController: BreachViewInput {
 //  func didUpdateBreachSegment(_ segment: SegmentModel, at index: Int) {
 //    updateSegmentToBreach(segmentsToBreach)
 //  }
-//
-//  func didUpdateChooseSegment(_ segment: SegmentModel, at index: Int) {
-//    segmentsToChooseCollectionView.reloadItems(at: [IndexPath(row: index, section: 0)])
-//  }
   
 //  func didUpdateSegment(_ segment: Segment) {
 //    if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {

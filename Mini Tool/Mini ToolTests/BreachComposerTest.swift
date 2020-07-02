@@ -24,7 +24,11 @@ class BreachComposerTest: XCTestCase {
     let dataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
     let routerOutput = BreachPresenter<
       ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
-    >(segmentsToBreach: segmentsToBreach, collectionViewDataSource: dataSource)
+    >(
+      segmentsToBreach: segmentsToBreach,
+      segmentsToChoose: segmentsToChoose,
+      collectionViewDataSource: dataSource
+    )
     let router = BreachRouter<
       ColoredSegment,
       BreachPresenter<ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell>
