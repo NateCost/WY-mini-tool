@@ -55,15 +55,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       router.selectionCallback(segment, routedSegment)
     }
 
-    let breachController = BreachViewController(
-      output: presenter
+    let breachInput = BreachInput(
+      output: presenter,
+      selectionViewDataSource: ColoredDataSource(),
+      breachViewDataSource: ColoredDataSource(),
+      cellType: ColoredSegmentViewCell.self
     )
-    presenter.view = breachController
+    let breach = BreachComposer.compose(withInput: breachInput)
+
+    presenter.view = breach.viewController
     
-    miniToolController.addChild(breachController)
-    miniToolController.miniToolGameContainerView.addSubview(breachController.view)
-    breachController.view.frame = miniToolController.miniToolGameContainerView.bounds
-    miniToolController.didMove(toParent: breachController)
+    miniToolController.addChild(breach.viewController)
+    miniToolController.miniToolGameContainerView.addSubview(breach.viewController.view)
+    breach.viewController.view.frame = miniToolController.miniToolGameContainerView.bounds
+    miniToolController.didMove(toParent: breach.viewController)
     
     let flow = Flow<ColoredSegment, BreachRouter>(
       segments: segmentsToBreach,

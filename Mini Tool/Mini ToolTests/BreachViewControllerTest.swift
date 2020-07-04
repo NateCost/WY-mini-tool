@@ -47,15 +47,21 @@ class BreachViewControllerTest: XCTestCase {
     segmentsToBreach: [ColoredSegment] = [],
     segmentsToChoose: [ColoredSegment] = []
   ) -> BreachViewController {
+    let selectionViewDataSource = ColoredDataSource()
+    let breachViewDataSource = ColoredDataSource()
+    
     let presenter = ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      selectCollectionViewDataSource: ColoredDataSource(),
-      breachViewDataSource: ColoredDataSource(),
+      selectCollectionViewDataSource: selectionViewDataSource,
+      breachViewDataSource: breachViewDataSource,
       selectionCallback: { _ in }
     )
     let sut = BreachViewController(
-      output: presenter
+      output: presenter,
+      cellType: ColoredSegmentViewCell.self,
+      selectionDataSource: selectionViewDataSource,
+      breachDataSource: breachViewDataSource
     )
     _ = sut.view
     return sut

@@ -35,11 +35,12 @@ class BreachComposerTest: XCTestCase {
 
     let input = BreachInput(
       output: routerOutput,
-      segmentsToBreach: segmentsToBreach,
-      segmentsToChoose: segmentsToChoose
+      selectionViewDataSource: selectionDataSource,
+      breachViewDataSource: breachingDataSource,
+      cellType: ColoredSegmentViewCell.self
     )
     
-    let sut = ColoredBreachComposer.compose(withInput: input)
+    let sut = BreachComposer.compose(withInput: input)
     routerOutput.view = sut.viewController
     
     XCTAssertNotNil(sut.viewController.output)

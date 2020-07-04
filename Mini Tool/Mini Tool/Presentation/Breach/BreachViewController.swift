@@ -11,18 +11,31 @@ final class BreachViewController: UIViewController {
   @IBOutlet var breachCollectionView: UICollectionView!
   
   var output: BreachViewOutput?
+  var data: (
+    selectionDataSource: UICollectionViewDataSource,
+    breachDataSource: UICollectionViewDataSource,
+    cellType: UICollectionViewCell.Type
+  )?
   
   convenience init(
-    output: BreachViewOutput
+    output: BreachViewOutput,
+    cellType: UICollectionViewCell.Type,
+    selectionDataSource: UICollectionViewDataSource,
+    breachDataSource: UICollectionViewDataSource
   ) {
     self.init()
     self.output = output
+    data = (selectionDataSource, breachDataSource, cellType)
   }
   
   override func viewDidLoad() {
     super.viewDidLoad()
-    selectionCollectionView.register(ColoredSegmentViewCell.self)
-    breachCollectionView.register(ColoredSegmentViewCell.self)
+    guard let data = data else { return }
+    selectionCollectionView.register(data.cellType)
+    selectionCollectionView.delegate = self
+    selectionCollectionView.dataSource = data.selectionDataSource
+    breachCollectionView.register(data.cellType)
+    breachCollectionView.dataSource = data.breachDataSource
     
     selectionCollectionView.reloadData()
     breachCollectionView.reloadData()
