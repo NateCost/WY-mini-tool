@@ -40,4 +40,6 @@ protocol BreachRouterOuput: class {
 
 protocol BreachViewInput: class {
   func finishFlow()
+  func reloadSelectionSegment(at indexPath: IndexPath)
+  func reloadBreachSegment(at indexPath: IndexPath)
 }

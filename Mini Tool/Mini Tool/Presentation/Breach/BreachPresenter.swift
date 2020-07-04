@@ -8,12 +8,14 @@ import UIKit
 // MARK: - BreachRouterOuput
 extension BreachPresenter: BreachRouterOuput {
   func didUpdateSegment(_ segment: Segment) {
+    let model = Model.make(value: segment.value, stateColor: segment.color)
+    
     if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
-      selectCollectionViewDataSource.update(Model.make(value: segment.value, stateColor: segment.color), at: row)
-      #warning("reload collection view")
-    } else if segmentsToBreach.contains(segment), let row = segmentsToBreach.firstIndex(of: segment){
-      breachViewDataSource.update(Model.make(value: segment.value, stateColor: segment.color), at: row)
-      #warning("reload collection view")
+      selectCollectionViewDataSource.update(model, at: row)
+      view?.reloadSelectionSegment(at: IndexPath(row: row, section: 0))
+    } else if segmentsToBreach.contains(segment), let row = segmentsToBreach.firstIndex(of: segment) {
+      breachViewDataSource.update(model, at: row)
+      view?.reloadBreachSegment(at: IndexPath(row: row, section: 0))
     }
   }
   

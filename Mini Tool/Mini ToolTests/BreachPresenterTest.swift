@@ -40,7 +40,8 @@ class BreachPresenterTest: XCTestCase {
     let chooseSegmentsCellData = makeColoredCellsData(from: [choose1, choose2])
     let sut = makeSUT(
       segmentsToBreach: [segment1, segment2],
-      segmentsToChoose: [choose1, choose2]
+      segmentsToChoose: [choose1, choose2],
+      viewInput: viewInputMock
     )
     let dataSource = ColoredDataSource(items: chooseSegmentsCellData)
     sut.selectCollectionViewDataSource = dataSource
@@ -50,6 +51,7 @@ class BreachPresenterTest: XCTestCase {
 
     XCTAssertEqual(dataSource.items[1].stateColor, choose2.color)
     XCTAssertEqual(dataSource.items[0].stateColor, choose1.color)
+    XCTAssertEqual(viewInputMock.reloadedSelectionIndexPathes, [IndexPath(row: 1, section: 0)])
   }
   
   func test_didUpdateBreachSegment_sendsSegmentToViewDataSource() {
@@ -58,7 +60,8 @@ class BreachPresenterTest: XCTestCase {
     let chooseSegmentsCellData = makeColoredCellsData(from: [choose1, choose2])
     let sut = makeSUT(
       segmentsToBreach: [segment1, segment2],
-      segmentsToChoose: [choose1, choose2]
+      segmentsToChoose: [choose1, choose2],
+      viewInput: viewInputMock
     )
     let dataSource = ColoredDataSource(items: chooseSegmentsCellData)
     sut.breachViewDataSource = dataSource
@@ -69,7 +72,11 @@ class BreachPresenterTest: XCTestCase {
     sut.didUpdateSegment(segment2)
     
     XCTAssertEqual(dataSource.items[1].stateColor, segment2.color)
-    XCTAssertEqual(dataSource.items[0].stateColor, segment1.color)
+    XCTAssertEqual(dataSource.items[1].stateColor, segment2.color)
+    XCTAssertEqual(
+      viewInputMock.reloadedBreachIndexPathes,
+      [IndexPath(row: 0, section: 0), IndexPath(row: 1, section: 0)]
+    )
   }
   
   func test_didSelectSegment_atUnappropriateIndex_doesNotExecutesSelectionACallback() {
@@ -103,15 +110,18 @@ class BreachPresenterTest: XCTestCase {
   func makeSUT(
     segmentsToBreach: [ColoredSegment],
     segmentsToChoose: [ColoredSegment],
+    viewInput: BreachViewInput? = nil,
     selectionCallback: @escaping (ColoredSegment) -> Void = { _ in }
   ) -> ColoredPresenter {
-    ColoredPresenter(
+    let presenter = ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
       selectCollectionViewDataSource: ColoredDataSource(),
       breachViewDataSource: ColoredDataSource(),
       selectionCallback: selectionCallback
     )
+    presenter.view = viewInput
+    return presenter
   }
   
   func makeColoredCellsData(from segments: [ColoredSegment]) -> [ColoredSegmentViewCellData] {

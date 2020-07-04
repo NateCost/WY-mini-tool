@@ -62,6 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) { segment in
       router.selectionCallback(segment, router.routedSegment!)
     }
+    presenter.view = breachController
     
     miniToolController.addChild(breachController)
     miniToolController.miniToolGameContainerView.addSubview(breachController.view)

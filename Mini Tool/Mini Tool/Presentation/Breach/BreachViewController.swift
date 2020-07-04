@@ -9,6 +9,7 @@ import WY_Mini_Tool_Engine
 final class BreachViewController: UIViewController {
   @IBOutlet var segmentsToBreachStackView: UIStackView!
   @IBOutlet var segmentsToChooseCollectionView: UICollectionView!
+  @IBOutlet var breachCollectionView: UICollectionView!
   
   typealias Segment = ColoredSegment
   var segmentsToBreach: [Segment] = []
@@ -112,5 +113,13 @@ extension BreachViewController: UICollectionViewDelegate {
 extension BreachViewController: BreachViewInput {
   func finishFlow() {
     segmentsToChooseCollectionView.isHidden = true
+  }
+  
+  func reloadSelectionSegment(at indexPath: IndexPath) {
+    segmentsToChooseCollectionView.reloadItems(at: [indexPath])
+  }
+  
+  func reloadBreachSegment(at indexPath: IndexPath) {
+    breachCollectionView.reloadItems(at: [indexPath])
   }
 }
