@@ -7,13 +7,13 @@ import UIKit
 import WY_Mini_Tool_Engine
 
 struct ColoredSegmentViewCellData: SegmentModel {
-  static func make(value: UIColor, stateColor: UIColor) -> ColoredSegmentViewCellData {
-    ColoredSegmentViewCellData(value: value, stateColor: stateColor)
-  }
-  
   typealias Value = UIColor
   var value: Value
   var stateColor: UIColor
+  
+  static func make(value: Value, stateColor: UIColor) -> ColoredSegmentViewCellData {
+    ColoredSegmentViewCellData(value: value, stateColor: stateColor)
+  }
 }
 
 final class ColoredSegmentViewCell: UICollectionViewCell, SegmentConfigurableCell {

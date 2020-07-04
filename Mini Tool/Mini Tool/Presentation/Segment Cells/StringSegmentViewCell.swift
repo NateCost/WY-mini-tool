@@ -6,20 +6,20 @@
 import UIKit
 import WY_Mini_Tool_Engine
 
-protocol StringSegmentViewCellModel {
-  var value: String { get }
-  var stateColor: UIColor { get }
-}
-
-struct StringSegmentViewCellData: StringSegmentViewCellModel {
-  var value: String
+struct StringSegmentViewCellData: SegmentModel {
+  typealias Value = String
+  var value: Value
   var stateColor: UIColor
+  
+  static func make(value: Value, stateColor: UIColor) -> StringSegmentViewCellData {
+    StringSegmentViewCellData(value: value, stateColor: stateColor)
+  }
 }
 
 final class StringSegmentViewCell: UICollectionViewCell, SegmentConfigurableCell {
   @IBOutlet var valueLabel: UILabel!
   
-  func configure(with model: StringSegmentViewCellModel) {
+  func configure(with model: StringSegmentViewCellData) {
     valueLabel.text = model.value
     backgroundColor = model.stateColor
   }
