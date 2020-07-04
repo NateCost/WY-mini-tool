@@ -25,7 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let segmentFactory = ColoredSegmentFactory(colorProvider: colorProvider)
     
     let segmentsToBreach = [
-      segmentFactory.makeSegment(value: .green),
+      segmentFactory.makeSegment(value: .black),
       segmentFactory.makeSegment(value: .blue),
       segmentFactory.makeSegment(value: .red)
     ]

@@ -39,8 +39,20 @@ final class BreachViewController: UIViewController {
     
     selectionCollectionView.reloadData()
     breachCollectionView.reloadData()
-    setupCollectionFlowLayout(collectionView: selectionCollectionView, cellsPerRow: 4)
-    setupCollectionFlowLayout(collectionView: breachCollectionView, cellsPerRow: 3)
+    let selectionItemsCount = selectionCollectionView.dataSource?.collectionView(
+      selectionCollectionView, numberOfItemsInSection: 0
+    ) ?? 0
+    let breachItemsCount = breachCollectionView.dataSource?.collectionView(
+      breachCollectionView, numberOfItemsInSection: 0
+    ) ?? 0
+    setupCollectionFlowLayout(
+      collectionView: selectionCollectionView,
+      cellsPerRow: min(selectionItemsCount, 4)
+    )
+    setupCollectionFlowLayout(
+      collectionView: breachCollectionView,
+      cellsPerRow: breachItemsCount
+    )
   }
   
   private func setupCollectionFlowLayout(
