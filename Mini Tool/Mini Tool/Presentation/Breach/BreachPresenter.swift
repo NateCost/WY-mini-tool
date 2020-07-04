@@ -9,12 +9,11 @@ import UIKit
 extension BreachPresenter: BreachRouterOuput {
   func didUpdateSegment(_ segment: Segment) {
     if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
-      _collectionViewDataSource.update(Model.make(value: segment.value, stateColor: segment.color), at: row)
+      selectCollectionViewDataSource.update(Model.make(value: segment.value, stateColor: segment.color), at: row)
       #warning("reload collection view")
-    } else if segmentsToBreach.contains(segment) {
-      //updateSegmentToBreach(segmentsToBreach)
-      #warning("reload stack view dataSource")
-      #warning("reload stack view")
+    } else if segmentsToBreach.contains(segment), let row = segmentsToBreach.firstIndex(of: segment){
+      breachViewDataSource.update(Model.make(value: segment.value, stateColor: segment.color), at: row)
+      #warning("reload collection view")
     }
   }
   
@@ -37,8 +36,7 @@ final class BreachPresenter<
   weak var view: BreachViewInput?
   var segmentsToBreach: [Segment]
   var segmentsToChoose: [Segment]
-  //var collectionViewDataSource: UICollectionViewDataSource { _collectionViewDataSource }
-  var _collectionViewDataSource: DataSource<Model, Cell>
+  var selectCollectionViewDataSource: DataSource<Model, Cell>
   var breachViewDataSource: DataSource<Model, Cell>
   
   init(
@@ -49,8 +47,8 @@ final class BreachPresenter<
   ) {
     self.segmentsToBreach = segmentsToBreach
     self.segmentsToChoose = segmentsToChoose
-    _collectionViewDataSource = collectionViewDataSource
-    _collectionViewDataSource.items = segmentsToChoose.map { Model.make(value: $0.value, stateColor: $0.color) }
+    self.selectCollectionViewDataSource = collectionViewDataSource
+    collectionViewDataSource.items = segmentsToChoose.map { Model.make(value: $0.value, stateColor: $0.color) }
     self.breachViewDataSource = breachViewDataSource
     breachViewDataSource.items = segmentsToBreach.map { Model.make(value: $0.value, stateColor: $0.color) }
   }

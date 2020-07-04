@@ -36,13 +36,33 @@ class BreachPresenterTest: XCTestCase {
       segmentsToChoose: [choose1, choose2]
     )
     let dataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(items: chooseSegmentsCellData)
-    sut._collectionViewDataSource = dataSource
+    sut.selectCollectionViewDataSource = dataSource
     choose2.setState(.failed)
 
     sut.didUpdateSegment(choose2)
 
     XCTAssertEqual(dataSource.items[1].stateColor, choose2.color)
     XCTAssertEqual(dataSource.items[0].stateColor, choose1.color)
+  }
+  
+  func test_didUpdateBreachSegment_sendsSegmentToViewDataSource() {
+    let choose1 = ColoredSegment(.black, colorProvider: ClassicColorProvider())
+    let choose2 = ColoredSegment(.green, colorProvider: ClassicColorProvider())
+    let chooseSegmentsCellData = makeColoredCellsData(from: [choose1, choose2])
+    let sut = makeSUT(
+      segmentsToBreach: [segment1, segment2],
+      segmentsToChoose: [choose1, choose2]
+    )
+    let dataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(items: chooseSegmentsCellData)
+    sut.breachViewDataSource = dataSource
+    segment1.setState(.passed)
+    segment2.setState(.selected)
+    
+    sut.didUpdateSegment(segment1)
+    sut.didUpdateSegment(segment2)
+    
+    XCTAssertEqual(dataSource.items[1].stateColor, segment2.color)
+    XCTAssertEqual(dataSource.items[0].stateColor, segment1.color)
   }
   
   func makeSUT(

@@ -33,35 +33,35 @@ class BreachViewControllerTest: XCTestCase {
     XCTAssertEqual(getBreachSegment(sut: sut, at: 1)!.coloredPanelView!.backgroundColor, .brown)
   }
   
-  func test_viewDidLoad_collectionViewLoadsSegments() {
-    let sut = makeSUT(
-      segmentsToBreach: [],
-      segmentsToChoose: [
-        makeColoredSegment(color: .black),
-        makeColoredSegment(color: .brown)
-      ]
-    )
-    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as! ColoredSegmentViewCell
-    XCTAssertEqual(cell1.coloredPanelView!.backgroundColor, .black)
-    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as! ColoredSegmentViewCell
-    XCTAssertEqual(cell2.coloredPanelView!.backgroundColor, .brown)
-  }
-  
-  func test_optionSelection_invokesSelectionClosure() {
-    var selectedSegments: [ColoredSegment] = []
-    
-    let sut = makeSUT(
-      segmentsToBreach: [makeColoredSegment(color: .black)],
-      segmentsToChoose: [
-        makeColoredSegment(color: .black),
-        makeColoredSegment(color: .brown)
-      ]
-    ) { selectedSegments.append($0) }
-    
-    sut.segmentsToChooseCollectionView.select(row: 0)
-    
-    XCTAssertEqual(selectedSegments.count, 1)
-  }
+//  func test_viewDidLoad_collectionViewLoadsSegments() {
+//    let sut = makeSUT(
+//      segmentsToBreach: [],
+//      segmentsToChoose: [
+//        makeColoredSegment(color: .black),
+//        makeColoredSegment(color: .brown)
+//      ]
+//    )
+//    let cell1 = sut.segmentsToChooseCollectionView.cell(at: 0) as! ColoredSegmentViewCell
+//    XCTAssertEqual(cell1.coloredPanelView!.backgroundColor, .black)
+//    let cell2 = sut.segmentsToChooseCollectionView.cell(at: 1) as! ColoredSegmentViewCell
+//    XCTAssertEqual(cell2.coloredPanelView!.backgroundColor, .brown)
+//  }
+//
+//  func test_optionSelection_invokesSelectionClosure() {
+//    var selectedSegments: [ColoredSegment] = []
+//
+//    let sut = makeSUT(
+//      segmentsToBreach: [makeColoredSegment(color: .black)],
+//      segmentsToChoose: [
+//        makeColoredSegment(color: .black),
+//        makeColoredSegment(color: .brown)
+//      ]
+//    ) { selectedSegments.append($0) }
+//
+//    sut.segmentsToChooseCollectionView.select(row: 0)
+//
+//    XCTAssertEqual(selectedSegments.count, 1)
+//  }
   
   func test_hasSegmentsToChoose_persistSameStates() {
     let blackSegment = makeColoredSegment(color: .black)
