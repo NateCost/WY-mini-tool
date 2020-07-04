@@ -39,18 +39,22 @@ final class BreachViewController: UIViewController {
     
     selectionCollectionView.reloadData()
     breachCollectionView.reloadData()
-    setupSelectionCollectionFlowLayout(cellsPerRow: 4)
+    setupCollectionFlowLayout(collectionView: selectionCollectionView, cellsPerRow: 4)
+    setupCollectionFlowLayout(collectionView: breachCollectionView, cellsPerRow: 3)
   }
   
-  private func setupSelectionCollectionFlowLayout(cellsPerRow: Int) {
-    if let flowLayout = selectionCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-      let horizontalSpacing = flowLayout.minimumInteritemSpacing
-      let cellsAmountPerRow = max(0, cellsPerRow)
-      let collectionWidth = selectionCollectionView.frame.width
-      let intercellsTotalWidth = CGFloat(cellsAmountPerRow) * horizontalSpacing
-      let cellWidth = (collectionWidth - intercellsTotalWidth) / CGFloat(cellsPerRow + 1)
-      flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
-    }
+  private func setupCollectionFlowLayout(
+    collectionView: UICollectionView,
+    cellsPerRow: Int
+  ) {
+    guard let flowLayout = collectionView.collectionViewLayout
+      as? UICollectionViewFlowLayout else { return }
+    let horizontalSpacing = flowLayout.minimumInteritemSpacing
+    let cellsAmountPerRow = max(0, cellsPerRow)
+    let collectionWidth = collectionView.frame.width
+    let intercellsTotalWidth = CGFloat(cellsAmountPerRow) * horizontalSpacing
+    let cellWidth = (collectionWidth - intercellsTotalWidth) / CGFloat(cellsPerRow + 1)
+    flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
   }
 }
 // MARK: - UICollectionViewDelegate

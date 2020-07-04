@@ -44,21 +44,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
     window.makeKeyAndVisible()
     
+    let selectCollectionViewDataSource = ColoredDataSource()
+    let breachViewDataSource = ColoredDataSource()
     let router = BreachRouter<ColoredSegment, ColoredPresenter>()
     let presenter = ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      selectCollectionViewDataSource: ColoredDataSource(),
-      breachViewDataSource: ColoredDataSource()
+      selectCollectionViewDataSource: selectCollectionViewDataSource,
+      breachViewDataSource: breachViewDataSource
     ) { [weak router] segment in
       guard let router = router, let routedSegment = router.routedSegment else { return }
       router.selectionCallback(segment, routedSegment)
     }
+    router.output = presenter
 
     let breachInput = BreachInput(
       output: presenter,
-      selectionViewDataSource: ColoredDataSource(),
-      breachViewDataSource: ColoredDataSource(),
+      selectionViewDataSource: selectCollectionViewDataSource,
+      breachViewDataSource: breachViewDataSource,
       cellType: ColoredSegmentViewCell.self
     )
     let breach = BreachComposer.compose(withInput: breachInput)
