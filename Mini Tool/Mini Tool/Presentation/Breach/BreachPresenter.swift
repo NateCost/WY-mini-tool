@@ -24,7 +24,8 @@ extension BreachPresenter: BreachRouterOuput {
 // MARK: - BreachViewOutput
 extension BreachPresenter: BreachViewOutput {
   func didSelectSegment(at index: Int) {
-    #warning("add selection of segment")
+    guard segmentsToChoose.count > index else { return }
+    selectionCallback?(segmentsToChoose[index])
   }
 }
 
@@ -38,18 +39,21 @@ final class BreachPresenter<
   var segmentsToChoose: [Segment]
   var selectCollectionViewDataSource: DataSource<Model, Cell>
   var breachViewDataSource: DataSource<Model, Cell>
+  var selectionCallback: ((Segment) -> Void)?
   
   init(
     segmentsToBreach: [Segment],
     segmentsToChoose: [Segment],
-    collectionViewDataSource: DataSource<Model, Cell>,
-    breachViewDataSource: DataSource<Model, Cell>
+    selectCollectionViewDataSource: DataSource<Model, Cell>,
+    breachViewDataSource: DataSource<Model, Cell>,
+    selectionCallback: @escaping (Segment) -> Void
   ) {
     self.segmentsToBreach = segmentsToBreach
     self.segmentsToChoose = segmentsToChoose
-    self.selectCollectionViewDataSource = collectionViewDataSource
-    collectionViewDataSource.items = segmentsToChoose.map { Model.make(value: $0.value, stateColor: $0.color) }
+    self.selectCollectionViewDataSource = selectCollectionViewDataSource
+    selectCollectionViewDataSource.items = segmentsToChoose.map { Model.make(value: $0.value, stateColor: $0.color) }
     self.breachViewDataSource = breachViewDataSource
     breachViewDataSource.items = segmentsToBreach.map { Model.make(value: $0.value, stateColor: $0.color) }
+    self.selectionCallback = selectionCallback
   }
 }

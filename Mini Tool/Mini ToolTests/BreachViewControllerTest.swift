@@ -108,13 +108,12 @@ class BreachViewControllerTest: XCTestCase {
     segmentsToChoose: [ColoredSegment] = [],
     selection: @escaping (ColoredSegment) -> Void = { _ in }
   ) -> BreachViewController {
-    let presenter = BreachPresenter<
-      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
-    >(
+    let presenter = ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(),
-      breachViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
+      selectCollectionViewDataSource: ColoredDataSource(),
+      breachViewDataSource: ColoredDataSource(),
+      selectionCallback: { _ in }
     )
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,

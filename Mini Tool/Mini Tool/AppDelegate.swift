@@ -9,6 +9,12 @@ import WY_Mini_Tool_Engine
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
+  typealias ColoredPresenter = BreachPresenter<
+    ColoredSegment,
+    ColoredSegmentViewCellData,
+    ColoredSegmentViewCell
+  >
+  typealias ColoredDataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>
   
   func application(
     _ application: UIApplication,
@@ -38,21 +44,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window = window
     window.makeKeyAndVisible()
     
-    let selectionDataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
-    let breachingDataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
-    let presenter = BreachPresenter<
-      ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
-    >(
+    let router = BreachRouter<ColoredSegment, ColoredPresenter>()
+    let presenter = ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      collectionViewDataSource: selectionDataSource,
-      breachViewDataSource: breachingDataSource
-    )
-    let router = BreachRouter<
-      ColoredSegment,
-      BreachPresenter<ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell>
-    >()
-    
+      selectCollectionViewDataSource: ColoredDataSource(),
+      breachViewDataSource: ColoredDataSource()
+    ) { [weak router] segment in
+      guard let router = router, let routedSegment = router.routedSegment else { return }
+      router.selectionCallback(segment, routedSegment)
+    }
+
     let breachController = BreachViewController(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,

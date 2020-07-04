@@ -8,6 +8,13 @@ import XCTest
 import WY_Mini_Tool_Engine
 @testable import Mini_Tool
 
+typealias ColoredPresenter = BreachPresenter<
+  ColoredSegment,
+  ColoredSegmentViewCellData,
+  ColoredSegmentViewCell
+>
+typealias ColoredDataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>
+
 class BreachPresenterTest: XCTestCase {
   let segment1 = ColoredSegment(.black, colorProvider: TransluentColorProvider())
   let segment2 = ColoredSegment(.red, colorProvider: TransluentColorProvider())
@@ -35,7 +42,7 @@ class BreachPresenterTest: XCTestCase {
       segmentsToBreach: [segment1, segment2],
       segmentsToChoose: [choose1, choose2]
     )
-    let dataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(items: chooseSegmentsCellData)
+    let dataSource = ColoredDataSource(items: chooseSegmentsCellData)
     sut.selectCollectionViewDataSource = dataSource
     choose2.setState(.failed)
 
@@ -53,7 +60,7 @@ class BreachPresenterTest: XCTestCase {
       segmentsToBreach: [segment1, segment2],
       segmentsToChoose: [choose1, choose2]
     )
-    let dataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(items: chooseSegmentsCellData)
+    let dataSource = ColoredDataSource(items: chooseSegmentsCellData)
     sut.breachViewDataSource = dataSource
     segment1.setState(.passed)
     segment2.setState(.selected)
@@ -65,18 +72,45 @@ class BreachPresenterTest: XCTestCase {
     XCTAssertEqual(dataSource.items[0].stateColor, segment1.color)
   }
   
+  func test_didSelectSegment_atUnappropriateIndex_doesNotExecutesSelectionACallback() {
+    let choose1 = ColoredSegment(.black, colorProvider: ClassicColorProvider())
+    let choose2 = ColoredSegment(.green, colorProvider: ClassicColorProvider())
+    var segment: ColoredSegment?
+    let sut = makeSUT(
+      segmentsToBreach: [segment1, segment2],
+      segmentsToChoose: [choose1, choose2]
+    ) { segment = $0 }
+    
+    sut.didSelectSegment(at: 2)
+
+    XCTAssertNil(segment)
+  }
+  
+  func test_didSelectSegment_atAppropriateIndex_executesSelectionCallbackWithRightSegment() {
+    let choose1 = ColoredSegment(.black, colorProvider: ClassicColorProvider())
+    let choose2 = ColoredSegment(.green, colorProvider: ClassicColorProvider())
+    var segment: ColoredSegment?
+    let sut = makeSUT(
+      segmentsToBreach: [segment1, segment2],
+      segmentsToChoose: [choose1, choose2]
+    ) { segment = $0 }
+    
+    sut.didSelectSegment(at: 1)
+    
+    XCTAssertEqual(segment, choose2)
+  }
+  
   func makeSUT(
     segmentsToBreach: [ColoredSegment],
-    segmentsToChoose: [ColoredSegment]
-  ) -> BreachPresenter<ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell> {
-    BreachPresenter<
-      ColoredSegment,
-      ColoredSegmentViewCellData, ColoredSegmentViewCell
-    >(
+    segmentsToChoose: [ColoredSegment],
+    selectionCallback: @escaping (ColoredSegment) -> Void = { _ in }
+  ) -> ColoredPresenter {
+    ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(),
-      breachViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
+      selectCollectionViewDataSource: ColoredDataSource(),
+      breachViewDataSource: ColoredDataSource(),
+      selectionCallback: selectionCallback
     )
   }
   
