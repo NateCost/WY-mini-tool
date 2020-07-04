@@ -56,12 +56,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     let breachController = BreachViewController(
-      segmentsToBreach: segmentsToBreach,
-      segmentsToChoose: segmentsToChoose,
       output: presenter
-    ) { segment in
-      router.selectionCallback(segment, router.routedSegment!)
-    }
+    )
     presenter.view = breachController
     
     miniToolController.addChild(breachController)

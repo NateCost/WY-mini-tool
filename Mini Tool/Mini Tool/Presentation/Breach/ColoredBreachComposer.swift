@@ -11,10 +11,7 @@ final class ColoredBreachComposer {
   
   class func compose(withInput input: BreachInput) -> ColoredBreachComposer {
     let viewController = BreachViewController(
-      segmentsToBreach: input.segmentsToBreach,
-      segmentsToChoose: input.segmentsToChoose,
-      output: input.output,
-      selection: { _ in }
+      output: input.output
     )
     
     return ColoredBreachComposer(viewController: viewController)
