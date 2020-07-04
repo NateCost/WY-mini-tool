@@ -35,16 +35,16 @@ final class BreachViewController: UIViewController {
     
     setSegmentsToBreach(segmentsToBreach)
     segmentsToChooseCollectionView.reloadData()
-    setupFlowLayout(cellsPerRow: 5)
+    setupFlowLayout(cellsPerRow: 4)
   }
   
   private func setupFlowLayout(cellsPerRow: Int) {
     if let flowLayout = segmentsToChooseCollectionView.collectionViewLayout as? UICollectionViewFlowLayout {
       let horizontalSpacing = flowLayout.minimumInteritemSpacing
-      let cellsAmountPerRow = max(0, cellsPerRow - 1)
+      let cellsAmountPerRow = max(0, cellsPerRow)
       let collectionWidth = segmentsToChooseCollectionView.frame.width
       let intercellsTotalWidth = CGFloat(cellsAmountPerRow) * horizontalSpacing
-      let cellWidth = (collectionWidth - intercellsTotalWidth) / CGFloat(cellsPerRow)
+      let cellWidth = (collectionWidth - intercellsTotalWidth) / CGFloat(cellsPerRow + 1)
       flowLayout.itemSize = CGSize(width: cellWidth, height: cellWidth)
     }
   }
@@ -95,7 +95,7 @@ extension BreachViewController: UICollectionViewDataSource {
     
     let segment = segmentsToChoose[indexPath.row]
     let model = ColoredSegmentViewCellData(value: segment.value, stateColor: segment.color)
-    cell.configure(with: model)
+    //cell.configure(with: model)
     return cell
   }
 }
@@ -105,23 +105,11 @@ extension BreachViewController: UICollectionViewDelegate {
     _ collectionView: UICollectionView,
     didSelectItemAt indexPath: IndexPath
   ) {
-    selection?(segmentsToChoose[indexPath.row])
+    output?.didSelectSegment(at: indexPath.row)
   }
 }
 // MARK: - BreachViewInput
 extension BreachViewController: BreachViewInput {
-//  func didUpdateBreachSegment(_ segment: SegmentModel, at index: Int) {
-//    updateSegmentToBreach(segmentsToBreach)
-//  }
-  
-//  func didUpdateSegment(_ segment: Segment) {
-//    if segmentsToChoose.contains(segment), let row = segmentsToChoose.firstIndex(of: segment) {
-//      segmentsToChooseCollectionView.reloadItems(at: [IndexPath(row: row, section: 0)])
-//    } else if segmentsToBreach.contains(segment) {
-//      updateSegmentToBreach(segmentsToBreach)
-//    }
-//  }
-  
   func finishFlow() {
     segmentsToChooseCollectionView.isHidden = true
   }

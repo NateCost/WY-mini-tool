@@ -113,7 +113,8 @@ class BreachViewControllerTest: XCTestCase {
     >(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
+      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(),
+      breachViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
     )
     let sut = BreachViewController(
       segmentsToBreach: segmentsToBreach,

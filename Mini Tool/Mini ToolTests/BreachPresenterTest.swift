@@ -55,7 +55,8 @@ class BreachPresenterTest: XCTestCase {
     >(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
-      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
+      collectionViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>(),
+      breachViewDataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
     )
   }
   

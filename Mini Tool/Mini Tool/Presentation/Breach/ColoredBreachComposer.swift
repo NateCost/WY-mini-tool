@@ -31,4 +31,6 @@ struct BreachInput {
   let segmentsToChoose: [ColoredSegment]
 }
 
-protocol BreachViewOutput: class {}
+protocol BreachViewOutput: class {
+  func didSelectSegment(at index: Int)
+}
