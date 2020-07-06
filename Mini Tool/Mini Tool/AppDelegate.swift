@@ -29,89 +29,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let window = UIWindow(frame: UIScreen.main.bounds)
     let colorProvider = TransluentColorProvider()
     
-    let segmentFactory = StringSegmentFactory(colorProvider: colorProvider)
-    let segmentsToBreach = [
-      segmentFactory.makeSegment(value: "12"),
-      segmentFactory.makeSegment(value: "14"),
-      segmentFactory.makeSegment(value: "02"),
-    ]
-    let segmentsToChoose = [
-      segmentFactory.makeSegment(value: "22"),
-      segmentFactory.makeSegment(value: "55"),
-      segmentFactory.makeSegment(value: "f1"),
-      segmentFactory.makeSegment(value: "zz"),
-      segmentFactory.makeSegment(value: "14"),
-      segmentFactory.makeSegment(value: "a3"),
-      segmentFactory.makeSegment(value: "12"),
-      segmentFactory.makeSegment(value: "02"),
-    ]
-//    let segmentFactory = ColoredSegmentFactory(colorProvider: colorProvider)
-//
-//    let segmentsToBreach = [
-//      segmentFactory.makeSegment(value: .black),
-//      segmentFactory.makeSegment(value: .blue),
-//      segmentFactory.makeSegment(value: .red)
-//    ]
-//    let segmentsToChoose = [
-//      segmentFactory.makeSegment(value: .red),
-//      segmentFactory.makeSegment(value: .black),
-//      segmentFactory.makeSegment(value: .green),
-//      segmentFactory.makeSegment(value: .yellow),
-//      segmentFactory.makeSegment(value: .gray),
-//      segmentFactory.makeSegment(value: .blue),
-//      segmentFactory.makeSegment(value: .magenta)
-//    ]
-//
+    let (segmentsToBreach, segmentsToChoose) = getStringTestSegments(
+      colorProvider: colorProvider
+    )
+//    let (segmentsToBreach, segmentsToChoose) = getColoredTestSegments(
+//      colorProvider: colorProvider
+//    )
+
     let miniToolController = MiniToolController()
     window.rootViewController = miniToolController
     self.window = window
     window.makeKeyAndVisible()
     
-    let selectCollectionViewDataSource = StringDataSource()
-    let breachViewDataSource = StringDataSource()
-    
     let router = BreachRouter<StringSegment, StringPresenter>()
-    let presenter = StringPresenter(
+    let breach = getStringSegmentBreachComposer(
+      router: router,
       segmentsToBreach: segmentsToBreach,
-      segmentsToChoose: segmentsToChoose,
-      selectCollectionViewDataSource: selectCollectionViewDataSource,
-      breachViewDataSource: breachViewDataSource
-    ) { [weak router] segment in
-      guard let router = router, let routedSegment = router.routedSegment else { return }
-      router.selectionCallback(segment, routedSegment)
-    }
-    router.output = presenter
-    
-    let breachInput = BreachInput(
-      output: presenter,
-      selectionViewDataSource: selectCollectionViewDataSource,
-      breachViewDataSource: breachViewDataSource,
-      cellType: StringSegmentViewCell.self
+      segmentsToChoose: segmentsToChoose
     )
     
-//    let selectCollectionViewDataSource = ColoredDataSource()
-//    let breachViewDataSource = ColoredDataSource()
 //    let router = BreachRouter<ColoredSegment, ColoredPresenter>()
-//    let presenter = ColoredPresenter(
+//    let breach = getColoredSegmentBreachComposer(
+//      router: router,
 //      segmentsToBreach: segmentsToBreach,
-//      segmentsToChoose: segmentsToChoose,
-//      selectCollectionViewDataSource: selectCollectionViewDataSource,
-//      breachViewDataSource: breachViewDataSource
-//    ) { [weak router] segment in
-//      guard let router = router, let routedSegment = router.routedSegment else { return }
-//      router.selectionCallback(segment, routedSegment)
-//    }
-//    router.output = presenter
-//
-//    let breachInput = BreachInput(
-//      output: presenter,
-//      selectionViewDataSource: selectCollectionViewDataSource,
-//      breachViewDataSource: breachViewDataSource,
-//      cellType: ColoredSegmentViewCell.self
+//      segmentsToChoose: segmentsToChoose
 //    )
-    let breach = BreachComposer.compose(withInput: breachInput)
-
-    presenter.view = breach.viewController
     
     miniToolController.addChild(breach.viewController)
     miniToolController.miniToolGameContainerView.addSubview(breach.viewController.view)
@@ -132,5 +74,109 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     flow.start()
     
     return true
+  }
+  
+  func getStringTestSegments(
+    colorProvider: ColorProvider
+  ) -> ([StringSegment], [StringSegment]) {
+    let segmentFactory = StringSegmentFactory(colorProvider: colorProvider)
+    let segmentsToBreach = [
+      segmentFactory.makeSegment(value: "12"),
+      segmentFactory.makeSegment(value: "14"),
+      segmentFactory.makeSegment(value: "02"),
+    ]
+    let segmentsToChoose = [
+      segmentFactory.makeSegment(value: "22"),
+      segmentFactory.makeSegment(value: "55"),
+      segmentFactory.makeSegment(value: "f1"),
+      segmentFactory.makeSegment(value: "zz"),
+      segmentFactory.makeSegment(value: "14"),
+      segmentFactory.makeSegment(value: "a3"),
+      segmentFactory.makeSegment(value: "12"),
+      segmentFactory.makeSegment(value: "02"),
+    ]
+    return (segmentsToBreach, segmentsToChoose)
+  }
+  
+  func getStringSegmentBreachComposer(
+    router: BreachRouter<StringSegment, StringPresenter>,
+    segmentsToBreach: [StringSegment],
+    segmentsToChoose: [StringSegment]
+  ) -> BreachComposer {
+    let selectCollectionViewDataSource = StringDataSource()
+    let breachViewDataSource = StringDataSource()
+    let presenter = StringPresenter(
+      segmentsToBreach: segmentsToBreach,
+      segmentsToChoose: segmentsToChoose,
+      selectCollectionViewDataSource: selectCollectionViewDataSource,
+      breachViewDataSource: breachViewDataSource
+    ) { [weak router] segment in
+      guard let router = router, let routedSegment = router.routedSegment else { return }
+      router.selectionCallback(segment, routedSegment)
+    }
+    router.output = presenter
+    
+    let breachInput = BreachInput(
+      output: presenter,
+      selectionViewDataSource: selectCollectionViewDataSource,
+      breachViewDataSource: breachViewDataSource,
+      cellType: StringSegmentViewCell.self
+    )
+    let breach = BreachComposer.compose(withInput: breachInput)
+    presenter.view = breach.viewController
+    
+    return breach
+  }
+  
+  func getColoredSegmentBreachComposer(
+    router: BreachRouter<ColoredSegment, ColoredPresenter>,
+    segmentsToBreach: [ColoredSegment],
+    segmentsToChoose: [ColoredSegment]
+  ) -> BreachComposer {
+    let selectCollectionViewDataSource = ColoredDataSource()
+    let breachViewDataSource = ColoredDataSource()
+    let presenter = ColoredPresenter(
+      segmentsToBreach: segmentsToBreach,
+      segmentsToChoose: segmentsToChoose,
+      selectCollectionViewDataSource: selectCollectionViewDataSource,
+      breachViewDataSource: breachViewDataSource
+    ) { [weak router] segment in
+      guard let router = router, let routedSegment = router.routedSegment else { return }
+      router.selectionCallback(segment, routedSegment)
+    }
+    router.output = presenter
+    
+    let breachInput = BreachInput(
+      output: presenter,
+      selectionViewDataSource: selectCollectionViewDataSource,
+      breachViewDataSource: breachViewDataSource,
+      cellType: ColoredSegmentViewCell.self
+    )
+    let breach = BreachComposer.compose(withInput: breachInput)
+    
+    presenter.view = breach.viewController
+    
+    return breach
+  }
+  
+  func getColoredTestSegments(
+    colorProvider: ColorProvider
+  ) -> ([ColoredSegment], [ColoredSegment]) {
+    let segmentFactory = ColoredSegmentFactory(colorProvider: colorProvider)
+    let segmentsToBreach = [
+      segmentFactory.makeSegment(value: .black),
+      segmentFactory.makeSegment(value: .blue),
+      segmentFactory.makeSegment(value: .red)
+    ]
+    let segmentsToChoose = [
+      segmentFactory.makeSegment(value: .red),
+      segmentFactory.makeSegment(value: .black),
+      segmentFactory.makeSegment(value: .green),
+      segmentFactory.makeSegment(value: .yellow),
+      segmentFactory.makeSegment(value: .gray),
+      segmentFactory.makeSegment(value: .blue),
+      segmentFactory.makeSegment(value: .magenta)
+    ]
+    return (segmentsToBreach, segmentsToChoose)
   }
 }

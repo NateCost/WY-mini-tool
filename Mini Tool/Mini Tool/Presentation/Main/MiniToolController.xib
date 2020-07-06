@@ -19,20 +19,20 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mini Tool Breach Segments Game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9V-G0-bvM">
-                    <rect key="frame" x="99" y="144" width="216" height="48"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mini Tool Select Segments Game" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G9V-G0-bvM">
+                    <rect key="frame" x="102.5" y="144" width="209.5" height="48"/>
                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="P84-k2-m2i">
-                    <rect key="frame" x="0.0" y="582.5" width="414" height="313.5"/>
+                    <rect key="frame" x="0.0" y="537.5" width="414" height="358.5"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="P84-k2-m2i" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.35" id="GdU-4s-CPj"/>
+                <constraint firstItem="P84-k2-m2i" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.4" id="GdU-4s-CPj"/>
                 <constraint firstItem="G9V-G0-bvM" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="100" id="MbG-2L-aHQ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="P84-k2-m2i" secondAttribute="trailing" id="ctb-RK-xTU"/>
                 <constraint firstItem="P84-k2-m2i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="gGq-ia-BzT"/>
