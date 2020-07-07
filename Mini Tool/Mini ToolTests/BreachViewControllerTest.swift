@@ -9,30 +9,30 @@ import WY_Mini_Tool_Engine
 @testable import Mini_Tool
 
 class BreachViewControllerTest: XCTestCase {
-//  func test_viewDidLoad_with2SegmentsToBreach_segmentsToBreachStackHasProperColors() {
-//    let sut = makeSUT(
-//      segmentsToBreach: [
-//        makeColoredSegment(color: .black),
-//        makeColoredSegment(color: .brown)
-//      ]
-//    )
-//    XCTAssertEqual(getBreachSegment(sut: sut, at: 0)!.coloredPanelView!.backgroundColor, .black)
-//    XCTAssertEqual(getBreachSegment(sut: sut, at: 1)!.coloredPanelView!.backgroundColor, .brown)
-//  }
+  func test_reloadSelectSegment_changesRightCellUI() {
+    let colorProvider = ClassicColorProvider()
+    let segment1 = makeColoredSegment(color: .red, colorProvider: colorProvider)
+    let model1 = ColoredSegmentViewCellData.make(
+      value: segment1.value, stateColor: segment1.color
+    )
+    let selectionViewDataSource = ColoredDataSource(items: [model1])
+    let sut = makeSUT(
+      segmentsToChoose: [segment1],
+      selectionViewDataSource: selectionViewDataSource
+    )
+    let updatedModel = ColoredSegmentViewCellData.make(
+      value: .brown, stateColor: .darkGray
+    )
+    selectionViewDataSource.update(updatedModel, at: 0)
+    
+    let cell0 = sut.selectionCollectionView.cell(at: 0) as! ColoredSegmentViewCell
+    sut.reloadSelectionSegment(at: IndexPath(row: 0, section: 0))
+    
+    XCTAssertEqual(cell0.backgroundColor, .darkGray)
+    XCTAssertEqual(cell0.coloredPanelView.backgroundColor, .brown)
+  }
   
-//  func test_hasSegmentsToBreach_setNewStateToOneSegment_changesState() {
-//    let colorProvider = ClassicColorProvider()
-//    let blackSegment = makeColoredSegment(color: .black, colorProvider: colorProvider)
-//    let blueSegment = makeColoredSegment(color: .blue)
-//    let segmentsToBreach = [blackSegment, blueSegment]
-//    let sut = makeSUT(segmentsToBreach: segmentsToBreach, segmentsToChoose: [], selection: { _ in })
-//
-//    blackSegment.setState(.selected)
-//
-//    XCTAssertEqual(sut.segmentsToBreach[0].state, .selected)
-//  }
-  
-  func test_hasSegmentsToChoose_updateSegmentState_changesSegmentBackgroundColor() {
+  func test_finishFlow_makesSelectionCollectionViewHidden() {
     let colorProvider = ClassicColorProvider()
     let redSegment = makeColoredSegment(color: .red, colorProvider: colorProvider)
     let sut = makeSUT(segmentsToChoose: [redSegment])
@@ -45,11 +45,10 @@ class BreachViewControllerTest: XCTestCase {
   // MARK: - Helpers
   func makeSUT(
     segmentsToBreach: [ColoredSegment] = [],
-    segmentsToChoose: [ColoredSegment] = []
+    segmentsToChoose: [ColoredSegment] = [],
+    selectionViewDataSource: ColoredDataSource = ColoredDataSource(),
+    breachViewDataSource: ColoredDataSource = ColoredDataSource()
   ) -> BreachViewController {
-    let selectionViewDataSource = ColoredDataSource()
-    let breachViewDataSource = ColoredDataSource()
-    
     let presenter = ColoredPresenter(
       segmentsToBreach: segmentsToBreach,
       segmentsToChoose: segmentsToChoose,
