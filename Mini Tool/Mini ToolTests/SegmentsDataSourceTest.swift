@@ -62,10 +62,14 @@ class SegmentsDataSourceTest: XCTestCase {
     let testCollection = collectionView()
     testCollection.register(ColoredSegmentViewCell.self)
     testCollection.dataSource = sut
+    let updatedItem = ColoredSegmentViewCellData(value: .gray, stateColor: .brown)
     
-    let cell = testCollection.cell(at: 2) as? ColoredSegmentViewCell
+    sut.update(updatedItem, at: 1)
     
-    XCTAssertNil(cell)
+    let cell = testCollection.cell(at: 1) as! ColoredSegmentViewCell
+    
+    XCTAssertEqual(cell.coloredPanelView.backgroundColor, updatedItem.value)
+    XCTAssertEqual(cell.backgroundColor, updatedItem.stateColor)
   }
   
   func makeSUT(
