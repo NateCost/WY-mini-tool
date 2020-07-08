@@ -12,12 +12,10 @@ class BreachRouterTests: XCTestCase {
   typealias ColoredBreachRouterOutputMock = BreachRouterOutputMock<
     ColoredSegment, ColoredSegmentViewCellData, ColoredSegmentViewCell
   >
+  typealias ColoredDataSource = DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>
   
-  func test_finish_executesViewInputFinish() {
-    let routerOutput = ColoredBreachRouterOutputMock(
-      segmentsToBreach: [],
-      dataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
-    )
+  func test_finish_executesRouterInputFinish() {
+    let routerOutput = ColoredBreachRouterOutputMock(segmentsToBreach: [])
     let sut = makeSUT(output: routerOutput)
     
     sut.finish()
@@ -37,10 +35,7 @@ class BreachRouterTests: XCTestCase {
   func test_updateSegment_viewInputUpdatesState() {
     let segment = ColoredSegment(.black, colorProvider: ClassicColorProvider())
     let segmentsToBreach = [segment]
-    let routerOutput = ColoredBreachRouterOutputMock(
-      segmentsToBreach: segmentsToBreach,
-      dataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
-    )
+    let routerOutput = ColoredBreachRouterOutputMock(segmentsToBreach: segmentsToBreach)
     let sut = makeSUT(output: routerOutput)
     
     segment.setState(.failed)
@@ -50,10 +45,7 @@ class BreachRouterTests: XCTestCase {
   }
   
   func makeSUT(
-    output: ColoredBreachRouterOutputMock = ColoredBreachRouterOutputMock(
-      segmentsToBreach: [],
-      dataSource: DataSource<ColoredSegmentViewCellData, ColoredSegmentViewCell>()
-    )
+    output: ColoredBreachRouterOutputMock = ColoredBreachRouterOutputMock(segmentsToBreach: [])
   ) -> BreachRouter<ColoredSegment, ColoredBreachRouterOutputMock> {
     let router = BreachRouter<ColoredSegment, ColoredBreachRouterOutputMock>()
     router.output = output

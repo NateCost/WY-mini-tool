@@ -13,15 +13,12 @@ final class BreachRouterOutputMock<
   Model: SegmentModel,
   Cell: SegmentConfigurableCell
 >: BreachRouterOuput where Cell.Model == Model, Segment.Value == Model.Value {
-  var collectionViewDataSource: UICollectionViewDataSource { _collectionViewDataSource }
-  var _collectionViewDataSource: DataSource<Model, Cell>
   var segmentsToBreach: [Segment]
   var finished = false
   var updatedSegment: Segment?
   
-  init(segmentsToBreach: [Segment], dataSource: DataSource<Model, Cell>) {
+  init(segmentsToBreach: [Segment]) {
     self.segmentsToBreach = segmentsToBreach
-    _collectionViewDataSource = dataSource
   }
   
   func finishFlow() { finished = true }
